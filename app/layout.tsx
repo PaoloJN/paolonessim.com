@@ -6,10 +6,11 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { SiteHeader } from "@/components/site-header"
 
-const inter = Inter({ subsets: ["latin"] })
+// const inter = Inter({ subsets: ["latin"] })
 
-// import { GeistSans } from "geist/font/sans"
-// import { GeistMono } from "geist/font/mono"
+import { GeistSans } from "geist/font/sans"
+import { GeistMono } from "geist/font/mono"
+import { cx } from "class-variance-authority"
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,12 +23,21 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html
+      lang="en"
+      className={cx(
+        "text-black bg-white dark:text-white dark:bg-[#111010]",
+        GeistSans.variable,
+        GeistMono.variable
+      )}
+    >
+      <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader />
-            <div className="flex-1">{children}</div>
+            <div className="antialiased max-w-2xl mb-40 flex flex-col md:flex-row mx-4 mt-8 lg:mx-auto">
+              {children}
+            </div>
           </div>
           {/* <Toaster /> */}
           <TailwindIndicator />
