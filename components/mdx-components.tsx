@@ -28,7 +28,7 @@ function Code({ children, ...props }: { children: string }) {
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
 }
 
-function RoundedImage(props: React.ImgHTMLAttributes<HTMLImageElement>) {
+function RoundedImage(props: any) {
   return <Image alt={props.alt} className="rounded-lg" {...props} />
 }
 

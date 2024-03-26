@@ -131,3 +131,43 @@ pre {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+/* Test */
+
+.divisor_divisor__HZl4g {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--ds-gray-500),
+    var(--ds-gray-500) 4px,
+    transparent 4px,
+    transparent 10px
+  );
+}
+
+.divisor_divisor__HZl4g:after,
+.divisor_divisor__HZl4g:before {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: var(--guide-offset);
+}
+
+.divisor_divisor__HZl4g:before {
+  left: 0;
+  background: linear-gradient(
+    90deg,
+    var(--ds-background-200) 0,
+    transparent 100%
+  );
+}
+
+.divisor_divisor__HZl4g:after {
+  right: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0,
+    var(--ds-background-200) 100%
+  );
+}
+
+/*# sourceMappingURL=6812de1d40516d64.css.map*/

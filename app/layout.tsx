@@ -35,9 +35,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader />
-            <div className="antialiased max-w-2xl mb-40 flex flex-col md:flex-row mx-4 mt-8 lg:mx-auto">
+            {/* <div className="antialiased max-w-2xl mb-40 flex flex-col md:flex-row mx-4 mt-8 lg:mx-auto">
               {children}
-            </div>
+            </div> */}
+
+            <div className="antialiased mx-14">{children}</div>
           </div>
           {/* <Toaster /> */}
           <TailwindIndicator />

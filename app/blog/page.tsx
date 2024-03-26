@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { Suspense } from "react"
 import { getBlogPosts } from "@/lib/content"
 
 export const metadata = {
