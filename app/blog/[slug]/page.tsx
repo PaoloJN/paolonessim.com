@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Suspense } from "react"
 import { notFound } from "next/navigation"
-import { CustomMDX } from "@/components/mdx-components"
+import { CustomMDX } from "@/components/markdown-components"
 import { getBlogPosts } from "@/lib/content"
 import { unstable_noStore as noStore } from "next/cache"
 
