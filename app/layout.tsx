@@ -11,6 +11,8 @@ const inter = Inter({ subsets: ["latin"] })
 import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 
+//  GeistSans.variable, GeistMono.variable
+
 import { cx } from "class-variance-authority"
 
 export const metadata: Metadata = {
@@ -22,24 +24,17 @@ interface RootLayoutProps {
   children: React.ReactNode
 }
 
-// colors
-
-// background light: F4F4F4
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
       lang="en"
-      className={cx(
-        "text-black  dark:text-white",
-        GeistSans.variable,
-        GeistMono.variable
-      )}
+      className={cx("text-black  dark:text-white", inter.className)}
     >
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="relative flex min-h-screen flex-col bg-[#F4F4F4]  dark:bg-[#111010]">
-            {/* <SiteHeader /> */}
-            <div className="antialiased mx-14">{children}</div>
+          <div className="relative flex min-h-screen flex-col bg-[#F4F4F4]  dark:bg-[#111010] px-4">
+            <SiteHeader />
+            <div className="antialiased">{children}</div>
           </div>
           <TailwindIndicator />
         </ThemeProvider>

@@ -2,6 +2,8 @@ import * as React from "react"
 import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
+import { usePathname } from "next/navigation"
+import { cn } from "@/lib/utils"
 
 interface NavItem {
   title: string
@@ -15,10 +17,14 @@ interface MainNavProps {
 }
 
 export function DesktopNav({ items }: MainNavProps) {
+  // get url see if it matches the href
+  // if it does, then add active class
+  const pathname = usePathname()
+
   return (
     <div>
       {items?.length ? (
-        <nav>
+        <nav className=" p-2 rounded-md">
           {items?.map(
             (item, index) =>
               item.href && (
@@ -26,7 +32,10 @@ export function DesktopNav({ items }: MainNavProps) {
                   variant={"ghost"}
                   key={index}
                   disabled={item.disabled}
-                  className="text-muted-foreground rounded-full p-0 px-4 h-fit py-1 font-light text-sm"
+                  className={cn(
+                    "text-muted-foreground p-0 px-4 h-fit py-1 font-light text-sm",
+                    pathname === item.href && "bg-accent "
+                  )}
                   asChild
                 >
                   <Link href={item.href}>{item.title}</Link>

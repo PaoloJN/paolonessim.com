@@ -1,28 +1,72 @@
+"use client"
+
+import Image from "next/image"
+import { useTheme } from "next-themes"
+import { Button, buttonVariants } from "./ui/button"
+import { siteConfig } from "@/config/site"
+import { cn } from "@/lib/utils"
+import { Icons } from "./ui/icons"
+import Link from "next/link"
+import { ThemeToggle } from "./theme-toggle"
+import { DesktopNav } from "./desktop-nav"
+
 export function SiteHeader() {
+  const theme = useTheme()
+  const logo = theme.theme === "dark" ? "/logo-dark.jpeg" : "/logo-light.jpeg"
+
   return (
-    <div className="flex gap-5 justify-between items-start pb-5 w-full text-xs leading-3 text-black border-b border-solid border-black border-opacity-20 max-md:flex-wrap max-md:max-w-full">
-      <div className="flex gap-4 justify-center">
-        <img
-          loading="lazy"
-          srcSet="..."
-          className="shrink-0 w-10 aspect-square"
+    <div className="flex justify-between items-center py-5 pt-8 w-full text-xs leading-3 text-black border-b-[0.5px] border-solid border-black border-opacity-15">
+      <div className="flex space-x-4 justify-center">
+        <Image
+          src={logo}
+          alt="Logo"
+          width={45}
+          height={45}
+          className="rounded-md border-b"
         />
         <div className="flex flex-col my-auto">
-          <div>Isabella Clarke</div>
-          <div className="mt-1">Founder Arktis</div>
+          <span>Paolo Nessim</span>
+          <span className="mt-1 opacity-50">Junior Full-Stack Developer</span>
         </div>
       </div>
-      <div className="flex flex-col justify-center px-3.5 py-2 mt-1.5 bg-neutral-100 rounded-[30px]">
-        <div className="flex flex-col justify-center px-3.5 py-2 border border-solid border-black border-opacity-20 rounded-[30px]">
-          <div className="flex gap-5 justify-between">
-            <div>Buy Template</div>
-            <img
-              loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/d5b266d5461bcd5dc75a00e483a0ac83593a2b8dad9c052eea4a6d0110c40f51?"
-              className="shrink-0 my-auto aspect-square w-[7px]"
-            />
-          </div>
+
+      {/* Nav links */}
+      <DesktopNav items={siteConfig.mainNav} />
+
+      <div className="flex items-center space-x-2">
+        <div>
+          <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
+            <div
+              className={cn(
+                buttonVariants({
+                  variant: "ghost",
+                }),
+                "w-9 px-0"
+              )}
+            >
+              <Icons.gitHub className="h-4 w-4" />
+              <span className="sr-only">GitHub</span>
+            </div>
+          </Link>
+          <Link
+            href={siteConfig.links.twitter}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <div
+              className={cn(
+                buttonVariants({
+                  variant: "ghost",
+                }),
+                "w-9 px-0"
+              )}
+            >
+              <Icons.twitter className="h-3 w-3 fill-current" />
+              <span className="sr-only">Twitter</span>
+            </div>
+          </Link>
         </div>
+        <ThemeToggle />
       </div>
     </div>
   )

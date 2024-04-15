@@ -76,7 +76,7 @@ export default function Blog({ params }: { params: { slug: string } }) {
   if (!post) notFound()
 
   return (
-    <section>
+    <section className="w-full">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -100,22 +100,21 @@ export default function Blog({ params }: { params: { slug: string } }) {
         }}
       />
 
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-[650px]">
-        <h1 className="title font-medium text-2xl tracking-tighter max-w-[650px]">
-          {post.metadata.title}
-        </h1>
-        <Suspense fallback={<p className="h-5" />}>
-          <p className="text-sm text-neutral-600 dark:text-neutral-400">
-            {formatDate(post.metadata.publishedAt)}
-          </p>
-        </Suspense>
-        {/* <Suspense fallback={<p className="h-5" />}>
-          <Views slug={post.slug} />
-        </Suspense> */}
+      <div className="flex items-center flex-col">
+        <div className="flex justify-between items-center mt-8 mb-8 text-sm w-full max-w-[650px]">
+          <h1 className="title font-medium text-2xl tracking-tighter max-w-[650px]">
+            {post.metadata.title}
+          </h1>
+          <Suspense fallback={<p className="h-5" />}>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              {formatDate(post.metadata.publishedAt)}
+            </p>
+          </Suspense>
+        </div>
+        <article className="prose prose-quoteless prose-neutral dark:prose-invert">
+          <CustomMDX source={post.content} />
+        </article>
       </div>
-      <article className="prose prose-quoteless prose-neutral dark:prose-invert">
-        <CustomMDX source={post.content} />
-      </article>
     </section>
   )
 }
