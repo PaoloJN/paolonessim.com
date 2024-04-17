@@ -76,6 +76,15 @@
   }
 }
 
+/* Map */
+.mapboxgl-ctrl-attrib {
+  display: none !important;
+}
+.mapboxgl-canvas {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
 /* MDX */
 ::selection {
   background-color: #47a3f3;

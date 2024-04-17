@@ -4,12 +4,12 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
-import { SiteHeader } from "@/components/site-header-two"
+import { SiteHeader } from "@/components/site-header"
 
 const inter = Inter({ subsets: ["latin"] })
 
-import { GeistSans } from "geist/font/sans"
-import { GeistMono } from "geist/font/mono"
+// import { GeistSans } from "geist/font/sans"
+// import { GeistMono } from "geist/font/mono"
 
 //  GeistSans.variable, GeistMono.variable
 
