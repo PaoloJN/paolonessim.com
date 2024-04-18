@@ -2,9 +2,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ArrowDownIcon, ArrowTopRightIcon } from "@radix-ui/react-icons"
 
-export default function CV() {
+interface CVProps {
+  className?: string
+}
+
+export default function CV({ className, ...props }: CVProps) {
   return (
-    <Card>
+    <Card className={className} {...props}>
       <CardHeader>
         <CardTitle>CV</CardTitle>
       </CardHeader>

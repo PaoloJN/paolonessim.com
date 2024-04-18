@@ -32,9 +32,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
     >
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="relative flex min-h-screen flex-col bg-[#F4F4F4]  dark:bg-[#111010] px-4">
-            <SiteHeader />
-            <div className="antialiased">{children}</div>
+          <div className="relative flex min-h-screen flex-col bg-[#F4F4F4]  dark:bg-[#111010] px-4 items-center">
+            <main className="w-[1140px] p-[20px] space-y-[30px]">
+              <SiteHeader />
+              <div className="antialiased">{children}</div>
+            </main>
           </div>
           <TailwindIndicator />
         </ThemeProvider>

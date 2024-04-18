@@ -72,7 +72,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[#F4F4F4] text-foreground;
   }
 }
 

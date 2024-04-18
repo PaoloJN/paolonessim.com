@@ -6,15 +6,19 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
-export default function About() {
+interface AboutProps {
+  className?: string
+}
+
+export default function About({ className, ...props }: AboutProps) {
   return (
-    <Card>
+    <Card className={className} {...props}>
       <CardHeader>
         <CardTitle>About</CardTitle>
         <CardDescription>Paolo Nessim</CardDescription>
       </CardHeader>
-      <CardContent>
-        <p className="mt-5 leading-[20px] opacity-75">
+      <CardContent className="mt-auto">
+        <p className="opacity-75">
           Hello. I’m Isabella Clarke, a visionary Brand Founder hailing from the
           dynamic city of London. With a deep understanding of the power of
           branding, I am dedicated to creating compelling brand experiences that

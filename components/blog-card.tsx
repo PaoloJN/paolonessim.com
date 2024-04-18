@@ -1,8 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-export default function Blog() {
+interface BlogProps {
+  className?: string
+}
+
+export default function Blog({ className, ...props }: BlogProps) {
   return (
-    <Card>
+    <Card className={className} {...props}>
       <CardHeader>
         <CardTitle>Blog</CardTitle>
       </CardHeader>

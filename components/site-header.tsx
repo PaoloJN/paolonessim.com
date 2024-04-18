@@ -15,14 +15,14 @@ export function SiteHeader() {
   const logo = theme.theme === "dark" ? "/logo-dark.jpeg" : "/logo-light.jpeg"
 
   return (
-    <div className="flex justify-between items-center py-5  w-full text-xs leading-3 text-black border-b-[0.5px] border-solid border-black border-opacity-15">
+    <div className="flex justify-between items-center pb-[20px] w-full text-xs leading-3 text-black border-b-[0.5px] border-solid border-black border-opacity-15">
       <div className="flex space-x-4 justify-center">
         <Image
           src={logo}
           alt="Logo"
-          width={45}
-          height={45}
-          className="rounded-md border-b"
+          width={40}
+          height={40}
+          className="rounded-md"
         />
         <div className="flex flex-col my-auto">
           <span>Paolo Nessim</span>

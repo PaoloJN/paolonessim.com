@@ -8,6 +8,8 @@ import Location from "@/components/location-card"
 import LatestProject from "@/components/latest-project-card"
 import GetInTouch from "@/components/get-in-touch-card"
 import Blog from "@/components/blog-card"
+import GithubGraph from "@/components/github-graph-card"
+import Personality from "@/components/personality-card"
 
 import {
   Card,
@@ -16,7 +18,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import Personality from "@/components/personality-card"
 import { useEffect, useState } from "react"
 
 // TODO:
@@ -35,110 +36,61 @@ import { useEffect, useState } from "react"
 
 export default function Home() {
   return (
-    <main className="relative mt-8 space-y-5">
-      {/* <GithubGraph /> */}
-      <div className="flex flex-row space-x-3">
-        <About />
-        <CV />
-      </div>
+    <div className="grid gap-[22px] auto-rows-[165px] grid-cols-[repeat(6,minmax(1px,1fr))] grid-rows-[repeat(2,165px)]">
+      <Location />
+      <Placeholder title="Mood" />
+      <About className="col-span-2" />
+      <ExperienceAndEducation className="col-span-2 row-span-2" />
+      <Projects className="col-span-2 row-span-2" />
+      <GetInTouch className="col-span-2 " />
+      <LatestProject className="col-span-2 row-span-2" />
+      <Placeholder title="Side Projects" className="col-span-2" />
+      <Placeholder title="Newsletter" />
+      <Placeholder title="Spotify" />
+      <Placeholder title="Clock" />
+      <CV />
+
+      {/* <GithubGraph />
+      <About />
+      <CV />
       <ExperienceAndEducation />
       <Projects />
-
-      <div className="flex flex-row space-x-3">
-        {/* <Location /> */}
-        <Personality />
-        <LatestProject />
-      </div>
+      <Location />
+      <Personality />
+      <LatestProject />
+      <Chat />
       <GetInTouch />
-      {/* <Stack />
+      <Stack />
       <Blog /> */}
-    </main>
+    </div>
   )
 }
 
-function Building() {
+interface PlaceholderProps {
+  title: string
+  className?: string
+  children?: React.ReactNode
+}
+
+function Placeholder({ title, className, children }: PlaceholderProps) {
   return (
-    <Card>
+    <Card className={className}>
       <CardHeader>
-        <CardTitle>About</CardTitle>
+        <CardTitle>{title}</CardTitle>
       </CardHeader>
-      <CardContent>
-        <p className="mt-5 leading-[20px] opacity-75"></p>
-      </CardContent>
+      {children}
     </Card>
   )
 }
 
-function GithubGraph() {
-  // prettier-ignore
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  const startMonth = new Date().getMonth()
-  const monthsRange = [...Array(13)].map(
-    (_, i) => months[(startMonth + i) % 12]
-  )
-
-  const days: string[] = ["", "Mon", "", "Wed", "", "Fri", ""]
-  const [squares, setSquares] = useState<number[]>([])
-
-  useEffect(() => {
-    // Create an array for the year, randomly assign 'levels' to each day
-    const data: number[] = Array.from({ length: 369 }, () =>
-      Math.floor(Math.random() * 4)
-    )
-
-    setSquares(data)
-  }, [])
-
-  // Function to determine the color based on the level
-  const levelColor = (level: number): string => {
-    switch (level) {
-      case 1:
-        return "bg-green-200"
-      case 2:
-        return "bg-green-400"
-      case 3:
-        return "bg-green-800"
-      default:
-        return ""
-    }
-  }
-
+function Chat() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Github Contributions</CardTitle>
+        <CardTitle>Chat with my ai version</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="leading-[20px] opacity-75 overflow-y-scroll mt-2">
-          <div className="inline-grid gap-2.5 p-2 pb-3">
-            <div
-              className="col-span-3 grid gap-1 text-center ml-5 mb-1"
-              style={{
-                gridTemplateColumns: "repeat(13, minmax(0, 1fr))",
-              }}
-            >
-              {monthsRange.map((month, index) => (
-                <span key={month}>{month}</span>
-              ))}
-            </div>
-            <div className="grid grid-rows-7 mr-1 ">
-              {days.map((day) => (
-                <span key={day}>{day}</span>
-              ))}
-            </div>
-            {/* auto-cols-[15px] */}
-            <div className="grid grid-rows-7 grid-flow-col gap-[3px] ">
-              {squares.map((level, index) => (
-                <div
-                  key={index}
-                  className={`w-[12px] h-[12px] bg-gray-200 rounded-[2px] ${levelColor(
-                    level
-                  )} `}
-                ></div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <p className="mt-5 leading-[20px] opacity-75"></p>
       </CardContent>
     </Card>
   )

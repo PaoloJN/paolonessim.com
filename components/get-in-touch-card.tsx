@@ -1,25 +1,31 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { buttonVariants } from "./ui/button"
+
+import Link from "next/link"
+import { siteConfig } from "@/config/site"
+import { cn } from "@/lib/utils"
+import { Icons } from "./ui/icons"
+
 import {
   ArrowTopRightIcon,
   EnvelopeClosedIcon,
   GitHubLogoIcon,
   LinkedInLogoIcon,
 } from "@radix-ui/react-icons"
-import Link from "next/link"
-import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
-import { Icons } from "./ui/icons"
 
-export default function GetInTouch() {
+interface GetInTouchProps {
+  className?: string
+}
+
+export default function GetInTouch({ className, ...props }: GetInTouchProps) {
   return (
-    <Card>
+    <Card className={className} {...props}>
       <CardHeader>
         <CardTitle>Get in touch</CardTitle>
       </CardHeader>
-      <CardContent className="pt-4 space-y-3 flex flex-col">
+      <CardContent className="pt-4 flex flex-col">
         {/* Github */}
-        <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
+        {/* <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
           <div
             className={cn(
               buttonVariants({
@@ -29,15 +35,14 @@ export default function GetInTouch() {
             )}
           >
             <div className="flex flex-row items-center space-x-2 opacity-60">
-              {/* <Icons.gitHub className="h-4 w-4" /> */}
               <GitHubLogoIcon className="h-4 w-4" />
               <span>GitHub</span>
             </div>
             <ArrowTopRightIcon className="w-4 h-4 opacity-50" />
           </div>
-        </Link>
+        </Link> */}
         {/* Twitter */}
-        <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
+        {/* <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
           <div
             className={cn(
               buttonVariants({
@@ -52,9 +57,9 @@ export default function GetInTouch() {
             </div>
             <ArrowTopRightIcon className="w-4 h-4 opacity-50" />
           </div>
-        </Link>
+        </Link> */}
         {/* LinkedIn */}
-        <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
+        {/* <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
           <div
             className={cn(
               buttonVariants({
@@ -64,16 +69,14 @@ export default function GetInTouch() {
             )}
           >
             <div className="flex flex-row items-center space-x-2 opacity-60">
-              {/* <Icons.gitHub className="h-4 w-4" /> */}
               <LinkedInLogoIcon className="h-4 w-4" />
               <span>LinkedIn</span>
             </div>
             <ArrowTopRightIcon className="w-4 h-4 opacity-50" />
           </div>
-        </Link>
-        – 
+        </Link> */}
         {/* Email */}
-        <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
+        {/* <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
           <div
             className={cn(
               buttonVariants({
@@ -83,13 +86,12 @@ export default function GetInTouch() {
             )}
           >
             <div className="flex flex-row items-center space-x-2 opacity-60">
-              {/* <Icons.gitHub className="h-4 w-4" /> */}
               <EnvelopeClosedIcon />
               <span>Email</span>
             </div>
             <ArrowTopRightIcon className="w-4 h-4 opacity-50" />
           </div>
-        </Link>
+        </Link> */}
       </CardContent>
     </Card>
   )

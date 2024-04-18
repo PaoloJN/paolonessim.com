@@ -8,9 +8,16 @@ import {
 import { ArrowTopRightIcon } from "@radix-ui/react-icons"
 import Image from "next/image"
 
-export default function LatestProject() {
+interface LatestProjectProps {
+  className?: string
+}
+
+export default function LatestProject({
+  className,
+  ...props
+}: LatestProjectProps) {
   return (
-    <Card>
+    <Card className={className} {...props}>
       <CardHeader>
         <CardTitle>Latest Project</CardTitle>
         <CardDescription className="flex flex-row">

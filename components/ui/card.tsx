@@ -9,7 +9,7 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "text-xs rounded-xl border-black border-opacity-20 border-[0.5px] bg-white text-card-foreground w-full",
+      "flex flex-col text-xs rounded-[10px] border-black border-opacity-20 border-[0.5px] bg-white text-card-foreground w-full",
       className
     )}
     {...props}
@@ -24,10 +24,10 @@ const CardHeader = React.forwardRef<
   <>
     <div
       ref={ref}
-      className={cn("flex justify-between p-2.5 pb-2", className)}
+      className={cn("flex justify-between px-[9.5px] py-[7px] pb-2", className)}
       {...props}
     />
-    <div className="mx-2.5 border-b border-solid border-black border-opacity-15" />
+    <div className="mx-[8px] border-b border-solid border-black border-opacity-10" />
   </>
 ))
 CardHeader.displayName = "CardHeader"
@@ -36,7 +36,7 @@ const CardTitle = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
-  <h3 ref={ref} className={cn("", className)} {...props} />
+  <h3 ref={ref} className={cn("text-[11.5px]", className)} {...props} />
 ))
 CardTitle.displayName = "CardTitle"
 
@@ -44,7 +44,11 @@ const CardDescription = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => (
-  <p ref={ref} className={cn("opacity-50", className)} {...props} />
+  <p
+    ref={ref}
+    className={cn("opacity-50 text-[11.5px]", className)}
+    {...props}
+  />
 ))
 CardDescription.displayName = "CardDescription"
 

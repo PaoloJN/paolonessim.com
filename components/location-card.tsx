@@ -5,11 +5,20 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardHeader,
   CardTitle,
 } from "@/components/ui/card"
 import Image from "next/image"
 
-export default function Location() {
+import Map from "react-map-gl"
+
+import { cn } from "@/lib/utils"
+
+interface LocationProps {
+  className?: string
+}
+
+export default function Location({ className, ...props }: LocationProps) {
   const [visibility, setVisibility] = React.useState({
     water: true,
     parks: true,
@@ -20,16 +29,20 @@ export default function Location() {
   })
 
   return (
-    <Card>
-      <div className="flex justify-between p-2.5 pb-2">
-        <CardTitle>Location</CardTitle>
-        <CardDescription>Maryland, USA</CardDescription>
+    <Card className={cn("relative", className)} {...props}>
+      <div className="absolute z-20 w-full">
+        <div className=" w-full flex justify-between p-2.5 pb-2 ">
+          <CardTitle>Location</CardTitle>
+          <CardDescription>Maryland, USA</CardDescription>
+        </div>
+        <div className="mx-2.5 border-b border-solid border-black border-opacity-15" />
       </div>
-      <CardContent className="p-0">
+
+      <CardContent className="absolute p-0 top-0 h-full w-full">
         <Image
           src="https://framerusercontent.com/images/VUFpyNfHahYo4OtUEXPg5ABhLbI.jpg?scale-down-to=512"
           alt="Picture of the author"
-          className="w-full h-full opacity-50"
+          className="w-full h-full rounded-[10px]"
           width={100}
           height={100}
         />
@@ -42,7 +55,7 @@ export default function Location() {
             zoom: 7,
           }}
           // hide labels
-          
+
           style={{ width: "100%", height: "100%", borderRadius: "5rem" }}
           mapStyle="mapbox://styles/mapbox/light-v11"
         /> */}
