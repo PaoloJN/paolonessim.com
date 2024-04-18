@@ -44,13 +44,15 @@ export default function Home() {
       <Projects className="col-span-2 row-span-2" />
       <GetInTouch className="col-span-2 " />
       <LatestProject className="col-span-2 row-span-2" />
-      <Placeholder title="Side Projects" className="col-span-2" />
+      {/* <Placeholder title="Side Projects" className="col-span-2" /> */}
+      <GithubGraph className="col-span-2" />
       <Placeholder title="Newsletter" />
       <Placeholder title="Spotify" />
       <Placeholder title="Clock" />
       <CV />
 
-      {/* <GithubGraph />
+      {/* 
+      <GithubGraph />
       <About />
       <CV />
       <ExperienceAndEducation />
@@ -61,7 +63,8 @@ export default function Home() {
       <Chat />
       <GetInTouch />
       <Stack />
-      <Blog /> */}
+      <Blog /> 
+      */}
     </div>
   )
 }

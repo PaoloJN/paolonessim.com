@@ -33,8 +33,8 @@ export function DesktopNav({ items }: MainNavProps) {
                   key={index}
                   disabled={item.disabled}
                   className={cn(
-                    "text-muted-foreground p-0 px-4 h-fit py-1 font-light text-[13px]",
-                    pathname === item.href && "bg-accent "
+                    "text-muted-foreground p-0 px-4 h-fit py-2 font-light text-[13px] ",
+                    pathname === item.href && "bg-white "
                   )}
                   asChild
                 >

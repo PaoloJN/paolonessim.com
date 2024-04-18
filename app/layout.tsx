@@ -14,6 +14,7 @@ const inter = Inter({ subsets: ["latin"] })
 //  GeistSans.variable, GeistMono.variable
 
 import { cx } from "class-variance-authority"
+import Footer from "@/components/footer"
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -32,10 +33,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
     >
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="relative flex min-h-screen flex-col bg-[#F4F4F4]  dark:bg-[#111010] px-4 items-center">
+          <div className="relative flex min-h-screen flex-col bg-[#F4F4F4]  dark:bg-[#111010] px-4 items-center antialiased">
             <main className="w-[1140px] p-[20px] space-y-[30px]">
               <SiteHeader />
-              <div className="antialiased">{children}</div>
+              <main>{children}</main>
+              <Footer />
             </main>
           </div>
           <TailwindIndicator />
