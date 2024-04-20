@@ -15,11 +15,12 @@ interface SiteHeaderProps {
 }
 export function SiteHeader({ className, ...props }: SiteHeaderProps) {
   const theme = useTheme()
+  // use css instead to find theme
   const logo = theme.theme === "dark" ? "/logo-dark.jpeg" : "/logo-light.jpeg"
 
   return (
     <nav className={className} {...props}>
-      <div className="flex justify-between items-center pb-[20px] w-full text-xs leading-3 text-black border-b-[0.5px] border-solid border-black border-opacity-15">
+      <div className="flex justify-between items-center pb-[20px] w-full text-xs leading-3 text-black dark:text-white border-b-[0.5px] border-solid border-black dark:border-white border-opacity-15 dark:border-opacity-10">
         <div className="flex space-x-4 justify-center">
           <Image
             src={logo}

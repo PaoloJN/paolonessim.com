@@ -23,76 +23,55 @@ export default function GetInTouch({ className, ...props }: GetInTouchProps) {
       <CardHeader>
         <CardTitle>Get in touch</CardTitle>
       </CardHeader>
-      <CardContent className="pt-4 flex flex-col">
-        {/* Github */}
-        {/* <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
-          <div
-            className={cn(
-              buttonVariants({
-                variant: "outline",
-              }),
-              "justify-between w-full"
-            )}
-          >
-            <div className="flex flex-row items-center space-x-2 opacity-60">
-              <GitHubLogoIcon className="h-4 w-4" />
-              <span>GitHub</span>
-            </div>
-            <ArrowTopRightIcon className="w-4 h-4 opacity-50" />
-          </div>
-        </Link> */}
-        {/* Twitter */}
-        {/* <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
-          <div
-            className={cn(
-              buttonVariants({
-                variant: "outline",
-              }),
-              "justify-between w-full"
-            )}
-          >
-            <div className="flex flex-row items-center space-x-2 opacity-60">
-              <Icons.twitter className="h-3.5 w-3.5 fill-current" />
-              <span>Twitter - X</span>
-            </div>
-            <ArrowTopRightIcon className="w-4 h-4 opacity-50" />
-          </div>
-        </Link> */}
-        {/* LinkedIn */}
-        {/* <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
-          <div
-            className={cn(
-              buttonVariants({
-                variant: "outline",
-              }),
-              "justify-between w-full"
-            )}
-          >
-            <div className="flex flex-row items-center space-x-2 opacity-60">
-              <LinkedInLogoIcon className="h-4 w-4" />
-              <span>LinkedIn</span>
-            </div>
-            <ArrowTopRightIcon className="w-4 h-4 opacity-50" />
-          </div>
-        </Link> */}
-        {/* Email */}
-        {/* <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
-          <div
-            className={cn(
-              buttonVariants({
-                variant: "outline",
-              }),
-              "justify-between w-full"
-            )}
-          >
-            <div className="flex flex-row items-center space-x-2 opacity-60">
-              <EnvelopeClosedIcon />
-              <span>Email</span>
-            </div>
-            <ArrowTopRightIcon className="w-4 h-4 opacity-50" />
-          </div>
-        </Link> */}
+      <CardContent className="mt-auto">
+        <div className="grid grid-cols-2 gap-2">
+          {/* Github */}
+          <ExternalLink href={siteConfig.links.github}>
+            <GitHubLogoIcon className="h-4 w-4" />
+            <span className="text-xs">GitHub</span>
+          </ExternalLink>
+          {/* Twitter */}
+          <ExternalLink href={siteConfig.links.github}>
+            <Icons.twitter className="h-3.5 w-3.5 fill-current" />
+            <span className="text-xs">Twitter - X</span>
+          </ExternalLink>
+          {/* LinkedIn */}
+          <ExternalLink href={siteConfig.links.github}>
+            <LinkedInLogoIcon className="h-4 w-4" />
+            <span className="text-xs">LinkedIn</span>
+          </ExternalLink>
+          {/* Email */}
+          <ExternalLink href={siteConfig.links.github}>
+            <EnvelopeClosedIcon />
+            <span className="text-xs">Email</span>
+          </ExternalLink>
+        </div>
       </CardContent>
     </Card>
+  )
+}
+
+interface ExternalLinkProps {
+  href: string
+  children: React.ReactNode
+}
+
+function ExternalLink({ href, children }: ExternalLinkProps) {
+  return (
+    <Link href={href} target="_blank" rel="noreferrer">
+      <div
+        className={cn(
+          buttonVariants({
+            variant: "outline",
+          }),
+          "justify-between w-full border-[0.5px] bg-transparent"
+        )}
+      >
+        <div className="flex flex-row items-center justify-center space-x-2 opacity-70">
+          {children}
+        </div>
+        {/* <ArrowTopRightIcon className="w-3.5 h-3.5 opacity-50" /> */}
+      </div>
+    </Link>
   )
 }

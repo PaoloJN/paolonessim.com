@@ -5,7 +5,7 @@
 @layer base {
   :root {
     /* --background: 0 0% 100%; */
-    --background: 244, 244, 244;
+    --background: 0, 0%, 96%;
     --foreground: 240 10% 3.9%;
 
     --card: 0 0% 100%;
@@ -37,7 +37,8 @@
   }
 
   .dark {
-    --background: 240 10% 3.9%;
+    /* --background: 240 10% 3.9%; */
+    --background: 0 0% 6%;
     --foreground: 0 0% 98%;
 
     --card: 240 10% 3.9%;
@@ -72,7 +73,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-[#F4F4F4] text-foreground;
+    @apply text-foreground bg-background;
   }
 }
 
@@ -113,6 +114,10 @@
   html {
     color-scheme: dark;
   }
+}
+
+.react-clock__face {
+  border: none !important;
 }
 
 .prose pre {

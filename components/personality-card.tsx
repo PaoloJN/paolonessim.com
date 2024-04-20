@@ -17,7 +17,7 @@ export default function Personality({ className, ...props }: PersonalityProps) {
     <Card className={className} {...props}>
       <CardHeader>
         <CardTitle>Personality</CardTitle>
-        <CardDescription>Paolo Nessim</CardDescription>
+        {/* <CardDescription>Paolo Nessim</CardDescription> */}
       </CardHeader>
       {/* <CardContent className="p-0 flex flex-col justify-end h-[100%]">
         <div className="group/card h-[20rem] overflow-hidden rounded-2xl border p-0.5 text-card-foreground shadow relative order-5 dark:bg-neutral-950/60 md:col-span-2 lg:order-4">
@@ -78,7 +78,7 @@ export default function Personality({ className, ...props }: PersonalityProps) {
           </div>
         </div>
       </CardContent> */}
-      <CardContent className=" h-[20rem] overflow-hidden relative dark:bg-neutral-950/60 md:col-span-2 lg:order-4">
+      <CardContent className=" h-[20rem] overflow-hidden relative  md:col-span-2 lg:order-4">
         <div className="absolute mt-[10rem] flex h-full w-full scale-75 items-center justify-center md:scale-90">
           <div className="absolute z-10 h-[52rem] w-[52rem] rounded-full border-2 border-dashed border-neutral-400/10 dark:border-neutral-800/10 dark:bg-neutral-900/10"></div>
           <div className="absolute z-10 h-[45rem] w-[45rem] rounded-full border-2 border-dashed border-neutral-400/20 bg-neutral-200/5 dark:border-neutral-800/20 dark:bg-neutral-900/5"></div>

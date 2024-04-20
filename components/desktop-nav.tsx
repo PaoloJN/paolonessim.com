@@ -24,7 +24,7 @@ export function DesktopNav({ items }: MainNavProps) {
   return (
     <div>
       {items?.length ? (
-        <nav className="p-2 rounded-md">
+        <nav className="p-2 rounded-md -ml-[90px] space-x-2">
           {items?.map(
             (item, index) =>
               item.href && (
@@ -33,8 +33,8 @@ export function DesktopNav({ items }: MainNavProps) {
                   key={index}
                   disabled={item.disabled}
                   className={cn(
-                    "text-muted-foreground p-0 px-4 h-fit py-2 font-light text-[13px] ",
-                    pathname === item.href && "bg-white "
+                    "text-muted-foreground p-0 px-4 h-fit py-2 font-light text-[13px]",
+                    pathname === item.href && "bg-white dark:bg-secondary/80"
                   )}
                   asChild
                 >

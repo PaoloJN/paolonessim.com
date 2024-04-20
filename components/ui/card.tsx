@@ -9,7 +9,7 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "flex flex-col text-xs rounded-[10px] border-black border-opacity-20 border-[0.5px] bg-white text-card-foreground w-full",
+      "flex flex-col text-xs rounded-[10px] border-black dark:border-white dark:border-opacity-10 border-opacity-20 border-[0.5px] bg-white dark:bg-background text-card-foreground w-full",
       className
     )}
     {...props}
@@ -27,7 +27,7 @@ const CardHeader = React.forwardRef<
       className={cn("flex justify-between px-[9.5px] py-[7px] pb-2", className)}
       {...props}
     />
-    <div className="mx-[8px] border-b border-solid border-black border-opacity-10" />
+    <div className="mx-[8px] border-[0.5px] border-solid border-black border-opacity-10 dark:border-white dark:border-opacity-5 " />
   </>
 ))
 CardHeader.displayName = "CardHeader"

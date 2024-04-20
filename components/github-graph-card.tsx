@@ -91,6 +91,8 @@
 //   )
 // }
 
+"use client"
+
 import {
   Card,
   CardContent,
@@ -133,13 +135,13 @@ export default function GithubGraph({ className, ...props }: GithubGraphProps) {
   const levelColor = (level: number): string => {
     switch (level) {
       case 1:
-        return "bg-green-200"
+        return "bg-green-200 dark:bg-green-300"
       case 2:
-        return "bg-green-400"
+        return "bg-green-400 dark:bg-green-500"
       case 3:
-        return "bg-green-800"
+        return "bg-green-800 dark:bg-green-900"
       default:
-        return ""
+        return "bg-gray-200 dark:bg-zinc-900"
     }
   }
 
@@ -149,13 +151,13 @@ export default function GithubGraph({ className, ...props }: GithubGraphProps) {
         <CardTitle>Github Contributions</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className=" opacity-50 overflow-y-scroll mt-1">
+        <div className="opacity-50 dark:opacity-90 overflow-y-scroll mt-1">
           <div className="inline-grid gap-2.5 p-2">
             <div className="grid grid-rows-7 grid-flow-col gap-[3px] ">
               {squares.map((level, index) => (
                 <div
                   key={index}
-                  className={`w-[12px] h-[12px] bg-gray-200 rounded-[2px] ${levelColor(
+                  className={`w-[12px] h-[12px] rounded-[2px] ${levelColor(
                     level
                   )} `}
                 ></div>

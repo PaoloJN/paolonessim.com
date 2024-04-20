@@ -1,3 +1,5 @@
+"use client"
+
 import {
   Card,
   CardContent,
@@ -6,60 +8,49 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
+import Image from "next/image"
+
 interface ProjectsProps {
   className?: string
 }
-// Add on hover show image and track mouse with image if in mouse is in element
+
+// create a suspense component that will show a loading spinner while the data is being fetched
+
 export default function Projects({ className, ...props }: ProjectsProps) {
   return (
     <Card className={className} {...props}>
       <CardHeader>
         <CardTitle>Projects</CardTitle>
       </CardHeader>
-      <CardContent>
-        {/* Old style */}
-        {/* <div className="flex flex-col px-2.5 pt-2 w-full">
-          <div className="flex gap-5 py-4 border-b-[0.5px] border-black/15 justify-between last:border-b-0 ">
-            <span className="opacity-50">Since 2023</span>
-
-            <div className="flex flex-col">
-              <span>Weather AI</span>
-              <p className="mt-1 leading-4 opacity-50">
-                Weather AI is a weather forecasting app that uses machine
-                learning
-              </p>
-            </div>
-          </div>
-        </div> */}
-        {/* Project Two */}
-        {/* <div className="flex flex-col px-2.5 pt-2 w-full">
-          <div className="flex gap-5 py-4 border-b-[0.5px] border-black/15 justify-between last:border-b-0 ">
-            <span className="opacity-50">Since 2023</span>
-
-            <div className="flex flex-col">
-              <span>Weather AI</span>
-              <p className="mt-1 leading-4 opacity-50">
-                Weather AI is a weather forecasting app that uses machine
-                learning
-              </p>
-            </div>
-          </div>
-        </div> */}
-        {/* Project Three */}
-        {/* <div className="flex flex-col px-2.5 pt-2 w-full">
-          <div className="flex gap-5 py-4 border-b-[0.5px] border-black/15 justify-between last:border-b-0 ">
-            <span className="opacity-50">Since 2023</span>
-
-            <div className="flex flex-col">
-              <span>Weather AI</span>
-              <p className="mt-1 leading-4 opacity-50">
-                Weather AI is a weather forecasting app that uses machine
-                learning
-              </p>
-            </div>
-          </div>
-        </div> */}
+      <CardContent className="space-y-2 p-3 mt-auto overflow-scroll">
+        <ProjectItem />
+        <ProjectItem />
+        <ProjectItem />
       </CardContent>
     </Card>
+  )
+}
+
+// Add on hover show image and track mouse with image if in mouse is in element
+function ProjectItem() {
+  return (
+    <div className="flex flex-row items-center rounded-md border-[0.5px] p-2 select-none">
+      <Image
+        alt="app-logo"
+        src="/logo-light.jpeg"
+        width={45}
+        height={45}
+        className=" border-[0.8px] rounded-sm"
+      />
+      <div className="flex flex-col ml-[15px] mr-[5px] w-full">
+        <div className="flex flex-row justify-between">
+          <span>Weather AI</span>
+          {/* <span className="text-[11.5px]">2023</span> */}
+        </div>
+        <p className="mt-1 leading-[18px] opacity-50">
+          Real time weather chat ai application
+        </p>
+      </div>
+    </div>
   )
 }
