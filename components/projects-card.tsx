@@ -40,7 +40,7 @@ function ProjectItem() {
         src="/logo-light.jpeg"
         width={45}
         height={45}
-        className=" border-[0.8px] rounded-sm"
+        className="rounded-sm"
       />
       <div className="flex flex-col ml-[15px] mr-[5px] w-full">
         <div className="flex flex-row justify-between">

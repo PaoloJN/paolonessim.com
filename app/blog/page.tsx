@@ -17,26 +17,29 @@ export default function BlogPage() {
   })
 
   return (
-    <section>
+    <section className="flex flex-col ">
       {/* <h1 className="font-medium text-2xl mb-8 tracking-tighter">
         read my blog
       </h1> */}
-      {sortedPosts.map((post) => (
-        <Link
-          key={post.slug}
-          className="flex flex-col space-y-1 mb-4"
-          href={`/blog/${post.slug}`}
-        >
-          <div className="w-full flex flex-col">
-            <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
-              {post.metadata.title}
-            </p>
-            {/* <Suspense fallback={<p className="h-6" />}>
+
+      <div className="w-fit mx-auto">
+        {sortedPosts.map((post) => (
+          <Link
+            key={post.slug}
+            className="flex flex-col space-y-1 mb-4"
+            href={`/blog/${post.slug}`}
+          >
+            <div className="w-full flex flex-col">
+              <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
+                {post.metadata.title}
+              </p>
+              {/* <Suspense fallback={<p className="h-6" />}>
               <Views slug={post.slug} />
             </Suspense> */}
-          </div>
-        </Link>
-      ))}
+            </div>
+          </Link>
+        ))}
+      </div>
     </section>
   )
 }
