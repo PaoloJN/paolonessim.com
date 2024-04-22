@@ -10,8 +10,12 @@ const nextConfig = {
         protocol: "https",
         hostname: "framerusercontent.com",
       },
+      {
+        protocol: "https",
+        hostname: "api.mapbox.com",
+      },
     ],
   },
-}
+};
 
-export default nextConfig
+export default nextConfig;

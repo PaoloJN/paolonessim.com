@@ -186,3 +186,41 @@ pre {
 }
 
 /*# sourceMappingURL=6812de1d40516d64.css.map*/
+
+.dot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse-animation 2s infinite;
+}
+
+.dot-inner {
+  background-color: inherit; /* Uses the parent's green background */
+  width: 50%; /* Adjust size to change the size of the solid center */
+  height: 50%; /* Adjust size to change the size of the solid center */
+  border-radius: 50%;
+}
+
+.dot::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
+  border-radius: 50%;
+  filter: blur(4px); /* Adjust blur intensity */
+  z-index: -1;
+}
+
+@keyframes pulse-animation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}

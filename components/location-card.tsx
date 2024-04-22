@@ -1,16 +1,9 @@
 "use client";
 
-import React from "react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import React, { useEffect, useState } from "react";
+import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
-
-import Map from "react-map-gl";
+import { useTheme } from "next-themes";
 
 import { cn } from "@/lib/utils";
 
@@ -18,48 +11,45 @@ interface LocationProps {
   className?: string;
 }
 
+// image url  {/* https://api.mapbox.com/styles/v1/mapbox/light-v10/static/-76.9413,39.1458,8.20,-0.2/512x512?access_token=pk.eyJ1IjoibWFwYm94LW1hcC1kZXNpZ24iLCJhIjoiY2syeHpiaHlrMDJvODNidDR5azU5NWcwdiJ9.x0uSqSWGXdoFKuHZC5Eo_Q */}
+
 export default function Location({ className, ...props }: LocationProps) {
-  const [visibility, setVisibility] = React.useState({
-    water: true,
-    parks: true,
-    buildings: true,
-    roads: true,
-    labels: false, // Set labels to false to hide them by default
-    background: true,
-  });
+  const { resolvedTheme } = useTheme();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const mapStyle =
+    resolvedTheme === "dark"
+      ? "/dark-map.png"
+      : resolvedTheme === "light"
+        ? "/light-map.png"
+        : "";
 
   return (
-    <Card className={cn("relative", className)} {...props}>
+    <Card className={cn("relative overflow-hidden", className)} {...props}>
       <div className="absolute z-20 w-full">
-        <div className=" flex w-full justify-between p-2.5 pb-2 ">
+        <div className="flex w-full justify-between p-2.5 pb-2">
           <CardTitle>Location</CardTitle>
           <CardDescription>Maryland, USA</CardDescription>
         </div>
         <div className="mx-2.5 border-b border-solid border-black border-opacity-15" />
       </div>
 
-      <CardContent className="absolute top-0 h-full w-full p-0">
-        <Image
-          src="https://framerusercontent.com/images/VUFpyNfHahYo4OtUEXPg5ABhLbI.jpg?scale-down-to=512"
-          alt="Picture of the author"
-          className="h-full w-full rounded-[10px]"
-          width={100}
-          height={100}
-        />
-
-        {/* <Map
-          mapboxAccessToken="api"
-          initialViewState={{
-            longitude: -76.641273,
-            latitude: 39.045753,
-            zoom: 7,
-          }}
-          // hide labels
-
-          style={{ width: "100%", height: "100%", borderRadius: "5rem" }}
-          mapStyle="mapbox://styles/mapbox/light-v11"
-        /> */}
-      </CardContent>
+      <div className="absolute -left-2 -top-2 h-[200px] w-[200px]">
+        {mapStyle !== "" && isClient && (
+          <Image
+            src={mapStyle}
+            alt="Picture of the author"
+            // overlay black
+            className="rounded-[10px] brightness-[1.02] filter dark:brightness-[0.6] dark:filter"
+            width={200}
+            height={200}
+          />
+        )}
+      </div>
     </Card>
   );
 }

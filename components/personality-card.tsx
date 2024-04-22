@@ -17,7 +17,7 @@ export default function Personality({ className, ...props }: PersonalityProps) {
     <Card className={className} {...props}>
       <CardHeader>
         <CardTitle>Personality</CardTitle>
-        {/* <CardDescription>Paolo Nessim</CardDescription> */}
+        <CardDescription>Paolo Nessim</CardDescription>
       </CardHeader>
       {/* <CardContent className="p-0 flex flex-col justify-end h-[100%]">
         <div className="group/card h-[20rem] overflow-hidden rounded-2xl border p-0.5 text-card-foreground shadow relative order-5 dark:bg-neutral-950/60 md:col-span-2 lg:order-4">
@@ -78,7 +78,7 @@ export default function Personality({ className, ...props }: PersonalityProps) {
           </div>
         </div>
       </CardContent> */}
-      <CardContent className=" relative h-[20rem] overflow-hidden  md:col-span-2 lg:order-4">
+      <CardContent className=" relative mt-auto h-[25rem]  overflow-hidden md:col-span-2 lg:order-4">
         <div className="absolute mt-[10rem] flex h-full w-full scale-75 items-center justify-center md:scale-90">
           <div className="absolute z-10 h-[52rem] w-[52rem] rounded-full border-2 border-dashed border-neutral-400/10 dark:border-neutral-800/10 dark:bg-neutral-900/10"></div>
           <div className="absolute z-10 h-[45rem] w-[45rem] rounded-full border-2 border-dashed border-neutral-400/20 bg-neutral-200/5 dark:border-neutral-800/20 dark:bg-neutral-900/5"></div>
@@ -88,7 +88,7 @@ export default function Personality({ className, ...props }: PersonalityProps) {
           <div className="absolute z-10 h-[17rem] w-[17rem] rounded-full border-2 border-dashed border-neutral-400/80 bg-neutral-200/50 dark:border-neutral-800/80 dark:bg-neutral-900/50"></div>
           <div className="absolute z-10 h-[10rem] w-[10rem] rounded-full border-2 border-dashed border-neutral-400 bg-neutral-300/50 dark:border-neutral-800 dark:bg-neutral-900"></div>
           <div className="absolute bottom-0 z-30 h-[11rem] w-full scale-150 bg-white blur-2xl dark:bg-neutral-950/95"></div>
-          <div className="group/cloud absolute z-30 mb-[11.5rem] mr-[5rem] flex select-none flex-col items-center justify-center gap-2 transition-all duration-500 ease-in-out">
+          {/* <div className="group/cloud absolute z-30 mb-[11.5rem] mr-[5rem] flex select-none flex-col items-center justify-center gap-2 transition-all duration-500 ease-in-out">
             <div className="rounded-xl border border-neutral-400 bg-neutral-100 p-2 text-sm group-hover/cloud:border-neutral-700 group-hover/cloud:border-b-neutral-500 dark:border-neutral-800 dark:bg-neutral-900 dark:group-hover/cloud:border-b-neutral-600">
               <div className="cursor-default font-medium text-neutral-600 transition-colors duration-500 ease-in-out group-hover/cloud:text-neutral-600 dark:text-neutral-400 dark:group-hover/cloud:text-neutral-100">
                 Creative
@@ -132,7 +132,7 @@ export default function Personality({ className, ...props }: PersonalityProps) {
             </div>
             <div className="border-1 h-2 w-2 rounded-full border-neutral-100 bg-neutral-400 ring-offset-2 transition-all duration-200 ease-in-out group-hover/cloud:bg-black group-hover/cloud:ring-1 group-hover/cloud:ring-neutral-600 dark:bg-neutral-800/60 dark:ring-neutral-600 dark:ring-offset-neutral-800 dark:group-hover/cloud:bg-neutral-100 dark:group-hover/cloud:ring-1 dark:group-hover/cloud:ring-neutral-400"></div>
             <div className="absolute mt-11 h-7 w-7 scale-125 rounded-full blur-md transition will-change-transform dark:group-hover/cloud:bg-white"></div>
-          </div>
+          </div> */}
         </div>
       </CardContent>
     </Card>

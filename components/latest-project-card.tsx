@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Card,
   CardContent,
@@ -6,7 +8,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ArrowTopRightIcon } from "@radix-ui/react-icons";
+import { useTheme } from "next-themes";
 import Image from "next/image";
+import { Suspense, useEffect, useState } from "react";
 
 interface LatestProjectProps {
   className?: string;
@@ -16,6 +20,20 @@ export default function LatestProject({
   className,
   ...props
 }: LatestProjectProps) {
+  const { resolvedTheme } = useTheme();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const themeImage =
+    resolvedTheme === "dark"
+      ? "/dark-weather-ai.png"
+      : resolvedTheme === "light"
+        ? "/light-weather-ai.png"
+        : "";
+
   return (
     <Card className={className} {...props}>
       <CardHeader>
@@ -34,13 +52,15 @@ export default function LatestProject({
         </div>
 
         <div className="overflow-hidden">
-          <Image
-            src="/weather-ai.png"
-            alt="Picture of the author"
-            className="h-full w-full rounded-md transition-transform duration-300 ease-in-out hover:scale-105"
-            width={200}
-            height={200}
-          />
+          {themeImage !== "" && isClient && (
+            <Image
+              src={themeImage}
+              alt="Picture of the author"
+              className="h-full w-full rounded-md transition-transform duration-300 ease-in-out hover:scale-105"
+              width={200}
+              height={200}
+            />
+          )}
         </div>
       </CardContent>
     </Card>

@@ -16,17 +16,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-// import { useEffect, useState } from "react"
-
-// import Clock from "react-clock"
-// import "react-clock/dist/Clock.css"
-
-// TODO:
-// Move in to separate components files and make server components
-// finish all components
-// make it responsive
-// add more content
-// edit content
+import { ExternalLink } from "@/components/external-link";
+import Currently from "@/components/currently-card";
 
 // Animation
 
@@ -36,20 +27,11 @@ import {
 // one step at a time
 
 export default function Home() {
-  // const [value, setValue] = useState(new Date())
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => setValue(new Date()), 1000)
-
-  //   return () => {
-  //     clearInterval(interval)
-  //   }
-  // }, [])
-
   return (
     <div className="grid auto-rows-[165px] grid-cols-[repeat(6,minmax(1px,1fr))] grid-rows-[repeat(2,165px)] gap-[22px]">
       <Location />
-      <CV />
+      <Currently />
+
       <About className="col-span-2" />
       <ExperienceAndEducation className="col-span-2 row-span-2" />
       <Projects className="col-span-2 row-span-2" />
@@ -58,14 +40,8 @@ export default function Home() {
       <GithubGraph className="col-span-2" />
       <Placeholder title="Newsletter" />
       <Placeholder title="Spotify" />
-      <Placeholder title="Mood" />
+      <CV />
       <Placeholder title="Years" />
-
-      {/* <ClockComponent title="Time">
-        <Clock value={value} className="mx-auto my-3" />
-      </ClockComponent> */}
-
-      {/* <Personality className="col-span-2 row-span-2" /> */}
 
       {/* 
       <GithubGraph />
@@ -86,23 +62,12 @@ export default function Home() {
 }
 
 interface PlaceholderProps {
-  title: string;
+  title?: string;
   className?: string;
   children?: React.ReactNode;
 }
 
 function Placeholder({ title, className, children }: PlaceholderProps) {
-  return (
-    <Card className={className}>
-      <CardHeader>
-        <CardTitle>{title}</CardTitle>
-      </CardHeader>
-      {children}
-    </Card>
-  );
-}
-
-function ClockComponent({ title, className, children }: PlaceholderProps) {
   return (
     <Card className={className}>
       <CardHeader>
