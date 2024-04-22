@@ -1,7 +1,7 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface BlogProps {
-  className?: string
+  className?: string;
 }
 
 export default function Blog({ className, ...props }: BlogProps) {
@@ -12,5 +12,5 @@ export default function Blog({ className, ...props }: BlogProps) {
       </CardHeader>
       <CardContent></CardContent>
     </Card>
-  )
+  );
 }

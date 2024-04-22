@@ -1,30 +1,30 @@
-import * as React from "react"
-import Link from "next/link"
+import * as React from "react";
+import Link from "next/link";
 
-import { Button } from "@/components/ui/button"
-import { usePathname } from "next/navigation"
-import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 interface NavItem {
-  title: string
-  href?: string
-  disabled?: boolean
-  external?: boolean
+  title: string;
+  href?: string;
+  disabled?: boolean;
+  external?: boolean;
 }
 
 interface MainNavProps {
-  items?: NavItem[]
+  items?: NavItem[];
 }
 
 export function DesktopNav({ items }: MainNavProps) {
   // get url see if it matches the href
   // if it does, then add active class
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <div>
       {items?.length ? (
-        <nav className="p-2 rounded-md -ml-[90px] space-x-2">
+        <nav className="-ml-[90px] space-x-2 rounded-md p-2">
           {items?.map(
             (item, index) =>
               item.href && (
@@ -33,17 +33,17 @@ export function DesktopNav({ items }: MainNavProps) {
                   key={index}
                   disabled={item.disabled}
                   className={cn(
-                    "text-muted-foreground p-0 px-4 h-fit py-2 font-light text-[13px]",
-                    pathname === item.href && "bg-white dark:bg-secondary/80"
+                    "h-fit p-0 px-4 py-2 text-[13px] font-light text-muted-foreground",
+                    pathname === item.href && "bg-white dark:bg-secondary/80",
                   )}
                   asChild
                 >
                   <Link href={item.href}>{item.title}</Link>
                 </Button>
-              )
+              ),
           )}
         </nav>
       ) : null}
     </div>
-  )
+  );
 }

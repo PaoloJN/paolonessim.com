@@ -1,20 +1,20 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { buttonVariants } from "./ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { buttonVariants } from "./ui/button";
 
-import Link from "next/link"
-import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
-import { Icons } from "./ui/icons"
+import Link from "next/link";
+import { siteConfig } from "@/config/site";
+import { cn } from "@/lib/utils";
+import { Icons } from "./ui/icons";
 
 import {
   ArrowTopRightIcon,
   EnvelopeClosedIcon,
   GitHubLogoIcon,
   LinkedInLogoIcon,
-} from "@radix-ui/react-icons"
+} from "@radix-ui/react-icons";
 
 interface GetInTouchProps {
-  className?: string
+  className?: string;
 }
 
 export default function GetInTouch({ className, ...props }: GetInTouchProps) {
@@ -48,12 +48,12 @@ export default function GetInTouch({ className, ...props }: GetInTouchProps) {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
 
 interface ExternalLinkProps {
-  href: string
-  children: React.ReactNode
+  href: string;
+  children: React.ReactNode;
 }
 
 function ExternalLink({ href, children }: ExternalLinkProps) {
@@ -64,7 +64,7 @@ function ExternalLink({ href, children }: ExternalLinkProps) {
           buttonVariants({
             variant: "outline",
           }),
-          "justify-between w-full border-[0.5px] bg-transparent"
+          "w-full justify-between border-[0.5px] bg-transparent",
         )}
       >
         <div className="flex flex-row items-center justify-center space-x-2 opacity-70">
@@ -73,5 +73,5 @@ function ExternalLink({ href, children }: ExternalLinkProps) {
         {/* <ArrowTopRightIcon className="w-3.5 h-3.5 opacity-50" /> */}
       </div>
     </Link>
-  )
+  );
 }

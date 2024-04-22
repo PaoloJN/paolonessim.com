@@ -4,12 +4,12 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 
 // inspired by https://dariuslukasukas.vercel.app/ love the design remember to credit him
 
 interface PersonalityProps {
-  className?: string
+  className?: string;
 }
 
 export default function Personality({ className, ...props }: PersonalityProps) {
@@ -78,7 +78,7 @@ export default function Personality({ className, ...props }: PersonalityProps) {
           </div>
         </div>
       </CardContent> */}
-      <CardContent className=" h-[20rem] overflow-hidden relative  md:col-span-2 lg:order-4">
+      <CardContent className=" relative h-[20rem] overflow-hidden  md:col-span-2 lg:order-4">
         <div className="absolute mt-[10rem] flex h-full w-full scale-75 items-center justify-center md:scale-90">
           <div className="absolute z-10 h-[52rem] w-[52rem] rounded-full border-2 border-dashed border-neutral-400/10 dark:border-neutral-800/10 dark:bg-neutral-900/10"></div>
           <div className="absolute z-10 h-[45rem] w-[45rem] rounded-full border-2 border-dashed border-neutral-400/20 bg-neutral-200/5 dark:border-neutral-800/20 dark:bg-neutral-900/5"></div>
@@ -136,5 +136,5 @@ export default function Personality({ className, ...props }: PersonalityProps) {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

@@ -4,10 +4,10 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 
 interface AboutProps {
-  className?: string
+  className?: string;
 }
 
 export default function About({ className, ...props }: AboutProps) {
@@ -27,5 +27,5 @@ export default function About({ className, ...props }: AboutProps) {
         </p>
       </CardContent>
     </Card>
-  )
+  );
 }

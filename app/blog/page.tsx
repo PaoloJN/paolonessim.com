@@ -1,20 +1,20 @@
-import Link from "next/link"
-import { getBlogPosts } from "@/lib/content"
+import Link from "next/link";
+import { getBlogPosts } from "@/lib/content";
 
 export const metadata = {
   title: "Blog",
   description: "Read my thoughts on software development, design, and more.",
-}
+};
 
 export default function BlogPage() {
-  const allPosts = getBlogPosts()
+  const allPosts = getBlogPosts();
 
   const sortedPosts = allPosts.sort((a, b) => {
     if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
-      return -1
+      return -1;
     }
-    return 1
-  })
+    return 1;
+  });
 
   return (
     <section className="flex flex-col ">
@@ -22,15 +22,15 @@ export default function BlogPage() {
         read my blog
       </h1> */}
 
-      <div className="w-fit mx-auto">
+      <div className="mx-auto w-fit">
         {sortedPosts.map((post) => (
           <Link
             key={post.slug}
-            className="flex flex-col space-y-1 mb-4"
+            className="mb-4 flex flex-col space-y-1"
             href={`/blog/${post.slug}`}
           >
-            <div className="w-full flex flex-col">
-              <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
+            <div className="flex w-full flex-col">
+              <p className="tracking-tight text-neutral-900 dark:text-neutral-100">
                 {post.metadata.title}
               </p>
               {/* <Suspense fallback={<p className="h-6" />}>
@@ -41,7 +41,7 @@ export default function BlogPage() {
         ))}
       </div>
     </section>
-  )
+  );
 }
 
 // async function Views({ slug }: { slug: string }) {

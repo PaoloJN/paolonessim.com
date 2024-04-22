@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { ArrowDownIcon, ArrowTopRightIcon } from "@radix-ui/react-icons"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ArrowDownIcon, ArrowTopRightIcon } from "@radix-ui/react-icons";
 
-import Image from "next/image"
+import Image from "next/image";
 
 import {
   Dialog,
@@ -13,10 +13,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog";
 
 interface CVProps {
-  className?: string
+  className?: string;
 }
 
 // use External link component from get-in-touch-card.tsx
@@ -26,7 +26,7 @@ export default function CV({ className, ...props }: CVProps) {
       <CardHeader>
         <CardTitle>CV</CardTitle>
       </CardHeader>
-      <CardContent className="mt-auto space-y-2 flex flex-col pb-4">
+      <CardContent className="mt-auto flex flex-col space-y-2 pb-4">
         {/* View Resume */}
         <Dialog>
           <DialogTrigger asChild>
@@ -36,10 +36,10 @@ export default function CV({ className, ...props }: CVProps) {
               className="w-full justify-between bg-transparent opacity-80"
             >
               <span>View</span>
-              <ArrowTopRightIcon className="w-4 h-4 opacity-50" />
+              <ArrowTopRightIcon className="h-4 w-4 opacity-50" />
             </Button>
           </DialogTrigger>
-          <DialogContent className="overflow-y-scroll max-h-[90%]">
+          <DialogContent className="max-h-[90%] overflow-y-scroll">
             <DialogHeader>
               <DialogTitle>View Resume</DialogTitle>
               <DialogDescription>
@@ -50,7 +50,7 @@ export default function CV({ className, ...props }: CVProps) {
             <Image
               alt="resume"
               src="/resume-example.png"
-              className="mt-5 w-full h-full"
+              className="mt-5 h-full w-full"
               width={800}
               height={800}
             />
@@ -63,9 +63,9 @@ export default function CV({ className, ...props }: CVProps) {
           className="justify-between bg-transparent opacity-80"
         >
           Download
-          <ArrowDownIcon className="w-4 h-4 opacity-50" />
+          <ArrowDownIcon className="h-4 w-4 opacity-50" />
         </Button>
       </CardContent>
     </Card>
-  )
+  );
 }

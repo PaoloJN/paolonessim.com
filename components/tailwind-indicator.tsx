@@ -1,5 +1,5 @@
 export function TailwindIndicator() {
-  if (process.env.NODE_ENV === "production") return null
+  if (process.env.NODE_ENV === "production") return null;
 
   return (
     <div className="fixed bottom-4 left-4 z-50 flex h-8 w-8 items-center justify-center rounded-md bg-foreground p-3 font-mono text-xs text-primary-foreground">
@@ -12,5 +12,5 @@ export function TailwindIndicator() {
       <div className="hidden xl:block 2xl:hidden">xl</div>
       <div className="hidden 2xl:block">2xl</div>
     </div>
-  )
+  );
 }

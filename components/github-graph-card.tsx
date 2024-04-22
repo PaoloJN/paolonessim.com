@@ -91,7 +91,7 @@
 //   )
 // }
 
-"use client"
+"use client";
 
 import {
   Card,
@@ -99,8 +99,8 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { useEffect, useState } from "react"
+} from "@/components/ui/card";
+import { useEffect, useState } from "react";
 
 // Todo
 // - use the github api to get the data
@@ -108,42 +108,42 @@ import { useEffect, useState } from "react"
 // - add tooltip to show the number of contributions and the date
 
 interface GithubGraphProps {
-  className?: string
+  className?: string;
 }
 
 export default function GithubGraph({ className, ...props }: GithubGraphProps) {
   // prettier-ignore
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  const startMonth = new Date().getMonth()
+  const startMonth = new Date().getMonth();
   const monthsRange = [...Array(13)].map(
-    (_, i) => months[(startMonth + i) % 12]
-  )
+    (_, i) => months[(startMonth + i) % 12],
+  );
 
-  const days: string[] = ["", "Mon", "", "Wed", "", "Fri", ""]
-  const [squares, setSquares] = useState<number[]>([])
+  const days: string[] = ["", "Mon", "", "Wed", "", "Fri", ""];
+  const [squares, setSquares] = useState<number[]>([]);
 
   useEffect(() => {
     // Create an array for the year, randomly assign 'levels' to each day
     const data: number[] = Array.from({ length: 369 }, () =>
-      Math.floor(Math.random() * 4)
-    )
+      Math.floor(Math.random() * 4),
+    );
 
-    setSquares(data)
-  }, [])
+    setSquares(data);
+  }, []);
 
   // Function to determine the color based on the level
   const levelColor = (level: number): string => {
     switch (level) {
       case 1:
-        return "bg-green-200 dark:bg-green-300"
+        return "bg-green-200 dark:bg-green-300";
       case 2:
-        return "bg-green-400 dark:bg-green-500"
+        return "bg-green-400 dark:bg-green-500";
       case 3:
-        return "bg-green-800 dark:bg-green-900"
+        return "bg-green-800 dark:bg-green-900";
       default:
-        return "bg-gray-200 dark:bg-zinc-900"
+        return "bg-gray-200 dark:bg-zinc-900";
     }
-  }
+  };
 
   return (
     <Card className={className} {...props}>
@@ -151,14 +151,14 @@ export default function GithubGraph({ className, ...props }: GithubGraphProps) {
         <CardTitle>Github Contributions</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="opacity-50 dark:opacity-90 overflow-y-scroll mt-1">
+        <div className="mt-1 overflow-y-scroll opacity-50 dark:opacity-90">
           <div className="inline-grid gap-2.5 p-2">
-            <div className="grid grid-rows-7 grid-flow-col gap-[3px] ">
+            <div className="grid grid-flow-col grid-rows-7 gap-[3px] ">
               {squares.map((level, index) => (
                 <div
                   key={index}
-                  className={`w-[12px] h-[12px] rounded-[2px] ${levelColor(
-                    level
+                  className={`h-[12px] w-[12px] rounded-[2px] ${levelColor(
+                    level,
                   )} `}
                 ></div>
               ))}
@@ -167,5 +167,5 @@ export default function GithubGraph({ className, ...props }: GithubGraphProps) {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

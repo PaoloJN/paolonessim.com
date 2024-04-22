@@ -1,7 +1,7 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface ExperienceAndEducationProps {
-  className?: string
+  className?: string;
 }
 
 export default function ExperienceAndEducation({
@@ -17,14 +17,14 @@ export default function ExperienceAndEducation({
       <CardContent className="mt-auto">
         {/* Card content */}
         {/* border-b-[0.5px] */}
-        <div className="flex justify-between gap-5 py-4 border-black/15">
-          <div className="flex gap-1.5 self-start items-center whitespace-nowrap opacity-50 mr-[20px] text-[11.5px]">
+        <div className="flex justify-between gap-5 border-black/15 py-4">
+          <div className="mr-[20px] flex items-center gap-1.5 self-start whitespace-nowrap text-[11.5px] opacity-50">
             <div>2022</div>
             <div className="w-4 border-[0.5px] border-black opacity-50" />
             <div>Now</div>
           </div>
 
-          <div className="flex flex-col ml-[5px]">
+          <div className="ml-[5px] flex flex-col">
             <span>Creative Studio Owner</span>
             <p className="mt-1 leading-[18px] opacity-50">
               Self-employed at my own creative studio, delivering innovative
@@ -34,5 +34,5 @@ export default function ExperienceAndEducation({
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

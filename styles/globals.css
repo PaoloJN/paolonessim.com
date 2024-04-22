@@ -73,7 +73,7 @@
     @apply border-border;
   }
   body {
-    @apply text-foreground bg-background;
+    @apply bg-background text-foreground;
   }
 }
 
@@ -121,11 +121,11 @@
 }
 
 .prose pre {
-  @apply bg-neutral-50 dark:bg-neutral-900 rounded-lg overflow-x-auto border border-neutral-200 dark:border-neutral-900;
+  @apply overflow-x-auto rounded-lg border border-neutral-200 bg-neutral-50 dark:border-neutral-900 dark:bg-neutral-900;
 }
 
 .prose code {
-  @apply px-1 py-0.5 rounded-lg;
+  @apply rounded-lg px-1 py-0.5;
 }
 
 .prose pre code {

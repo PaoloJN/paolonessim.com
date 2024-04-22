@@ -1,13 +1,13 @@
-import About from "@/components/about-card"
-import CV from "@/components/cv-card"
-import ExperienceAndEducation from "@/components/experience-card"
-import Projects from "@/components/projects-card"
-import Location from "@/components/location-card"
-import LatestProject from "@/components/latest-project-card"
-import GetInTouch from "@/components/get-in-touch-card"
-import Blog from "@/components/blog-card"
-import GithubGraph from "@/components/github-graph-card"
-import Personality from "@/components/personality-card"
+import About from "@/components/about-card";
+import CV from "@/components/cv-card";
+import ExperienceAndEducation from "@/components/experience-card";
+import Projects from "@/components/projects-card";
+import Location from "@/components/location-card";
+import LatestProject from "@/components/latest-project-card";
+import GetInTouch from "@/components/get-in-touch-card";
+import Blog from "@/components/blog-card";
+import GithubGraph from "@/components/github-graph-card";
+import Personality from "@/components/personality-card";
 
 import {
   Card,
@@ -15,7 +15,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 // import { useEffect, useState } from "react"
 
 // import Clock from "react-clock"
@@ -47,7 +47,7 @@ export default function Home() {
   // }, [])
 
   return (
-    <div className="grid gap-[22px] auto-rows-[165px] grid-cols-[repeat(6,minmax(1px,1fr))] grid-rows-[repeat(2,165px)]">
+    <div className="grid auto-rows-[165px] grid-cols-[repeat(6,minmax(1px,1fr))] grid-rows-[repeat(2,165px)] gap-[22px]">
       <Location />
       <CV />
       <About className="col-span-2" />
@@ -82,13 +82,13 @@ export default function Home() {
       <Blog /> 
       */}
     </div>
-  )
+  );
 }
 
 interface PlaceholderProps {
-  title: string
-  className?: string
-  children?: React.ReactNode
+  title: string;
+  className?: string;
+  children?: React.ReactNode;
 }
 
 function Placeholder({ title, className, children }: PlaceholderProps) {
@@ -99,7 +99,7 @@ function Placeholder({ title, className, children }: PlaceholderProps) {
       </CardHeader>
       {children}
     </Card>
-  )
+  );
 }
 
 function ClockComponent({ title, className, children }: PlaceholderProps) {
@@ -110,7 +110,7 @@ function ClockComponent({ title, className, children }: PlaceholderProps) {
       </CardHeader>
       {children}
     </Card>
-  )
+  );
 }
 
 function Chat() {
@@ -123,7 +123,7 @@ function Chat() {
         <p className="mt-5 leading-[20px] opacity-75"></p>
       </CardContent>
     </Card>
-  )
+  );
 }
 
 function Stack() {
@@ -221,5 +221,5 @@ function Stack() {
         </div> */}
       </CardContent>
     </Card>
-  )
+  );
 }

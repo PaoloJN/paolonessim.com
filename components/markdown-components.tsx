@@ -1,35 +1,35 @@
-import * as React from "react"
-import Image from "next/image"
-import { MDXRemote } from "next-mdx-remote/rsc"
-import { cn } from "@/lib/utils"
-import { highlight } from "sugar-high"
+import * as React from "react";
+import Image from "next/image";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import { cn } from "@/lib/utils";
+import { highlight } from "sugar-high";
 
 // Inspired by:
 // https://github.com/leerob/leerob.io/blob/1129b6d81937cef493edb060f87e6f2ac9f335ed/app/components/mdx.tsx
 // https://github.com/shadcn-ui/taxonomy/blob/main/components/mdx-components.tsx
 
 interface CalloutProps {
-  emoji: string
-  children: React.ReactNode
+  emoji: string;
+  children: React.ReactNode;
 }
 
 function Callout({ emoji, children }: CalloutProps) {
   return (
-    <div className="px-4 py-3 border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded p-1 text-sm flex items-center text-neutral-900 dark:text-neutral-100 mb-8">
-      <div className="flex items-center w-4 mr-4">{emoji}</div>
-      <div className="w-full callout">{children}</div>
+    <div className="mb-8 flex items-center rounded border border-neutral-200 bg-neutral-50 p-1 px-4 py-3 text-sm text-neutral-900 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100">
+      <div className="mr-4 flex w-4 items-center">{emoji}</div>
+      <div className="callout w-full">{children}</div>
     </div>
-  )
+  );
 }
 
 // implement the code block component with syntax highlighting and copy button
 function Code({ children, ...props }: { children: string }) {
-  let codeHTML = highlight(children)
-  return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
+  let codeHTML = highlight(children);
+  return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
 }
 
 function RoundedImage(props: any) {
-  return <Image alt={props.alt} className="rounded-lg" {...props} />
+  return <Image alt={props.alt} className="rounded-lg" {...props} />;
 }
 
 const components = {
@@ -37,7 +37,7 @@ const components = {
     <h1
       className={cn(
         "mt-2 scroll-m-20 text-4xl font-bold tracking-tight",
-        className
+        className,
       )}
       {...props}
     />
@@ -46,7 +46,7 @@ const components = {
     <h2
       className={cn(
         "mt-10 scroll-m-20 border-b pb-1 text-3xl font-semibold tracking-tight first:mt-0",
-        className
+        className,
       )}
       {...props}
     />
@@ -55,7 +55,7 @@ const components = {
     <h3
       className={cn(
         "mt-8 scroll-m-20 text-2xl font-semibold tracking-tight",
-        className
+        className,
       )}
       {...props}
     />
@@ -64,7 +64,7 @@ const components = {
     <h4
       className={cn(
         "mt-8 scroll-m-20 text-xl font-semibold tracking-tight",
-        className
+        className,
       )}
       {...props}
     />
@@ -73,7 +73,7 @@ const components = {
     <h5
       className={cn(
         "mt-8 scroll-m-20 text-lg font-semibold tracking-tight",
-        className
+        className,
       )}
       {...props}
     />
@@ -82,7 +82,7 @@ const components = {
     <h6
       className={cn(
         "mt-8 scroll-m-20 text-base font-semibold tracking-tight",
-        className
+        className,
       )}
       {...props}
     />
@@ -112,7 +112,7 @@ const components = {
     <blockquote
       className={cn(
         "mt-6 border-l-2 pl-6 italic [&>*]:text-muted-foreground",
-        className
+        className,
       )}
       {...props}
     />
@@ -141,7 +141,7 @@ const components = {
     <th
       className={cn(
         "border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right",
-        className
+        className,
       )}
       {...props}
     />
@@ -150,7 +150,7 @@ const components = {
     <td
       className={cn(
         "border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right",
-        className
+        className,
       )}
       {...props}
     />
@@ -159,7 +159,7 @@ const components = {
     <pre
       className={cn(
         "mb-4 mt-6 overflow-x-auto rounded-lg border bg-black py-4",
-        className
+        className,
       )}
       {...props}
     />
@@ -167,7 +167,7 @@ const components = {
   code: Code,
   Image: RoundedImage,
   Callout,
-}
+};
 
 export function CustomMDX(props: any) {
   return (
@@ -175,5 +175,5 @@ export function CustomMDX(props: any) {
       {...props}
       components={{ ...components, ...(props.components || {}) }}
     />
-  )
+  );
 }

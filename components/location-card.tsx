@@ -1,21 +1,21 @@
-"use client"
+"use client";
 
-import React from "react"
+import React from "react";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import Image from "next/image"
+} from "@/components/ui/card";
+import Image from "next/image";
 
-import Map from "react-map-gl"
+import Map from "react-map-gl";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 interface LocationProps {
-  className?: string
+  className?: string;
 }
 
 export default function Location({ className, ...props }: LocationProps) {
@@ -26,23 +26,23 @@ export default function Location({ className, ...props }: LocationProps) {
     roads: true,
     labels: false, // Set labels to false to hide them by default
     background: true,
-  })
+  });
 
   return (
     <Card className={cn("relative", className)} {...props}>
       <div className="absolute z-20 w-full">
-        <div className=" w-full flex justify-between p-2.5 pb-2 ">
+        <div className=" flex w-full justify-between p-2.5 pb-2 ">
           <CardTitle>Location</CardTitle>
           <CardDescription>Maryland, USA</CardDescription>
         </div>
         <div className="mx-2.5 border-b border-solid border-black border-opacity-15" />
       </div>
 
-      <CardContent className="absolute p-0 top-0 h-full w-full">
+      <CardContent className="absolute top-0 h-full w-full p-0">
         <Image
           src="https://framerusercontent.com/images/VUFpyNfHahYo4OtUEXPg5ABhLbI.jpg?scale-down-to=512"
           alt="Picture of the author"
-          className="w-full h-full rounded-[10px]"
+          className="h-full w-full rounded-[10px]"
           width={100}
           height={100}
         />
@@ -61,5 +61,5 @@ export default function Location({ className, ...props }: LocationProps) {
         /> */}
       </CardContent>
     </Card>
-  )
+  );
 }

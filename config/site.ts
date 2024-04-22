@@ -1,4 +1,4 @@
-export type SiteConfig = typeof siteConfig
+export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
   name: "Paolo Nessim",
@@ -28,4 +28,4 @@ export const siteConfig = {
     github: "https://github.com/shadcn/ui",
     docs: "https://ui.shadcn.com",
   },
-}
+};

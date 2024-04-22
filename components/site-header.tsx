@@ -1,27 +1,27 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import { useTheme } from "next-themes"
-import { Button, buttonVariants } from "./ui/button"
-import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
-import { Icons } from "./ui/icons"
-import Link from "next/link"
-import { ThemeToggle } from "./theme-toggle"
-import { DesktopNav } from "./desktop-nav"
+import Image from "next/image";
+import { useTheme } from "next-themes";
+import { Button, buttonVariants } from "./ui/button";
+import { siteConfig } from "@/config/site";
+import { cn } from "@/lib/utils";
+import { Icons } from "./ui/icons";
+import Link from "next/link";
+import { ThemeToggle } from "./theme-toggle";
+import { DesktopNav } from "./desktop-nav";
 
 interface SiteHeaderProps {
-  className?: string
+  className?: string;
 }
 export function SiteHeader({ className, ...props }: SiteHeaderProps) {
-  const theme = useTheme()
+  const theme = useTheme();
   // use css instead to find theme
-  const logo = theme.theme === "dark" ? "/logo-dark.jpeg" : "/logo-light.jpeg"
+  const logo = theme.theme === "dark" ? "/logo-dark.jpeg" : "/logo-light.jpeg";
 
   return (
     <nav className={className} {...props}>
-      <div className="flex justify-between items-center pb-[20px] w-full text-xs leading-3 text-black dark:text-white border-b-[0.5px] border-solid border-black dark:border-white border-opacity-15 dark:border-opacity-10">
-        <div className="flex space-x-4 justify-center">
+      <div className="flex w-full items-center justify-between border-b-[0.5px] border-solid border-black border-opacity-15 pb-[20px] text-xs leading-3 text-black dark:border-white dark:border-opacity-10 dark:text-white">
+        <div className="flex justify-center space-x-4">
           <Image
             src={logo}
             alt="Logo"
@@ -29,7 +29,7 @@ export function SiteHeader({ className, ...props }: SiteHeaderProps) {
             height={40}
             className="rounded-md"
           />
-          <div className="flex flex-col my-auto">
+          <div className="my-auto flex flex-col">
             <span>Paolo Nessim</span>
             <span className="mt-1 opacity-50">Junior Full-Stack Developer</span>
           </div>
@@ -50,7 +50,7 @@ export function SiteHeader({ className, ...props }: SiteHeaderProps) {
                   buttonVariants({
                     variant: "ghost",
                   }),
-                  "w-9 px-0"
+                  "w-9 px-0",
                 )}
               >
                 <Icons.gitHub className="h-4 w-4" />
@@ -67,7 +67,7 @@ export function SiteHeader({ className, ...props }: SiteHeaderProps) {
                   buttonVariants({
                     variant: "ghost",
                   }),
-                  "w-9 px-0"
+                  "w-9 px-0",
                 )}
               >
                 <Icons.twitter className="h-3 w-3 fill-current" />
@@ -79,5 +79,5 @@ export function SiteHeader({ className, ...props }: SiteHeaderProps) {
         </div>
       </div>
     </nav>
-  )
+  );
 }

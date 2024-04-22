@@ -1,9 +1,9 @@
-import type { Metadata } from "next"
-import { Suspense } from "react"
-import { notFound } from "next/navigation"
-import { CustomMDX } from "@/components/markdown-components"
-import { getBlogPosts } from "@/lib/content"
-import { unstable_noStore as noStore } from "next/cache"
+import type { Metadata } from "next";
+import { Suspense } from "react";
+import { notFound } from "next/navigation";
+import { CustomMDX } from "@/components/markdown-components";
+import { getBlogPosts } from "@/lib/content";
+import { unstable_noStore as noStore } from "next/cache";
 
 // Change to my image
 
@@ -38,42 +38,42 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 function formatDate(date: string) {
-  noStore()
-  const currentDate = new Date()
+  noStore();
+  const currentDate = new Date();
   if (!date.includes("T")) {
-    date = `${date}T00:00:00`
+    date = `${date}T00:00:00`;
   }
-  const targetDate = new Date(date)
+  const targetDate = new Date(date);
 
-  const yearsAgo = currentDate.getFullYear() - targetDate.getFullYear()
-  const monthsAgo = currentDate.getMonth() - targetDate.getMonth()
-  const daysAgo = currentDate.getDate() - targetDate.getDate()
+  const yearsAgo = currentDate.getFullYear() - targetDate.getFullYear();
+  const monthsAgo = currentDate.getMonth() - targetDate.getMonth();
+  const daysAgo = currentDate.getDate() - targetDate.getDate();
 
-  let formattedDate = ""
+  let formattedDate = "";
 
   if (yearsAgo > 0) {
-    formattedDate = `${yearsAgo}y ago`
+    formattedDate = `${yearsAgo}y ago`;
   } else if (monthsAgo > 0) {
-    formattedDate = `${monthsAgo}mo ago`
+    formattedDate = `${monthsAgo}mo ago`;
   } else if (daysAgo > 0) {
-    formattedDate = `${daysAgo}d ago`
+    formattedDate = `${daysAgo}d ago`;
   } else {
-    formattedDate = "Today"
+    formattedDate = "Today";
   }
 
   const fullDate = targetDate.toLocaleString("en-us", {
     month: "long",
     day: "numeric",
     year: "numeric",
-  })
+  });
 
-  return `${fullDate} (${formattedDate})`
+  return `${fullDate} (${formattedDate})`;
 }
 
 export default function Blog({ params }: { params: { slug: string } }) {
-  const post = getBlogPosts().find((post) => post.slug === params.slug)
+  const post = getBlogPosts().find((post) => post.slug === params.slug);
 
-  if (!post) notFound()
+  if (!post) notFound();
 
   return (
     <section className="w-full">
@@ -100,9 +100,9 @@ export default function Blog({ params }: { params: { slug: string } }) {
         }}
       />
 
-      <div className="flex items-center flex-col">
-        <div className="flex justify-between items-center mt-8 mb-8 text-sm w-full max-w-[650px]">
-          <h1 className="title font-medium text-2xl tracking-tighter max-w-[650px]">
+      <div className="flex flex-col items-center">
+        <div className="mb-8 mt-8 flex w-full max-w-[650px] items-center justify-between text-sm">
+          <h1 className="title max-w-[650px] text-2xl font-medium tracking-tighter">
             {post.metadata.title}
           </h1>
           <Suspense fallback={<p className="h-5" />}>
@@ -111,12 +111,12 @@ export default function Blog({ params }: { params: { slug: string } }) {
             </p>
           </Suspense>
         </div>
-        <article className="prose prose-quoteless prose-neutral dark:prose-invert">
+        <article className="prose prose-neutral prose-quoteless dark:prose-invert">
           <CustomMDX source={post.content} />
         </article>
       </div>
     </section>
-  )
+  );
 }
 
 // let incrementViews = cache(increment)

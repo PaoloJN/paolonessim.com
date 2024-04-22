@@ -4,12 +4,12 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { ArrowTopRightIcon } from "@radix-ui/react-icons"
-import Image from "next/image"
+} from "@/components/ui/card";
+import { ArrowTopRightIcon } from "@radix-ui/react-icons";
+import Image from "next/image";
 
 interface LatestProjectProps {
-  className?: string
+  className?: string;
 }
 
 export default function LatestProject({
@@ -22,13 +22,13 @@ export default function LatestProject({
         <CardTitle>Latest Project</CardTitle>
         <CardDescription className="flex flex-row">
           {/* Weather AI */}
-          <ArrowTopRightIcon className="ml-2 w-4 h-4 opacity-50" />
+          <ArrowTopRightIcon className="ml-2 h-4 w-4 opacity-50" />
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4 pt-5">
         <div>
           <span className="text-md">Weather AI - weather chat application</span>
-          <p className="opacity-50 mt-2">
+          <p className="mt-2 opacity-50">
             Weather AI is a weather forecasting app that uses machine learning
           </p>
         </div>
@@ -37,12 +37,12 @@ export default function LatestProject({
           <Image
             src="/weather-ai.png"
             alt="Picture of the author"
-            className="w-full h-full rounded-md hover:scale-105 transition-transform duration-300 ease-in-out"
+            className="h-full w-full rounded-md transition-transform duration-300 ease-in-out hover:scale-105"
             width={200}
             height={200}
           />
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
