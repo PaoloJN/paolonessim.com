@@ -27,7 +27,7 @@ export default function Chat({ className, ...props }: ChatProps) {
       </CardHeader>
       <CardContent className="mt-auto flex flex-col space-y-2 pb-3">
         <p className="mx-[0.5px] text-[11.5px] opacity-75">
-          Chat with my AI clone. It's currently under development. 🤖
+          Chat with my AI clone. It&apos;s currently under development. 🤖
         </p>
         <Button
           variant="outline"
