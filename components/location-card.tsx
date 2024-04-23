@@ -44,7 +44,7 @@ export default function Location({ className, ...props }: LocationProps) {
             src={mapStyle}
             alt="Picture of the author"
             // overlay black
-            className="rounded-[10px] brightness-[1.02] filter dark:brightness-[0.6] dark:filter"
+            className="rounded-[10px] brightness-[1.02] filter transition-transform duration-300 ease-in-out hover:scale-[1.05] dark:brightness-[0.6] dark:filter"
             width={200}
             height={200}
           />

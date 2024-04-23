@@ -56,7 +56,7 @@ export default function LatestProject({
             <Image
               src={themeImage}
               alt="Picture of the author"
-              className="h-full w-full rounded-md transition-transform duration-300 ease-in-out hover:scale-105"
+              className="h-full w-full rounded-md transition-transform duration-300 ease-in-out hover:scale-[1.02]"
               width={200}
               height={200}
             />

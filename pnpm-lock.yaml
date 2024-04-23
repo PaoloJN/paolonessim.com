@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@gsap/react':
+    specifier: ^2.1.0
+    version: 2.1.0
   '@radix-ui/react-dialog':
     specifier: ^1.0.5
     version: 1.0.5(@types/react-dom@18.2.25)(@types/react@18.2.79)(react-dom@18.2.0)(react@18.2.0)
@@ -35,6 +38,9 @@ dependencies:
   geist:
     specifier: ^1.2.2
     version: 1.3.0(next@14.1.1)
+  gsap:
+    specifier: ^3.12.5
+    version: 3.12.5
   mapbox-gl:
     specifier: ^3.3.0
     version: 3.3.0
@@ -187,6 +193,13 @@ packages:
 
   /@floating-ui/utils@0.2.1:
     resolution: {integrity: sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==}
+    dev: false
+
+  /@gsap/react@2.1.0:
+    resolution: {integrity: sha512-pwdFXvOM5IsRZXpWTKkQoEjb3/iUjDCU1BCJDlE6pHgVjG+7Ep/7+sszUgqVZ2Jc0mR8gnhtDWyx5cQAT4kwQw==}
+    dependencies:
+      gsap: 3.12.5
+      react: 18.2.0
     dev: false
 
   /@humanwhocodes/config-array@0.11.14:
@@ -2423,6 +2436,10 @@ packages:
 
   /grid-index@1.1.0:
     resolution: {integrity: sha512-HZRwumpOGUrHyxO5bqKZL0B0GlUpwtCAzZ42sgxUPniu33R1LSFH5yrIcBCHjkctCAh3mtWKcKd9J4vDDdeVHA==}
+    dev: false
+
+  /gsap@3.12.5:
+    resolution: {integrity: sha512-srBfnk4n+Oe/ZnMIOXt3gT605BX9x5+rh/prT2F1SsNJsU1XuMiP0E2aptW481OnonOGACZWBqseH5Z7csHxhQ==}
     dev: false
 
   /has-bigints@1.0.2:

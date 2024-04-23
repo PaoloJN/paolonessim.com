@@ -1,5 +1,5 @@
-import type { Config } from "tailwindcss"
-import typography from "@tailwindcss/typography"
+import type { Config } from "tailwindcss";
+import typography from "@tailwindcss/typography";
 
 const config = {
   darkMode: ["class"],
@@ -80,6 +80,14 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        appear: {
+          "0%": {
+            opacity: "0",
+          },
+          "100%": {
+            opacity: "1",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -88,6 +96,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate"), typography],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;

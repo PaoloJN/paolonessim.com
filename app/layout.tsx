@@ -16,6 +16,7 @@ import Footer from "@/components/footer";
 export const metadata: Metadata = {
   title: siteConfig.title,
   description: siteConfig.description,
+  // favicon based on theme
 };
 
 interface RootLayoutProps {

@@ -151,7 +151,7 @@ export default function GithubGraph({ className, ...props }: GithubGraphProps) {
         <CardTitle>Github Contributions</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="mt-1 overflow-y-scroll opacity-50 dark:opacity-90">
+        <div className="mt-1 overflow-y-scroll opacity-50 dark:opacity-80">
           <div className="inline-grid gap-2.5 p-2">
             <div className="grid grid-flow-col grid-rows-7 gap-[3px] ">
               {squares.map((level, index) => (
