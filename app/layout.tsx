@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { SiteHeader } from "@/components/site-header";
+import { Analytics } from "@vercel/analytics/react";
 
 import { siteConfig } from "@/config/site";
 
