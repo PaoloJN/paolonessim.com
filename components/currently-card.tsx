@@ -28,7 +28,7 @@ export default function Currently({ className, ...props }: CurrentlyProps) {
       </CardHeader>
       <CardContent className="mt-auto flex flex-col space-y-2 pb-3">
         <p className="mx-[0.5px] text-[11.5px] opacity-75">
-          Available for freelance design projects. Hit me up for a collab 🦾
+          {siteConfig.currently}
         </p>
         <Button
           variant="outline"

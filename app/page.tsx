@@ -5,7 +5,7 @@ import Projects from "@/components/projects-card";
 import Location from "@/components/location-card";
 import LatestProject from "@/components/latest-project-card";
 import GetInTouch from "@/components/get-in-touch-card";
-import Blog from "@/components/blog-card";
+// import Blog from "@/components/blog-card";
 import GithubGraph from "@/components/github-graph-card";
 import Personality from "@/components/personality-card";
 import Chat from "@/components/chat-card";
@@ -19,7 +19,7 @@ import Currently from "@/components/currently-card";
 
 export default function Home() {
   return (
-    <div className="grid auto-rows-[165px] grid-cols-[repeat(6,minmax(1px,1fr))] grid-rows-[repeat(2,165px)] gap-[22px]">
+    <div className="grid auto-rows-[165px] grid-cols-[repeat(6,minmax(1px,1fr))] grid-rows-[repeat(2,165px)] gap-[22px] sm:grid-cols-[repeat(2,minmax(1px,1fr))] lg:grid-cols-[repeat(4,minmax(1px,1fr))]">
       <Location />
       <Currently />
       <About className="col-span-2" />

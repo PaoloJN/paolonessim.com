@@ -111,7 +111,17 @@ interface GithubGraphProps {
   className?: string;
 }
 
+import GitHubCalendar, { ThemeInput } from "react-github-calendar";
+import { useTheme } from "next-themes";
+
 export default function GithubGraph({ className, ...props }: GithubGraphProps) {
+  const { resolvedTheme } = useTheme();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   // prettier-ignore
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const startMonth = new Date().getMonth();
@@ -145,13 +155,35 @@ export default function GithubGraph({ className, ...props }: GithubGraphProps) {
     }
   };
 
+  const explicitTheme: ThemeInput = {
+    light: ["#f0f0f0", "##bbf7d0", "#4ade80", "#166534", "#384259"],
+    dark: ["#383838", "#4D455D", "#7DB9B6", "#F5E9CF", "#E96479"],
+  };
+
+  // const selectLastHalfYear = (contributions: any) => {
+  //   const currentYear = new Date().getFullYear();
+  //   const currentMonth = new Date().getMonth();
+  //   const shownMonths = 12;
+
+  //   return contributions.filter((activity: any) => {
+  //     const date = new Date(activity.date);
+  //     const monthOfDay = date.getMonth();
+
+  //     return (
+  //       date.getFullYear() === currentYear &&
+  //       monthOfDay > currentMonth - shownMonths &&
+  //       monthOfDay <= currentMonth
+  //     );
+  //   });
+  // };
+
   return (
     <Card className={className} {...props}>
       <CardHeader>
         <CardTitle>Github Contributions</CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="mt-1 overflow-y-scroll opacity-50 dark:opacity-80">
+      <CardContent className="overflow-hidden p-3">
+        {/* <div className="mt-1 overflow-y-scroll opacity-50 dark:opacity-80">
           <div className="inline-grid gap-2.5 p-2">
             <div className="grid grid-flow-col grid-rows-7 gap-[3px] ">
               {squares.map((level, index) => (
@@ -164,6 +196,18 @@ export default function GithubGraph({ className, ...props }: GithubGraphProps) {
               ))}
             </div>
           </div>
+        </div> */}
+        <div>
+          <GitHubCalendar
+            // data range last 6 months
+            year={new Date().getFullYear()}
+            colorScheme={resolvedTheme === "dark" ? "dark" : "light"}
+            username="PaoloJN"
+            hideMonthLabels={true}
+            hideColorLegend={true}
+            hideTotalCount={true}
+            showWeekdayLabels={false}
+          />
         </div>
       </CardContent>
     </Card>

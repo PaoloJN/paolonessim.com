@@ -14,9 +14,20 @@ import { cx } from "class-variance-authority";
 import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
-  title: siteConfig.title,
+  metadataBase: new URL("https://paolonessim.com"),
+  title: {
+    default: siteConfig.title,
+    template: `%s | Paolo Nessim`,
+  },
   description: siteConfig.description,
-  // favicon based on theme
+  openGraph: {
+    title: siteConfig.title,
+    description: "developer, designer .!",
+    url: siteConfig.URL,
+    siteName: siteConfig.title,
+    locale: "en_US",
+    type: "website",
+  },
 };
 
 interface RootLayoutProps {
@@ -31,8 +42,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
     >
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="relative flex min-h-screen flex-col  items-center px-4 antialiased">
-            <main className="w-[1140px] space-y-[25px] p-[20px]">
+          <div className="relative  antialiased">
+            <main className="container mx-auto space-y-[25px] p-[20px]">
               <SiteHeader />
               <main>{children}</main>
               <Footer />

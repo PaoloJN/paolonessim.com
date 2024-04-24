@@ -11,11 +11,35 @@ const config = {
   ],
   prefix: "",
   theme: {
+    screens: {
+      sm: { max: "809px", min: "0px" },
+      // // => @media (min-width: 640px) { ... }
+      md: { max: "1199px", min: "810px" },
+
+      lg: { max: "1199px", min: "810px" },
+
+      xl: { min: "1200px" },
+
+      // md: "768px",
+      // // => @media (min-width: 768px) { ... }
+
+      // lg: "1024px",
+      // // lg: { min: "810px", max: "1199px" },
+      // // => @media (min-width: 1024px) { ... }
+
+      // xl: "1280px",
+      // // => @media (min-width: 1280px) { ... }
+
+      // "2xl": "1536px",
+      // // => @media (min-width: 1536px) { ... }
+    },
     container: {
       center: true,
-      padding: "2rem",
+      // padding: "2rem",
       screens: {
-        "2xl": "1400px",
+        // "2xl": "1400px",
+        lg: "1140px",
+        // xl: "1140px",
       },
     },
     extend: {

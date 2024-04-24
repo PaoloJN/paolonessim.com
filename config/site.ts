@@ -3,8 +3,10 @@ export type SiteConfig = typeof siteConfig;
 export const siteConfig = {
   name: "Paolo Nessim",
   title: "Paolo Nessim",
+  URL: "https://paolonessim.com",
   description: "I'm a developer starting an exciting technology journey.",
   // about: `Hello. I&apos;m Paolo Nessim, I&apos;m an {age}-year-old developer starting an exciting technology journey. I love coding and turning ideas into impactful projects. I&apos;m always ready to learn and try new things, and I see every challenge as a chance to grow. I&apos;m looking to work with others who are passionate about making a difference in technology.`,
+  currently: "Building cool AI projects and learning new technologies. 🦾",
   mainNav: [
     {
       title: "Home",

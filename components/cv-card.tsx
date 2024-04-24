@@ -14,6 +14,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 interface CVProps {
   className?: string;
@@ -21,6 +23,20 @@ interface CVProps {
 
 // use External link component from get-in-touch-card.tsx
 export default function CV({ className, ...props }: CVProps) {
+  const { resolvedTheme } = useTheme();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const resume =
+    resolvedTheme === "dark"
+      ? "/dark-resume.png"
+      : resolvedTheme === "light"
+        ? "/light-resume.png"
+        : "";
+
   return (
     <Card className={className} {...props}>
       <CardHeader>
@@ -39,8 +55,8 @@ export default function CV({ className, ...props }: CVProps) {
               <ArrowTopRightIcon className="h-4 w-4 opacity-50" />
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-h-[90%] overflow-y-scroll">
-            <DialogHeader>
+          <DialogContent className="max-h-[90%] overflow-y-scroll rounded-md">
+            <DialogHeader className="text-start">
               <DialogTitle>View Resume</DialogTitle>
               <DialogDescription>
                 This is a preview of my resume. You can download it by clicking
@@ -49,7 +65,7 @@ export default function CV({ className, ...props }: CVProps) {
             </DialogHeader>
             <Image
               alt="resume"
-              src="/resume-example.png"
+              src={resume}
               className="mt-5 h-full w-full"
               width={800}
               height={800}

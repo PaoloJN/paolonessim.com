@@ -83,9 +83,9 @@ function ProjectItem({ title, description, image }: any) {
   return (
     <div
       className=" flex cursor-pointer select-none flex-row items-start space-x-[5px] rounded-md border-[0.5px] px-4 py-3"
-      onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      // onMouseMove={handleMouseMove}
+      // onMouseEnter={handleMouseEnter}
+      // onMouseLeave={handleMouseLeave}
     >
       <div className="flex w-full flex-col">
         <div className="flex flex-row justify-between">
@@ -95,7 +95,7 @@ function ProjectItem({ title, description, image }: any) {
       </div>
       <span className="text-[10.5px] opacity-50">2023</span>
 
-      {showImage && (
+      {/* {showImage && (
         <Image
           ref={imageRef}
           src={image}
@@ -112,7 +112,7 @@ function ProjectItem({ title, description, image }: any) {
             zIndex: 1000,
           }}
         />
-      )}
+      )} */}
     </div>
   );
 }
