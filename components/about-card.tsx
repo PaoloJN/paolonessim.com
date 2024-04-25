@@ -15,6 +15,8 @@ interface AboutProps {
   className?: string;
 }
 
+// Rewrite  about
+
 export default function About({ className, ...props }: AboutProps) {
   const [age, setAge] = useState(0);
 
@@ -32,12 +34,13 @@ export default function About({ className, ...props }: AboutProps) {
       </CardHeader>
       <CardContent className="mt-auto">
         <p className="opacity-75">
-          Hello. I&apos;m Paolo Nessim, I&apos;m an {age}-year-old developer
+          {/* Hello. I&apos;m Paolo Nessim, I&apos;m an {age}-year-old developer
           starting an exciting technology journey. I love coding and turning
           ideas into impactful projects. I&apos;m always ready to learn and try
           new things, and I see every challenge as a chance to grow. I&apos;m
           looking to work with others who are passionate about making a
-          difference in technology.
+          difference in technology. */}
+          ...
         </p>
       </CardContent>
     </Card>

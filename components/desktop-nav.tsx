@@ -22,7 +22,7 @@ export function DesktopNav({ items }: MainNavProps) {
   const pathname = usePathname();
 
   return (
-    <div>
+    <div className="sm:hidden">
       {items?.length ? (
         <nav className="-ml-[90px] space-x-2 rounded-md p-2">
           {items?.map(

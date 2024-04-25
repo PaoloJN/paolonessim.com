@@ -57,7 +57,7 @@ export function SiteHeader({ className, ...props }: SiteHeaderProps) {
         <DesktopNav items={siteConfig.mainNav} />
 
         <div className="flex items-center space-x-2">
-          <div>
+          <div className="sm:hidden">
             <Link
               href={siteConfig.links.github}
               target="_blank"
