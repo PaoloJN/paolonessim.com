@@ -35,7 +35,7 @@ export default function Projects({ className, ...props }: ProjectsProps) {
           image="/dark-weather-ai.png"
         />
         <ProjectItem
-          title="Video Chat AI"
+          title="Youtube AI"
           description="A Chrome extension for chatting with YouTube videos."
           image="/light-weather-ai.png"
         />
@@ -49,26 +49,26 @@ interface ProjectItemProps {
   description: string;
 }
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 function ProjectItem({ title, description, image }: any) {
   const [showImage, setShowImage] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
   const [imagePos, setImagePos] = useState({ x: 0, y: 0 });
   const imageRef: any = useRef();
 
   const handleMouseMove = (event: any) => {
-    const rect = event.currentTarget.getBoundingClientRect();
     const x = event.clientX;
     const y = event.clientY;
-    setImagePos({ x, y });
+    // setImagePos({ x, y });
 
     // gsap.to(imageRef.current, {
     //   x: x,
     //   y: y,
-    //   duration: 0, // Quick transition to make the movement smooth and responsive
-    //   ease: "none", // Use linear easing for consistent movement
+    //   // duration: 0, // Quick transition to make the movement smooth and responsive
+    //   ease: "sine",
     // });
   };
 
@@ -76,16 +76,24 @@ function ProjectItem({ title, description, image }: any) {
     setShowImage(false);
   };
 
-  const handleMouseEnter = () => {
-    setShowImage(true);
+  const handleMouseEnter = (event: any) => {
+    // const x = event.clientX;
+    // const y = event.clientY;
+    // gsap.to(imageRef.current, {
+    //   x: x,
+    //   y: y,
+    //   duration: 0, // Quick transition to make the movement smooth and responsive
+    //   ease: "none",
+    // });
+    // setShowImage(true);
   };
 
   return (
     <div
       className=" flex cursor-pointer select-none flex-row items-start space-x-[5px] rounded-md border-[0.5px] px-4 py-3"
-      // onMouseMove={handleMouseMove}
-      // onMouseEnter={handleMouseEnter}
-      // onMouseLeave={handleMouseLeave}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <div className="flex w-full flex-col">
         <div className="flex flex-row justify-between">
@@ -95,7 +103,7 @@ function ProjectItem({ title, description, image }: any) {
       </div>
       <span className="text-[10.5px] opacity-50">2023</span>
 
-      {/* {showImage && (
+      {showImage && (
         <Image
           ref={imageRef}
           src={image}
@@ -112,7 +120,7 @@ function ProjectItem({ title, description, image }: any) {
             zIndex: 1000,
           }}
         />
-      )} */}
+      )}
     </div>
   );
 }

@@ -1,11 +1,13 @@
 import "@/styles/globals.css";
 
+// import { TailwindIndicator } from "@/components/tailwind-indicator";
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
-import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { SiteHeader } from "@/components/site-header";
 import { Analytics } from "@vercel/analytics/react";
+import Script from "next/script";
 
 import { siteConfig } from "@/config/site";
 
@@ -41,6 +43,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
       lang="en"
       className={cx("text-black  dark:text-white", inter.className)}
     >
+      <Script
+        defer
+        src="https://analytics-gules.vercel.app/script.js"
+        data-website-id="ed0dd708-7ada-462f-9d21-96b38ce31e0d"
+      />
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="relative  antialiased">

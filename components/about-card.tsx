@@ -33,14 +33,11 @@ export default function About({ className, ...props }: AboutProps) {
         <CardDescription>Paolo Nessim</CardDescription>
       </CardHeader>
       <CardContent className="mt-auto">
-        <p className="opacity-75">
-          {/* Hello. I&apos;m Paolo Nessim, I&apos;m an {age}-year-old developer
-          starting an exciting technology journey. I love coding and turning
-          ideas into impactful projects. I&apos;m always ready to learn and try
-          new things, and I see every challenge as a chance to grow. I&apos;m
-          looking to work with others who are passionate about making a
-          difference in technology. */}
-          ...
+        <p className="leading-[19px] opacity-75">
+          Hi! I&apos;m Paolo Nessim, a {age} year old developer with three years
+          of experience working on open-source projects. I love building cool
+          projects and bringing ideas to life. I&apos;m always up for learning
+          new things and see every challenge as a chance to get better.
         </p>
       </CardContent>
     </Card>

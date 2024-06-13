@@ -19,7 +19,6 @@ export default function Currently({ className, ...props }: CurrentlyProps) {
     <Card className={className} {...props}>
       <CardHeader>
         <CardTitle>Currently</CardTitle>
-        {/* Green dot with blur around it polsing in opacity */}
         <CardDescription className="flex items-center justify-center">
           <span className="dot h-2 w-2 rounded-full bg-green-500">
             <span className="dot-inner"></span>
@@ -27,7 +26,7 @@ export default function Currently({ className, ...props }: CurrentlyProps) {
         </CardDescription>
       </CardHeader>
       <CardContent className="mt-auto flex flex-col space-y-2 pb-3">
-        <p className="mx-[0.5px] text-[11.5px] opacity-75">
+        <p className="mx-[0.5px] text-[11.5px] leading-[19px] opacity-75">
           {siteConfig.currently}
         </p>
         <Button

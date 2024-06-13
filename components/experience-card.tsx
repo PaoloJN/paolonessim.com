@@ -14,7 +14,7 @@ export default function ExperienceAndEducation({
         <CardTitle>Experience & Education</CardTitle>
         {/* <CardDescription>Paolo Nessim</CardDescription> */}
       </CardHeader>
-      <CardContent className="px-3 py-2">
+      <CardContent className="mt-auto px-3 py-2">
         <ExperienceAndEducationItem
           title="Web Development"
           startDate="2021"
