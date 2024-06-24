@@ -1,14 +1,17 @@
 import { AssistantResponse } from "ai";
 import OpenAI from "openai";
 
+export const dynamic = "force-dynamic";
+export const maxDuration = 30;
+
+console.log("Called assistant route");
+
 // TODO: Implement Search engine with specific domain instead of using assistant knowledge.
 
 const openai = new OpenAI({
   defaultHeaders: { "OpenAI-Beta": "assistants=v2" },
   apiKey: process.env.OPENAI_API_KEY || "",
 });
-
-// export const maxDuration = 30;
 
 export async function POST(req: Request) {
   // Parse the request body
