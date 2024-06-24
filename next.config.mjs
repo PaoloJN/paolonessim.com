@@ -21,7 +21,7 @@ const nextConfig = {
     return [
       {
         // matching all API routes allow requests from nessimworks.nwhubs.com
-        source: "/api/*:path",
+        source: "/api/*",
         headers: [
           // { key: "Access-Control-Allow-Credentials", value: "true" },
           {
