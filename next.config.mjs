@@ -20,11 +20,14 @@ const nextConfig = {
   async headers() {
     return [
       {
-        // matching all API routes
-        source: "/api/assistant",
+        // matching all API routes allow requests from nessimworks.nwhubs.com
+        source: "/api/*:path",
         headers: [
-          { key: "Access-Control-Allow-Credentials", value: "true" },
-          { key: "Access-Control-Allow-Origin", value: "*" },
+          // { key: "Access-Control-Allow-Credentials", value: "true" },
+          {
+            key: "Access-Control-Allow-Origin",
+            value: "https://nessimworks.nwhubs.com",
+          },
           {
             key: "Access-Control-Allow-Methods",
             value: "GET,OPTIONS,PATCH,DELETE,POST,PUT",
