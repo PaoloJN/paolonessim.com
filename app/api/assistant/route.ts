@@ -1,21 +1,16 @@
 import { AssistantResponse } from "ai";
 import OpenAI from "openai";
 
-export const dynamic = "force-dynamic";
-export const maxDuration = 30;
-
-console.log("Called assistant route");
-
 // TODO: Implement Search engine with specific domain instead of using assistant knowledge.
 
 const openai = new OpenAI({
   defaultHeaders: { "OpenAI-Beta": "assistants=v2" },
-  apiKey: process.env.OPENAI_API_KEY || "",
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
-export async function OPTIONS(req: Request) {
-  return new Response("Ok", { status: 200 });
-}
+console.log("OpenAI API Key:", process.env.OPENAI_API_KEY);
+
+export const maxDuration = 30;
 
 export async function POST(req: Request) {
   // Parse the request body
@@ -24,14 +19,21 @@ export async function POST(req: Request) {
     message: string;
   } = await req.json();
 
+  console.log("Thread ID:", input.threadId);
+  console.log("Message:", input.message);
+
   // Create a thread if needed
   const threadId = input.threadId ?? (await openai.beta.threads.create({})).id;
+
+  console.log("Thread ID Created:", threadId);
 
   // Add a message to the thread
   const createdMessage = await openai.beta.threads.messages.create(threadId, {
     role: "user",
     content: input.message,
   });
+
+  console.log("Message Created:", createdMessage.id);
 
   return AssistantResponse(
     { threadId, messageId: createdMessage.id },
