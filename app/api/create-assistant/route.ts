@@ -1,5 +1,6 @@
 import OpenAI from "openai";
 import fs from "fs";
+import path from "path";
 
 const openai = new OpenAI({
   defaultHeaders: { "OpenAI-Beta": "assistants=v2" },
@@ -62,7 +63,8 @@ export async function POST() {
   console.log("Assistant created:", assistant.id);
 
   // Upload the file
-  const filePath = "../../../files/knowledge.json"; // Replace with the path to your file
+  // knowledge.json
+  const filePath = path.join(process.cwd(), "knowledge.json");
   const fileStream = fs.createReadStream(filePath);
   const file = await openai.files.create({
     file: fileStream,
