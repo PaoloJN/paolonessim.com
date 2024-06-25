@@ -12,6 +12,10 @@ console.log("OpenAI API Key:", process.env.OPENAI_API_KEY);
 
 export const maxDuration = 30;
 
+export async function OPTIONS(req: Request) {
+  return new Response("Ok", { status: 200 });
+}
+
 export async function POST(req: Request) {
   // Parse the request body
   const input: {
