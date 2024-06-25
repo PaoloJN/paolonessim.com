@@ -13,7 +13,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || "",
 });
 
-export async function POST(req: Request) {
+export async function OPTIONS(req: Request) {
   // Parse the request body
   const input: {
     threadId: string | null;
