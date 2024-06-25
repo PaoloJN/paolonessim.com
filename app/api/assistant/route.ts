@@ -9,6 +9,7 @@ const openai = new OpenAI({
 });
 
 console.log("OpenAI API Key:", process.env.OPENAI_API_KEY);
+console.log("Assistant ID:", process.env.ASSISTANT_ID);
 
 export const maxDuration = 30;
 
