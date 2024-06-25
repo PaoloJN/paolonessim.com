@@ -13,6 +13,8 @@ const corsOptions = {
 };
 
 export function middleware(request: NextRequest) {
+  console.log("Middleware called");
+  console.log("Request headers: ", request.headers);
   // Check the origin from the request
   const origin = request.headers.get("origin") ?? "";
   const isAllowedOrigin = allowedOrigins.includes(origin);
@@ -38,6 +40,11 @@ export function middleware(request: NextRequest) {
   Object.entries(corsOptions).forEach(([key, value]) => {
     response.headers.set(key, value);
   });
+
+  if (request.method === "OPTIONS") {
+    // Return preflight response immediately
+    return new NextResponse(null, { headers: response.headers });
+  }
 
   return response;
 }
