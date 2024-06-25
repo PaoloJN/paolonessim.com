@@ -2,7 +2,10 @@
 
 import { NextRequest, NextResponse } from "next/server";
 
-const allowedOrigins = ["https://nessimworks.nwhubs.com"];
+const allowedOrigins = [
+  "https://nessimworks.nwhubs.com",
+  "http://localhost:5173",
+];
 
 const corsOptions = {
   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
