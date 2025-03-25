@@ -1,16 +1,18 @@
 import type { MDXComponents } from "mdx/types";
 import type { MDXRemoteProps } from "next-mdx-remote/rsc";
 import type { PluggableList } from "unified";
-import { cn } from "@/libraries/utils";
+import { cn } from "@/lib/utils";
 
 import { MDXRemote } from "next-mdx-remote/rsc";
 import React from "react";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
-import CustomImage from "./components/md-custom-image";
-import CustomLink from "./components/md-custom-link";
-import Figure from "./components/md-figure";
+import CustomImage from "@/components/markdown/custom-image";
+import CustomLink from "@/components/markdown/custom-link";
+import Figure from "@/components/markdown/md-figure";
+import FootnoteForwardReference from "@/components/markdown/forward-reference";
+import FootnoteBackReference from "@/components/markdown/back-reference";
 
 const components: MDXComponents = {
     h2: ({ children, id }: React.HTMLAttributes<HTMLHeadingElement>) => {
@@ -20,18 +22,22 @@ const components: MDXComponents = {
         return <h2 id={id}>{children}</h2>;
     },
     a: ({ children, href }) => {
-        // if (href?.startsWith("#user-content-fn-")) {
-        //     return <FootnoteForwardReference href={href}>{children}</FootnoteForwardReference>;
-        // }
+        if (href?.startsWith("#user-content-fn-")) {
+            return <FootnoteForwardReference href={href}>{children}</FootnoteForwardReference>;
+        }
         return (
-            <CustomLink href={href} className="inline-flex items-center gap-1 text-muted" underline>
+            <CustomLink
+                href={href}
+                className="inline-flex items-center gap-1 text-muted-foreground"
+                underline
+            >
                 {children}
             </CustomLink>
         );
     },
     blockquote: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
         <blockquote
-            className={cn("mt-6 border-gray-4 border-l-2 pl-6 text-muted", className)}
+            className={cn("mt-6 border-gray-4 border-l-2 pl-6 text-muted-foreground", className)}
             {...props}
         />
     ),
@@ -68,7 +74,7 @@ const components: MDXComponents = {
         ) {
             return (
                 <ol data-footnotes>
-                    <div className="mt-6 mb-2 text-muted text-small">Footnotes</div>
+                    <div className="mt-6 mb-2 text-muted-foreground text-small">Footnotes</div>
                     {props.children}
                 </ol>
             );
@@ -78,56 +84,56 @@ const components: MDXComponents = {
     ul: ({ className, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
         <ul className={cn("mt-2 ml-2 list-disc", className)} {...props} />
     ),
-    // li: ({ className, children, ...props }: React.HTMLAttributes<HTMLLIElement>) => {
-    //     if (props.id?.includes("user-content-fn-")) {
-    //         return (
-    //             <li id={props.id}>
-    //                 {React.Children.map(children, (child) => {
-    //                     if (React.isValidElement(child)) {
-    //                         if (child.type === "p") {
-    //                             const href = child.props.children.find((child: React.ReactNode) => {
-    //                                 if (React.isValidElement(child)) {
-    //                                     return (
-    //                                         React.isValidElement(child) &&
-    //                                         "props" in child &&
-    //                                         (child.props as { href?: string }).href?.includes(
-    //                                             "user-content-fnref-"
-    //                                         )
-    //                                     );
-    //                                 }
-    //                                 return false;
-    //                             })?.props.href;
+    li: ({ className, children, ...props }: React.HTMLAttributes<HTMLLIElement>) => {
+        if (props.id?.includes("user-content-fn-")) {
+            return (
+                <li id={props.id}>
+                    {React.Children.map(children, (child) => {
+                        if (React.isValidElement(child)) {
+                            if (child.type === "p") {
+                                const href = child.props.children.find((child: React.ReactNode) => {
+                                    if (React.isValidElement(child)) {
+                                        return (
+                                            React.isValidElement(child) &&
+                                            "props" in child &&
+                                            (child.props as { href?: string }).href?.includes(
+                                                "user-content-fnref-"
+                                            )
+                                        );
+                                    }
+                                    return false;
+                                })?.props.href;
 
-    //                             const filtered = child.props.children.filter(
-    //                                 (child: React.ReactNode) => {
-    //                                     if (React.isValidElement(child)) {
-    //                                         return !(
-    //                                             React.isValidElement(child) &&
-    //                                             "props" in child &&
-    //                                             (child.props as { href?: string }).href?.includes(
-    //                                                 "user-content-fnref-"
-    //                                             )
-    //                                         );
-    //                                     }
-    //                                     return true;
-    //                                 }
-    //                             );
+                                const filtered = child.props.children.filter(
+                                    (child: React.ReactNode) => {
+                                        if (React.isValidElement(child)) {
+                                            return !(
+                                                React.isValidElement(child) &&
+                                                "props" in child &&
+                                                (child.props as { href?: string }).href?.includes(
+                                                    "user-content-fnref-"
+                                                )
+                                            );
+                                        }
+                                        return true;
+                                    }
+                                );
 
-    //                             return (
-    //                                 <FootnoteBackReference href={href}>
-    //                                     {filtered}
-    //                                 </FootnoteBackReference>
-    //                             );
-    //                         }
-    //                         return child;
-    //                     }
-    //                     return child;
-    //                 })}
-    //             </li>
-    //         );
-    //     }
-    //     return <li className={cn("mt-2 ml-2 list-item", className)}>{children}</li>;
-    // },
+                                return (
+                                    <FootnoteBackReference href={href}>
+                                        {filtered}
+                                    </FootnoteBackReference>
+                                );
+                            }
+                            return child;
+                        }
+                        return child;
+                    })}
+                </li>
+            );
+        }
+        return <li className={cn("mt-2 ml-2 list-item", className)}>{children}</li>;
+    },
 
     CodeBlock: ({ children, className }) => {
         const language = className?.replace("language-", "");
@@ -137,13 +143,14 @@ const components: MDXComponents = {
             </pre>
         );
     },
+
     Figure: ({ children, withCodeblock }) => (
         <Figure withCodeblock={withCodeblock ? withCodeblock : undefined}>{children}</Figure>
     ),
 
     FigureExample: () => {
         return (
-            <div className="min- flex h-10 w-32 items-center justify-center rounded-lg border border-yellow-600 bg-yellow-300 text-yellow-100">
+            <div className="min- flex h-10 w-32 items-center justify-center rounded-lg border border-[#524202] bg-[#2D2305] text-[#F5E147]">
                 <div className="overflow-x-auto">
                     <div className="min-w-full">
                         <div className="min-w-full">
@@ -154,7 +161,6 @@ const components: MDXComponents = {
             </div>
         );
     },
-
     Image: ({ caption, alt, ...props }) => <CustomImage {...props} caption={caption} alt={alt} />,
 };
 
@@ -165,15 +171,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 }
 
 export function MDX(props: JSX.IntrinsicAttributes & MDXRemoteProps) {
-    const options = {
-        keepBackground: false,
-        defaultLang: "tsx",
-        theme: {
-            dark: "github-dark",
-            light: "github-light",
-        },
-    };
-
     return (
         <MDXRemote
             {...props}
@@ -181,7 +178,20 @@ export function MDX(props: JSX.IntrinsicAttributes & MDXRemoteProps) {
             options={{
                 mdxOptions: {
                     remarkPlugins: [remarkGfm],
-                    rehypePlugins: [rehypeSlug, [rehypePrettyCode, options]] as PluggableList,
+                    rehypePlugins: [
+                        rehypeSlug,
+                        [
+                            rehypePrettyCode,
+                            {
+                                theme: {
+                                    dark: "github-dark",
+                                    light: "github-light",
+                                },
+                                keepBackground: false,
+                                defaultLang: "tsx",
+                            },
+                        ],
+                    ] as PluggableList,
                 },
             }}
         />

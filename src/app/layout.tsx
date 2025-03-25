@@ -1,19 +1,18 @@
 import "@/styles/globals.css";
 
-import { cn } from "@/libraries/utils";
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
 import { siteConfig } from "@/config/site";
-
 import type { Metadata, Viewport } from "next";
-
 import { ThemeProvider } from "next-themes";
-import { ViewTransitions } from "next-view-transitions";
-import Navigation from "@/components/building/navigation";
+// import { ViewTransitions } from "next-view-transitions";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import SnowFall from "@/components/snowfall";
+import { Inter } from "next/font/google";
+import clsx from "clsx";
 
-// TODO: Add metadata to the config file
+const inter = Inter({
+    subsets: ["latin"],
+    display: "swap",
+});
+
 export const metadata: Metadata = {
     metadataBase: new URL("https://paolonessim.com"),
     title: {
@@ -22,24 +21,22 @@ export const metadata: Metadata = {
     },
     description: siteConfig.description,
     keywords: [
-        "suraj gupta",
-        "suraj gupta portfolio",
-        "suraj sujjeee",
-        "suraj github",
-        "sujjeee",
-        "sujjeeee",
-        "sujjeee github",
-        "sujjeee portfolio",
+        "paolo jn",
+        "paolo jn portfolio",
+        "paolo js github",
+        "paolo nessim",
+        "paolo nessim github",
+        "paolo nessim portfolio",
         "software developer",
         "Full stack developer",
     ],
     authors: [
         {
-            name: "Suraj Gupta",
-            url: "https://sujjeee.com",
+            name: "Paolo Nessim",
+            url: "https://paolonessim.com",
         },
     ],
-    creator: "sujjeee",
+    creator: "paolonessim",
     openGraph: {
         type: "website",
         locale: "en_US",
@@ -53,7 +50,7 @@ export const metadata: Metadata = {
         title: siteConfig.name,
         description: siteConfig.description,
         images: [siteConfig.ogImage],
-        creator: "@sujjeeee",
+        creator: "@paolonessim",
     },
     icons: {
         icon: "/favicon.ico",
@@ -74,32 +71,23 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" suppressHydrationWarning>
-            <body
-                className={cn(
-                    "min-h-screen bg-background font-sans antialiased",
-                    GeistSans.variable,
-                    GeistMono.variable
-                )}
-            >
-                <ViewTransitions>
-                    <ThemeProvider
-                        attribute="class"
-                        defaultTheme="system"
-                        enableSystem
-                        disableTransitionOnChange
-                    >
-                        <TooltipProvider>
-                            <main className="mx-auto w-full mb-16 max-w-screen-sm py-8">
-                                {/* Christmas Snowfall */}
-                                {/* <SnowFall /> */}
-                                {children}
-                                <Navigation />
-                            </main>
-                        </TooltipProvider>
-                    </ThemeProvider>
-                </ViewTransitions>
+        // <ViewTransitions>
+        <html lang="en" className={clsx(inter.className)} suppressHydrationWarning>
+            <body>
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="system"
+                    enableSystem
+                    disableTransitionOnChange
+                >
+                    <TooltipProvider>
+                        <main className="mx-auto max-w-screen-sm overflow-x-hidden px-6 py-8 md:py-16 md:overflow-x-visible">
+                            {children}
+                        </main>
+                    </TooltipProvider>
+                </ThemeProvider>
             </body>
         </html>
+        // </ViewTransitions>
     );
 }

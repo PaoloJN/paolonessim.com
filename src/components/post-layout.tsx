@@ -2,12 +2,12 @@ import type { Post } from "@/types/type";
 
 import TableOfContents from "@/components/table-of-contents";
 import PostNavigation from "@/components/post-navigation";
-import { getPosts } from "@/libraries/content";
+import { getPosts } from "@/lib/content";
 import { MDX } from "@/mdx-components";
 
 import React from "react";
 import { readingTime } from "reading-time-estimator";
-import { toFormattedDate } from "@/libraries/utils";
+import { toFormattedDate } from "@/lib/utils";
 
 interface PostLayoutProps {
     post: Post;
@@ -34,11 +34,9 @@ export default function PostLayout({ post, route }: PostLayoutProps) {
 
     return (
         <React.Fragment>
-            <div className="flex flex-col">
-                <div>
-                    <h1>{post.title}</h1>
-                </div>
-                <div className="mt-1 flex gap-2 text-muted-foreground text-[12.5px]">
+            <div>
+                <h1 className="mb-4">{post.title}</h1>
+                <div className="mt-1 flex gap-2 text-muted-foreground text-small">
                     <PublishedTime />
                     <Seperator />
                     <UpdateTime />
@@ -47,7 +45,9 @@ export default function PostLayout({ post, route }: PostLayoutProps) {
                 </div>
             </div>
 
-            <MDX source={post.content} />
+            <article className="text-pretty leading-6">
+                <MDX source={post.content} />
+            </article>
             <PostNavigation posts={posts} />
             <TableOfContents />
         </React.Fragment>

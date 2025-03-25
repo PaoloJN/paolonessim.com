@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/libraries/utils";
+import { cn } from "@/lib/utils";
 import { ChevronRightIcon } from "@radix-ui/react-icons";
 import { Link } from "next-view-transitions";
 import { usePathname } from "next/navigation";
@@ -18,10 +18,10 @@ export const Breadcrumb = () => {
     return (
         <div
             className={cn(
-                "mt-0 mb-4 flex w-full items-center gap-1 align-middle font-normal text-sm"
+                "mt-0 mb-4 flex w-full items-center gap-1 align-middle font-normal text-small"
             )}
         >
-            <Link className="text-muted-foreground text-sm" href="/">
+            <Link className="text-muted-foreground" href="/">
                 Home
             </Link>
             <ChevronRightIcon className="text-muted-foreground" />

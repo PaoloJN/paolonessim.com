@@ -24,17 +24,17 @@ export default function PostNavigation({ posts }: PostNavigationProps) {
     }
 
     return (
-        <div className="mt-16 flex w-full justify-between border-border border-t pt-8">
+        <div className="mt-16 flex w-full justify-between border-border border-t pt-8 text-sm">
             {previous && (
-                <Link href={`${previous.slug}`} className="flex w-full flex-col gap-1 text-left">
-                    <span className="text-muted">Previous</span>
-                    <span>{previous.title}</span>
+                <Link href={`${previous.slug}`} className="flex w-full flex-col gap-3 text-left">
+                    <span className="text-muted-foreground">Previous</span>
+                    <span className="text-foreground/80">{previous.title}</span>
                 </Link>
             )}
             {next && (
-                <Link href={`${next.slug}`} className="flex w-full flex-col gap-1 text-right">
-                    <span className="text-muted">Next</span>
-                    <span>{next.title}</span>
+                <Link href={`${next.slug}`} className="flex w-full flex-col gap-3 text-right">
+                    <span className="text-muted-foreground">Next</span>
+                    <span className="text-foreground/80">{next.title}</span>
                 </Link>
             )}
         </div>

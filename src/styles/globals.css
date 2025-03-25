@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer base {
     :root {
         --background: 0 0% 100%;
@@ -34,16 +30,22 @@ body {
         --chart-5: 27 87% 67%;
         --radius: 0.5rem;
 
-        --selection-background: #fee9f5;
-        --selection-foreground: #c2298a;
-        --scrollbar-thumb: #e8e8e8;
-        --scrollbar-track: transparent;
+        /* New Vars */
 
-        --highlight-background: #fffab8;
-        --highlight-foreground: #9e6c00;
+        --selection-background: 325.71 91.3% 95.49%;
+        --selection-foreground: 321.96 65.11% 46.08%;
+        --scrollbar-thumb: 0 0% 90.98%;
+        --scrollbar-track: transparent;
+        --highlight-background: 55.77 100% 86.08%;
+        --highlight-foreground: 41.01 100% 30.98%;
+
+        --kbd-background: 0 0% 13.33%;
+        --kbd-foreground: 0 0% 70.59%;
+        --kbd-border: 0 0% 16.47%;
     }
+
     .dark {
-        --background: 0 0% 3.9%;
+        --background: 0 0% 6.67%;
         --foreground: 0 0% 98%;
         --card: 0 0% 3.9%;
         --card-foreground: 0 0% 98%;
@@ -54,7 +56,8 @@ body {
         --secondary: 0 0% 14.9%;
         --secondary-foreground: 0 0% 98%;
         --muted: 0 0% 14.9%;
-        --muted-foreground: 0 0% 63.9%;
+        /* --muted-foreground: 0 0% 63.9%; */
+        --muted-foreground: 0 0% 37.65%;
         --accent: 0 0% 14.9%;
         --accent-foreground: 0 0% 98%;
         --destructive: 0 62.8% 30.6%;
@@ -67,17 +70,22 @@ body {
         --chart-3: 30 80% 55%;
         --chart-4: 280 65% 60%;
         --chart-5: 340 75% 55%;
-    }
-}
 
-@layer base {
-    * {
-        @apply border-border;
+        /* New Vars */
+
+        --selection-background: 325.71 91.3% 95.49%;
+        --selection-foreground: 321.96 65.11% 46.08%;
+        --scrollbar-thumb: 0 0% 90.98%;
+        --scrollbar-track: transparent;
+        --highlight-background: 55.77 100% 86.08%;
+        --highlight-foreground: 41.01 100% 30.98%;
+
+        --kbd-background: 0 0% 13.33%;
+        --kbd-foreground: 0 0% 70.59%;
+        --kbd-border: 0 0% 16.47%;
     }
 
-    body {
-        @apply bg-background text-foreground;
-    }
+    /* New Styles  */
 
     * {
         --webkit-font-smoothing: antialiased;
@@ -88,60 +96,71 @@ body {
         text-rendering: optimizelegibility;
     }
 
-    *::selection {
-        color: var(--selection-foreground);
-        background-color: var(--selection-background);
-    }
-
     html {
-        scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+        scrollbar-color: hsl(var(--scrollbar-thumb)) hsl(var(--scrollbar-track));
         scrollbar-gutter: stable;
         scrollbar-width: thin;
         scroll-behavior: smooth;
     }
 
-    /* Animation */
+    html {
+        @apply text-default text-foreground bg-background;
 
-    @keyframes slideFromDownAndFade {
-        0% {
-            opacity: 0;
-            transform: translateY(12px);
-            visibility: hidden;
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            @apply font-medium;
         }
 
-        1% {
-            visibility: visible;
+        h2,
+        h3,
+        sub,
+        sup {
+            @apply text-muted-foreground;
         }
 
-        to {
-            opacity: 1;
-            transform: translateY(0);
+        sub {
+            @apply text-small;
+        }
+
+        a {
+            @apply transition hover:opacity-50;
+        }
+
+        ol {
+            @apply list-decimal;
+        }
+
+        ul {
+            @apply list-disc;
+        }
+
+        kbd {
+            @apply mx-1;
+
+            display: inline-block;
+            min-width: 20px;
+            height: 20px;
+            min-height: 20px;
+            padding: 0 6px;
+            font-size: 12px;
+            line-height: 20px;
+            text-align: center;
+            background: hsl(var(--kbd-background));
+            border-radius: 4px;
+            box-shadow: 0 0 0 1px hsl(var(--kbd-border));
         }
     }
 
-    .animate-slide-from-down-and-fade-1 {
-        animation: slideFromDownAndFade 0.6s ease-in-out 0.1s both;
-    }
+    /* Selection  */
 
-    .animate-slide-from-down-and-fade-2 {
-        animation: slideFromDownAndFade 0.6s ease-in-out 0.2s both;
-    }
-
-    .animate-slide-from-down-and-fade-3 {
-        animation: slideFromDownAndFade 0.6s ease-in-out 0.3s both;
-    }
-
-    .animate-slide-from-down-and-fade-4 {
-        animation: slideFromDownAndFade 0.6s ease-in-out 0.4s both;
-    }
-
-    .animate-slide-from-down-and-fade-5 {
-        animation: slideFromDownAndFade 0.6s ease-in-out 0.5s both;
-    }
-
-    .animate-slide-from-down-and-fade-6 {
-        animation: slideFromDownAndFade 0.6s ease-in-out 0.6s both;
-    }
+    /* *::selection {
+        color: hsl(var(--selection-foreground));
+        background-color: hsl(var(--selection-background));
+    } */
 
     article {
         h1 + h2 {
@@ -185,9 +204,9 @@ body {
             @apply absolute inset-0 -inset-x-1 -z-10 bg-transparent transition scale-y-[1.1] content-[""] duration-500;
         }
 
-        /* [data-highlight="true"]::before {
+        [data-highlight="true"]::before {
             @apply bg-highlight-background text-highlight-foreground scale-y-110 !important;
-        } */
+        }
 
         [data-highlight="false"]::before {
             @apply bg-transparent scale-y-100;
@@ -201,7 +220,7 @@ body {
             position: relative;
             padding-top: 16px;
             margin-top: 64px !important;
-            border-top: 1px solid var(--border);
+            border-top: 1px solid hsl(var(--border));
         }
 
         .footnotes ol {
@@ -221,7 +240,7 @@ body {
             padding-top: 4px;
             padding-left: 6px;
             font-size: 12px;
-            color: var(--muted);
+            color: hsl(var(--muted-foreground));
             counter-increment: list;
         }
 
@@ -236,6 +255,31 @@ body {
         .footnotes ol li p a {
             z-index: 2;
         }
+    }
+
+    .footnote-back-reference {
+        text-align: left;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    .footnote-back-reference svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    .footnote-back-reference a {
+        color: var(--gray-9) !important;
+    }
+
+    .footnote-forward-reference {
+        display: inline-block;
+        margin-right: 2px;
+        margin-left: 2px;
+        cursor: pointer;
     }
 
     /* 
@@ -265,6 +309,11 @@ body {
             }
         }
     }
+
+    /* 
+    * Here we are setting up the styles needed to enable line numbers in code blocks.
+    * @see: https://rehype-pretty.pages.dev/#line-numbers
+    */
 
     html {
         code[data-line-numbers] {
@@ -298,11 +347,16 @@ body {
             margin-right: 2px;
             margin-left: 2px;
             text-align: center;
-            background-color: var(--background) !important;
+            background-color: hsl(var(--kbd-background)) !important;
             border-radius: 4px;
-            box-shadow: 0 0 0 1px #e2e8f0;
+            box-shadow: 0 0 0 1px hsl(var(--kbd-border)) !important;
         }
     }
+
+    /* 
+    * Here we are just some additional styles to make the code blocks look better.
+    * @see: https://rehype-pretty.pages.dev/#styles
+    */
 
     * {
         pre {
@@ -318,8 +372,8 @@ body {
         figure {
             width: 100%;
             margin-top: 4px;
-            border: 1px solid #e2e8f0;
-            border-radius: 0.5rem;
+            border: 1px solid hsl(var(--border));
+            border-radius: 8px;
         }
     }
 }
@@ -334,7 +388,7 @@ body {
         min-height: 384px;
         padding: 48px;
         margin-top: 4px;
-        border-color: var(--border);
+        border-color: hsl(var(--border));
         border-width: 1px;
         border-radius: var(--radius);
 
@@ -350,4 +404,22 @@ body {
             }
         }
     }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }

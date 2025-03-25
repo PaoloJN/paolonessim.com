@@ -2,7 +2,7 @@
 
 import React, { useCallback, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { cn } from "@/libraries/utils";
+import { cn } from "@/lib/utils";
 
 export default function TableOfContents({}) {
     const [headings, setHeadings] = useState<{ id: string; text: string; level: string }[]>([]);
@@ -98,7 +98,7 @@ export default function TableOfContents({}) {
                                 type="button"
                                 onClick={() => scroll(heading.id)}
                                 className={cn({
-                                    "mt-0 ml-2 border-l border-l-gray-4 py-1 text-left text-muted opacity-100 transition ease-in-out hover:opacity-50":
+                                    "mt-0 ml-2 border-l border-l-gray-4 py-1 text-left text-muted-foreground opacity-100 transition ease-in-out hover:opacity-50":
                                         true,
                                     "text-bold text-gray-12": visibleHeadings.has(heading.id),
                                     "pl-4": heading.level === "h1",

@@ -1,34 +1,32 @@
-import { FadeItem } from "@/components/fade-motion";
-import { Posts } from "@/components/posts";
-// import { OpenGraph } from "@/lib/og";
-
 import React from "react";
+import { OpenGraph } from "@/lib/metadata";
+import PostsList from "@/components/posts-list";
+import { FadeItem } from "@/components/fade-motion";
 
-// export function generateMetadata() {
-//     const title = "Guides";
-//     const image = `${process.env.NEXT_PUBLIC_SITE_URL}api/og?title=${encodeURIComponent(title)}`;
+const category = "guides";
 
-//     return {
-//         ...OpenGraph,
-//         title,
-//         openGraph: {
-//             title,
-//             images: [image],
-//         },
-//         twitter: {
-//             images: [image],
-//         },
-//     };
-// }
+export function generateMetadata() {
+    const image = `${process.env.NEXT_PUBLIC_SITE_URL}api/og?title=${encodeURIComponent(category)}`;
+
+    return {
+        ...OpenGraph,
+        category,
+        openGraph: {
+            category,
+            images: [image],
+        },
+        twitter: {
+            images: [image],
+        },
+    };
+}
 
 export default function Page() {
     return (
-        <>
-            {/* <FadeItem>
-                <Posts category="guides" />
-            </FadeItem> */}
-
-            <h1>Hello</h1>
-        </>
+        <React.Fragment>
+            <FadeItem>
+                <PostsList category={category} />
+            </FadeItem>
+        </React.Fragment>
     );
 }

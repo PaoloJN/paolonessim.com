@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { cn } from "@/libraries/utils";
+import { cn } from "@/lib/utils";
 
 // items-center container py-12 md:py-10 space-y-12
 const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(

@@ -1,39 +1,64 @@
-import ThemeImage from "./theme-image";
+"use client";
 
+import ThemeImage from "./theme-image";
 import { siteConfig } from "@/config/site";
-import { Button } from "./ui/button";
-import { Icons } from "./ui/icons";
-import { cn } from "@/libraries/utils";
+import { Button } from "@/components/ui/button";
+import { Icons } from "@/components/ui/icons";
+import { cn } from "@/lib/utils";
+
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { DotsHorizontalIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 interface SiteHeaderProps {
-    index: number;
     className?: string;
 }
 
-export default function SiteHeader({ index, className }: SiteHeaderProps) {
+const menuItems = [
+    {
+        label: "Resume",
+        href: "/resume",
+    },
+    {
+        label: "Projects",
+        href: "https://github.com/paolojn",
+        target: "_blank",
+    },
+    {
+        label: "Posts",
+        href: "/posts",
+    },
+    {
+        label: "Contact",
+        href: "mailto:paolo.j.nessim@gmail.com",
+    },
+];
+
+export default function SiteHeader({ className }: SiteHeaderProps) {
     const isActive = true;
 
     return (
-        <header
-            className={cn(
-                `top-0 z-50 w-full animate-slide-from-down-and-fade-1 cursor-context-menu`,
-                className
-            )}
-        >
+        <header className={cn(`z-50 w-full`, className)}>
             <div className="flex flex-row items-center justify-between w-full">
-                <div className="flex flex-row items-center gap-4">
+                <div className="flex flex-row items-start gap-4">
                     <ThemeImage
                         lightSrc="/images/light-avatar.png"
                         darkSrc="/images/dark-avatar.png"
                         alt={"Avatar of " + siteConfig.fullName}
-                        width={42}
-                        height={42}
-                        className="rounded-md border-[1px] border-border/80 h-full dark:border-border/60"
+                        width={40}
+                        height={40}
+                        className="rounded-md border-[0.5px] border-border h-full"
                     />
 
                     <div className="flex flex-col">
                         <div className="cursor-pointer">
-                            <h1 className="font-medium text-[13px] transition-element">
+                            <h1 className="font-light text-small transition-element">
                                 <span className="sr-only">{siteConfig.fullName}</span>
                                 <span
                                     aria-hidden="true"
@@ -63,10 +88,10 @@ export default function SiteHeader({ index, className }: SiteHeaderProps) {
                         {isActive && (
                             <div className="flex items-center">
                                 <div className="absolute flex size-4">
-                                    <span className="absolute top-[4.5px] size-2 animate-ping rounded-full bg-green-500 opacity-75"></span>
-                                    <span className="relative top-[4.5px] size-2 rounded-full bg-green-500"></span>
+                                    <span className="absolute top-[4.5px] size-1.5 animate-ping rounded-full bg-green-500 opacity-75"></span>
+                                    <span className="relative top-[4.5px] size-1.5 rounded-full bg-green-500"></span>
                                 </div>
-                                <span className="prose prose-neutral ml-4 dark:prose-invert text-[12px]">
+                                <span className="prose prose-neutral ml-4 dark:prose-invert text-[10px] text-muted-foreground">
                                     Coding & Designing
                                 </span>
                             </div>
@@ -74,17 +99,37 @@ export default function SiteHeader({ index, className }: SiteHeaderProps) {
                     </div>
                 </div>
 
-                {/* Get In Touch */}
-                <div className="flex flex-row gap-2">
-                    <Button variant="outline" size="icon">
+                <div className="flex flex-row">
+                    <Button variant="ghost" size="icon">
                         <Icons.twitter className="w-3.5 h-3.5" />
                     </Button>
-                    <Button variant="outline" size="icon">
+                    <Button variant="ghost" size="icon" className="mr-1">
                         <Icons.gitHub className="w-3.5 h-3.5" />
                     </Button>
-                    <Button variant="outline" size="sm" className="text-xs">
-                        UMD
-                    </Button>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" size="icon">
+                                <DotsHorizontalIcon className="w-3.5 h-3.5" />
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent
+                            className="bg-background text-foreground/80"
+                            align="end"
+                        >
+                            {menuItems.map((item) => (
+                                <DropdownMenuItem asChild className="text-xs px-2" key={item.label}>
+                                    <Link
+                                        href={item.href}
+                                        target={item.target}
+                                        className="group flex items-center justify-between"
+                                    >
+                                        {item.label}
+                                        <ArrowUpRight className="w-3 h-3 ml-1 text-foreground/50 hidden group-hover:block" />
+                                    </Link>
+                                </DropdownMenuItem>
+                            ))}
+                        </DropdownMenuContent>
+                    </DropdownMenu>
                 </div>
             </div>
         </header>

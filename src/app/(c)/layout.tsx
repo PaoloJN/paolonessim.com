@@ -3,9 +3,9 @@ import { Breadcrumb } from "@/components/breadcrumb";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
-        <div className="items-center container py-12 md:py-10">
+        <section className="container items-center space-y-10 md:space-y-12">
             <Breadcrumb />
             {children}
-        </div>
+        </section>
     );
 }

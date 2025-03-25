@@ -1,18 +1,16 @@
 import type { Post } from "@/types/type";
 
-import { OpenGraph } from "@/libraries/metadata";
-import { getPosts } from "@/libraries/content";
+import { OpenGraph } from "@/lib/metadata";
+import { getPosts } from "@/lib/content";
 import { notFound } from "next/navigation";
-
 import PostLayout from "@/components/post-layout";
-
-const route = "examples";
-
-const Posts = getPosts(route);
 
 interface PageProps {
     params: Post;
 }
+
+const route = "examples";
+const Posts = getPosts(route);
 
 export async function generateStaticParams() {
     return Posts.map((post) => ({

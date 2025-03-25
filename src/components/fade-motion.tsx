@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/libraries/utils";
+import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
 export function FadeContainer({ children, className }: React.HTMLProps<HTMLDivElement>) {

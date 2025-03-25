@@ -1,9 +1,7 @@
-// import * as FadeIn from "@/components/motion/staggers/fade";
-// import { Posts } from "@/components/posts";
-import PostsList from "@/components/posts-list";
-import { OpenGraph } from "@/libraries/metadata";
-
 import React from "react";
+import { OpenGraph } from "@/lib/metadata";
+import PostsList from "@/components/posts-list";
+import { FadeItem } from "@/components/fade-motion";
 
 const category = "examples";
 
@@ -26,9 +24,9 @@ export function generateMetadata() {
 export default function Page() {
     return (
         <React.Fragment>
-            {/* <FadeIn.Item> */}
-            <PostsList index={0} category={category} />
-            {/* </FadeIn.Item> */}
+            <FadeItem>
+                <PostsList category={category} />
+            </FadeItem>
         </React.Fragment>
     );
 }

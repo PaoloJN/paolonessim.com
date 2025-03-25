@@ -1,14 +1,13 @@
-import createMDX from "@next/mdx";
+import nextMDX from "@next/mdx";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
     reactStrictMode: true,
+    pageExtensions: ["md", "mdx", "tsx", "ts", "jsx", "js"],
 };
 
-const withMDX = createMDX({
+const withMDX = nextMDX({
     extension: /\.mdx?$/,
 });
 
-// Merge MDX config with Next.js config
 export default withMDX(nextConfig);
