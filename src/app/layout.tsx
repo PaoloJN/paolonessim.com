@@ -7,6 +7,7 @@ import { ThemeProvider } from "next-themes";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Inter } from "next/font/google";
 import clsx from "clsx";
+import { ViewTransitions } from "next-view-transitions";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -71,23 +72,23 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        // <ViewTransitions>
-        <html lang="en" className={clsx(inter.className)} suppressHydrationWarning>
-            <body>
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="system"
-                    enableSystem
-                    disableTransitionOnChange
-                >
-                    <TooltipProvider>
-                        <main className="mx-auto max-w-screen-sm overflow-x-hidden px-6 py-8 md:py-16 md:overflow-x-visible">
-                            {children}
-                        </main>
-                    </TooltipProvider>
-                </ThemeProvider>
-            </body>
-        </html>
-        // </ViewTransitions>
+        <ViewTransitions>
+            <html lang="en" className={clsx(inter.className)} suppressHydrationWarning>
+                <body>
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="system"
+                        enableSystem
+                        disableTransitionOnChange
+                    >
+                        <TooltipProvider>
+                            <main className="mx-auto max-w-screen-sm overflow-x-hidden px-6 py-8 md:py-16 md:overflow-x-visible">
+                                {children}
+                            </main>
+                        </TooltipProvider>
+                    </ThemeProvider>
+                </body>
+            </html>
+        </ViewTransitions>
     );
 }

@@ -14,31 +14,30 @@ export default function AboutMe({ className }: AboutMeProps) {
     return (
         <div
             className={cn(
-                "prose prose-zinc dark:prose-invert max-w-none w-full text-sm text-foreground/80 font-light text-pretty leading-loose mx-1",
+                "prose prose-zinc dark:prose-invert max-w-none w-full text-sm text-foreground/80 font-normal text-pretty leading-loose mx-1",
                 className
             )}
         >
             <p>
-                I&apos;m a{" "}
+                I’m a{" "}
                 <span
                     className={cn(
-                        "font-reader text-[13px] text-foreground font-normal",
+                        "font-reader text-[13px] text-foreground/95 font-normal mb-1 mx-1",
                         newsreader.className
                     )}
                 >
                     Computer Engineering
                 </span>{" "}
-                student and developer with a few years of experience working on open-source
-                projects. I love turning ideas into real, functional products—especially when it
-                means building fast, modern web apps that are both clean and scalable. I enjoy
-                working where design meets engineering and creating things that are both practical
-                and polished.
+                student with a curious mind and a love for building thoughtful, useful things. Over
+                the years, I’ve worked on open-source projects, explored modern web tech, and
+                learned how to turn ideas into real, working products—but I’m just as interested in
+                learning *why* things work as *how* they do.
             </p>
             <p>
-                I&apos;m always learning, whether it&apos;s picking up new frameworks, optimizing
-                performance, or rethinking how I approach a problem. For me, every project is a
-                chance to grow, get better, and push myself to build smarter, more impactful
-                software.
+                Outside of tech, I’m into good design, long walks, interesting conversations, and
+                picking up random skills for fun. I like simplicity, clarity, and staying open to
+                new ways of thinking. Whether I’m coding or not, I’m always exploring,
+                experimenting, and trying to make things a little better.
             </p>
         </div>
     );

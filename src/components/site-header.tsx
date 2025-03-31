@@ -51,8 +51,8 @@ export default function SiteHeader({ className }: SiteHeaderProps) {
                         lightSrc="/images/light-avatar.png"
                         darkSrc="/images/dark-avatar.png"
                         alt={"Avatar of " + siteConfig.fullName}
-                        width={40}
-                        height={40}
+                        width={38}
+                        height={38}
                         className="rounded-md border-[0.5px] border-border h-full"
                     />
 

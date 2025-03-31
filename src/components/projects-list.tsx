@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { EllipsisIcon, Grid2x2Check } from "lucide-react";
-import { Link as NextViewTransition } from "next-view-transitions";
 
 import { projects } from "@/content/projects";
 
@@ -19,7 +18,7 @@ export default function ProjectsList({ className }: ProjectListsProps) {
     return (
         <div className={cn("text-sm", className)}>
             <div className="flex flex-row items-center justify-between px-1 py-3 border-border/75 border-b">
-                <NextViewTransition href="/projects">
+                <Link href="/projects">
                     <div className="flex flex-row items-center gap-2 text-foreground/80 font-medium">
                         <Grid2x2Check className="w-4 h-4" />
                         <div>
@@ -28,7 +27,7 @@ export default function ProjectsList({ className }: ProjectListsProps) {
                             </h2>
                         </div>
                     </div>
-                </NextViewTransition>
+                </Link>
 
                 <Button variant="outline" size="xs">
                     <EllipsisIcon className="w-3 h-3 text-muted-foreground" />
@@ -70,9 +69,10 @@ interface ProjectItemProps {
 
 function ProjectItem({ title, description, date, github }: ProjectItemProps) {
     return (
-        <NextViewTransition
+        <Link
             className="flex items-center gap-4 px-2 py-3 rounded-md hover:bg-muted dark:hover:bg-neutral-800/60 transition-colors font-light"
             href={github || ""}
+            target="_blank"
         >
             <div className="flex items-center gap-1 whitespace-nowrap">
                 <span className="text-sm text-foreground/80">{title}</span>
@@ -82,7 +82,7 @@ function ProjectItem({ title, description, date, github }: ProjectItemProps) {
             </div>
             <div className="flex-grow border-t border-border/50" />
             <span className="text-xs text-muted-foreground">{formatDate(date)}</span>
-        </NextViewTransition>
+        </Link>
     );
 }
 

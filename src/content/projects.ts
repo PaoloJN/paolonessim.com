@@ -7,21 +7,21 @@ interface Project {
 
 export const projects: Project[] = [
     {
+        title: "Youtube AI",
+        description: "Chrome Extension for Youtube",
+        date: "2024-03-01",
+        github: "https://chat-with-youtube.vercel.app",
+    },
+    {
         title: "Weather AI",
-        description: "Solving Sellers Problem",
-        date: "2023-01-01",
+        description: "Vercel AI SDK + Weather API",
+        date: "2024-05-01",
         github: "https://github.com/weather-ai",
     },
     {
-        title: "Interact AI Hub",
-        description: "Learn New Things by Doing",
-        date: "2023-04-01",
-        github: "https://github.com/interact-ai-hub",
-    },
-    {
-        title: "Youtube AI",
-        description: "Building SaaS from Scratch",
-        date: "2023-01-01",
-        github: "https://github.com/youtube-ai",
+        title: "AI Hub",
+        description: "AI Interface for local models",
+        date: "2024-04-01",
+        github: "https://github.com/PaoloJN/interact-ai-hub",
     },
 ];
