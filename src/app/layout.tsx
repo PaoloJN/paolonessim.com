@@ -3,52 +3,38 @@ import "@/styles/globals.css";
 import { siteConfig } from "@/config/site";
 import type { Metadata, Viewport } from "next";
 import { ThemeProvider } from "next-themes";
-// import { ViewTransitions } from "next-view-transitions";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { Inter } from "next/font/google";
-import clsx from "clsx";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
+import { Instrument_Serif } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
 
-const inter = Inter({
+const serif = Instrument_Serif({
+    weight: "400",
+    style: ["normal", "italic"],
     subsets: ["latin"],
+    variable: "--font-serif",
     display: "swap",
 });
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://paolonessim.com"),
     title: {
-        default: siteConfig.name,
-        template: `%s - ${siteConfig.name}`,
+        default: `${siteConfig.fullName} — Engineer`,
+        template: `%s · ${siteConfig.fullName}`,
     },
     description: siteConfig.description,
-    keywords: [
-        "paolo jn",
-        "paolo jn portfolio",
-        "paolo js github",
-        "paolo nessim",
-        "paolo nessim github",
-        "paolo nessim portfolio",
-        "software developer",
-        "Full stack developer",
-    ],
-    authors: [
-        {
-            name: "Paolo Nessim",
-            url: "https://paolonessim.com",
-        },
-    ],
-    creator: "paolonessim",
+    creator: siteConfig.fullName,
     openGraph: {
         type: "website",
         locale: "en_US",
         url: siteConfig.url,
-        title: siteConfig.name,
+        title: siteConfig.fullName,
         description: siteConfig.description,
-        siteName: siteConfig.name,
+        siteName: siteConfig.fullName,
     },
     twitter: {
         card: "summary_large_image",
-        title: siteConfig.name,
+        title: siteConfig.fullName,
         description: siteConfig.description,
         images: [siteConfig.ogImage],
         creator: "@paolonessim",
@@ -59,10 +45,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-    colorScheme: "dark light",
+    colorScheme: "light dark",
     themeColor: [
-        { media: "(prefers-color-scheme: light)", color: "white" },
-        { media: "(prefers-color-scheme: dark)", color: "black" },
+        { media: "(prefers-color-scheme: light)", color: "#FAFAF7" },
+        { media: "(prefers-color-scheme: dark)", color: "#0E0E0C" },
     ],
 };
 
@@ -73,19 +59,19 @@ export default function RootLayout({
 }>) {
     return (
         <ViewTransitions>
-            <html lang="en" className={clsx(inter.className)} suppressHydrationWarning>
+            <html
+                lang="en"
+                className={`${GeistSans.variable} ${GeistMono.variable} ${serif.variable}`}
+                suppressHydrationWarning
+            >
                 <body>
                     <ThemeProvider
                         attribute="class"
-                        defaultTheme="system"
+                        defaultTheme="light"
                         enableSystem
                         disableTransitionOnChange
                     >
-                        <TooltipProvider>
-                            <main className="mx-auto max-w-screen-sm overflow-x-hidden px-6 py-8 md:py-16 md:overflow-x-visible">
-                                {children}
-                            </main>
-                        </TooltipProvider>
+                        {children}
                     </ThemeProvider>
                 </body>
             </html>

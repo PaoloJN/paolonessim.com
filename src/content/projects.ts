@@ -1,27 +1,43 @@
-interface Project {
+export type Project = {
+    slug: string;
     title: string;
-    description: string;
-    date: string;
-    github: string;
-}
+    year: string;
+    stack: string;
+    mark: string;
+    href: string;
+};
 
 export const projects: Project[] = [
     {
-        title: "Youtube AI",
-        description: "Chrome Extension for Youtube",
-        date: "2024-03-01",
-        github: "https://chat-with-youtube.vercel.app",
+        slug: "chess-vision",
+        title: "Chessboard Vision System",
+        year: "2025 →",
+        stack: "Python · OpenCV · ROS",
+        mark: "PY",
+        href: "#",
     },
     {
-        title: "Weather AI",
-        description: "Vercel AI SDK + Weather API",
-        date: "2024-05-01",
-        github: "https://github.com/weather-ai",
+        slug: "satellite-tracker",
+        title: "Satellite Tracker 3D",
+        year: "Feb '25",
+        stack: "Next.js · Three.js · WebGL",
+        mark: "3D",
+        href: "#",
     },
     {
-        title: "AI Hub",
-        description: "AI Interface for local models",
-        date: "2024-04-01",
-        github: "https://github.com/PaoloJN/interact-ai-hub",
+        slug: "youtube-ai",
+        title: "YouTube AI Extension",
+        year: "Jan '25",
+        stack: "React · MV3 · OpenAI",
+        mark: "RX",
+        href: "https://chat-with-youtube.vercel.app",
+    },
+    {
+        slug: "pathfinding",
+        title: "Pathfinding Visualizer",
+        year: "Jan '25",
+        stack: "Next.js · Canvas · A* / Dijkstra",
+        mark: "A*",
+        href: "#",
     },
 ];

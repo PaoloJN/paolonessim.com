@@ -1,32 +1,35 @@
-import SiteHeader from "@/components/site-header";
-import AboutMe from "@/components/about-me";
-import PostsList from "@/components/posts-list";
-import GithubGraph from "@/components/github-graph";
-import ProjectsList from "@/components/projects-list";
-import SiteFooter from "@/components/site-footer";
-import { FadeContainer, FadeItem } from "@/components/fade-motion";
+import StatusBar from "@/components/site/status-bar";
+import Hero from "@/components/site/hero";
+import Work from "@/components/site/work";
+import Experience from "@/components/site/experience";
+import Activity from "@/components/site/activity";
+import Education from "@/components/site/education";
+import Stack from "@/components/site/stack";
+import Writing from "@/components/site/writing";
+import Bookmarks from "@/components/site/bookmarks";
+import OffTheClock from "@/components/site/off-the-clock";
+import SiteFooter from "@/components/site/site-footer";
+import KeyboardShortcuts from "@/components/site/keyboard-shortcuts";
+import CommandPalette from "@/components/site/command-palette";
 
-export default async function Home() {
+export default function Home() {
     return (
-        <FadeContainer className="container items-center space-y-10 md:space-y-12">
-            <FadeItem>
-                <SiteHeader />
-            </FadeItem>
-            <FadeItem>
-                <AboutMe />
-            </FadeItem>
-            <FadeItem>
-                <GithubGraph />
-            </FadeItem>
-            <FadeItem>
-                <PostsList category={"all"} />
-            </FadeItem>
-            <FadeItem>
-                <ProjectsList />
-            </FadeItem>
-            <FadeItem>
+        <>
+            <KeyboardShortcuts />
+            <CommandPalette />
+            <StatusBar />
+            <main className="page">
+                <Hero />
+                <Work />
+                <Experience />
+                <Activity />
+                <Education />
+                <Stack />
+                <Writing />
+                <Bookmarks />
+                <OffTheClock />
                 <SiteFooter />
-            </FadeItem>
-        </FadeContainer>
+            </main>
+        </>
     );
 }
