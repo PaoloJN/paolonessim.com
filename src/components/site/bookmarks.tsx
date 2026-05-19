@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { bookmarks, type Bookmark } from "@/content/bookmarks";
 import EyebrowLine from "./eyebrow";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { editorialTabsList, editorialTabsTrigger } from "./tabs-style";
 
 type Tag = "all" | Bookmark["tag"];
 
@@ -26,20 +28,19 @@ export default function Bookmarks() {
                 Things I revisit. People doing better work than me.
             </p>
 
-            <div className="bm-tags" role="tablist">
-                {TAGS.map((t) => (
-                    <button
-                        key={t.value}
-                        className={`bm-tag ${tag === t.value ? "active" : ""}`}
-                        type="button"
-                        role="tab"
-                        aria-selected={tag === t.value}
-                        onClick={() => setTag(t.value)}
-                    >
-                        {t.label}
-                    </button>
-                ))}
-            </div>
+            <Tabs value={tag} onValueChange={(v) => setTag(v as Tag)}>
+                <TabsList className={`${editorialTabsList} mb-[18px]`}>
+                    {TAGS.map((t) => (
+                        <TabsTrigger
+                            key={t.value}
+                            value={t.value}
+                            className={editorialTabsTrigger}
+                        >
+                            {t.label}
+                        </TabsTrigger>
+                    ))}
+                </TabsList>
+            </Tabs>
 
             <div className="bm-grid">
                 {visible.map((b) => (

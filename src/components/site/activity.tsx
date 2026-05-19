@@ -3,12 +3,7 @@
 import { useMemo, useState } from "react";
 import EyebrowLine from "./eyebrow";
 import Heatmap from "./github-heatmap";
-import {
-    githubYearDays,
-    githubYears,
-    claudeYearDays,
-    totalCount,
-} from "@/lib/heatmap";
+import { githubYearDays, githubYears, claudeYearDays, totalCount } from "@/lib/heatmap";
 import {
     Select,
     SelectContent,
@@ -51,7 +46,7 @@ export default function Activity() {
 
     const days = useMemo(
         () => (source === "github" ? githubYearDays(year) : claudeYearDays(year)),
-        [source, year]
+        [source, year],
     );
     const total = useMemo(() => totalCount(days), [days]);
     const unit =

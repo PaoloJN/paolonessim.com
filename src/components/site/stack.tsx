@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { uses } from "@/content/uses";
 import EyebrowLine from "./eyebrow";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { terminalTabsList, terminalTabsTrigger } from "./tabs-style";
 
 const TABS = ["editor", "shell", "web", "vision", "hardware"] as const;
 type Tab = (typeof TABS)[number];
@@ -37,20 +39,19 @@ export default function Stack() {
                         </span>
                         <span className="caret" aria-hidden />
                     </div>
-                    <div className="term-tabs" role="tablist">
-                        {TABS.map((t) => (
-                            <button
-                                key={t}
-                                className={`term-tab ${t === active ? "active" : ""}`}
-                                type="button"
-                                role="tab"
-                                aria-selected={t === active}
-                                onClick={() => setActive(t)}
-                            >
-                                {t}
-                            </button>
-                        ))}
-                    </div>
+                    <Tabs value={active} onValueChange={(v) => setActive(v as Tab)}>
+                        <TabsList className={terminalTabsList}>
+                            {TABS.map((t) => (
+                                <TabsTrigger
+                                    key={t}
+                                    value={t}
+                                    className={terminalTabsTrigger}
+                                >
+                                    {t}
+                                </TabsTrigger>
+                            ))}
+                        </TabsList>
+                    </Tabs>
                     <pre className="term-out">
                         {entries.map((e) => (
                             <div key={e.key}>

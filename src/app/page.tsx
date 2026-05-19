@@ -20,9 +20,10 @@ export default function Home() {
             <StatusBar />
             <main className="page">
                 <Hero />
+                <Activity />
+
                 <Work />
                 <Experience />
-                <Activity />
                 <Education />
                 <Stack />
                 <Writing />

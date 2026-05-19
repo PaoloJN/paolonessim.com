@@ -16,13 +16,13 @@ export default function Hero() {
                 </span>
             </p>
 
-            <p className="hero-meta">
+            {/* <p className="hero-meta">
                 <span>CE @ UMD &apos;28</span>
                 <span className="sep">·</span>
                 <span className="avail-chip">
                     <span className="dot dot-on" aria-hidden /> open to roles for summer &apos;26
                 </span>
-            </p>
+            </p> */}
 
             <p className="hero-keys">
                 <span className="grp">
