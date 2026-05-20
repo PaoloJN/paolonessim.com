@@ -17,7 +17,7 @@ export default function Home() {
             <KeyboardShortcuts />
             <CommandPalette />
             <StatusBar />
-            <main className="page">
+            <main className="mx-auto max-w-[760px] px-6 divide-y divide-rule-subtle">
                 <Hero />
                 <Activity />
 

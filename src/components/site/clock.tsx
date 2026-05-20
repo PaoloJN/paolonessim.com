@@ -32,7 +32,10 @@ export default function Clock({ tz = "America/New_York" }: { tz?: string }) {
 
     return (
         <>
-            <b suppressHydrationWarning>{time ?? "--:--:--"}</b> EDT
+            <b className="text-fg font-medium" suppressHydrationWarning>
+                {time ?? "--:--:--"}
+            </b>{" "}
+            EDT
         </>
     );
 }

@@ -59,15 +59,19 @@ export default function Activity() {
               : "Claude Code sessions";
 
     return (
-        <section className="block" id="activity">
+        <section className="py-10" id="activity">
             <EyebrowLine label="04 · Activity" />
-            <p className="lede" style={{ margin: "0 0 18px" }}>
+            <p className="text-sm leading-[1.65] text-fg-muted tracking-[-0.005em] m-0 mb-[18px]">
                 What I&apos;ve been shipping lately — pulled from GitHub and Claude Code.
             </p>
 
-            <div className="heat">
-                <div className="heat-tabs">
-                    <Tabs value={source} onValueChange={(v) => setSource(v as Source)}>
+            <div className="my-1.5 border border-rule-subtle rounded-md bg-bg-elevated px-3.5 pt-2.5 pb-3.5">
+                <div className="flex flex-nowrap items-center gap-3 w-full mb-3.5">
+                    <Tabs
+                        value={source}
+                        onValueChange={(v) => setSource(v as Source)}
+                        className="flex-none"
+                    >
                         <TabsList className={editorialTabsList}>
                             <TabsTrigger value="github" className={editorialTabsTrigger}>
                                 <GhIcon />
@@ -80,10 +84,10 @@ export default function Activity() {
                         </TabsList>
                     </Tabs>
 
-                    <div className="heat-year">
-                        <span>Year</span>
+                    <div className="inline-flex items-center gap-2 ml-auto flex-shrink-0 font-mono text-[10.5px] uppercase tracking-[0.08em] text-fg-subtle">
+                        <span className="leading-none">Year</span>
                         <Select value={year} onValueChange={setYear}>
-                            <SelectTrigger className="heat-year-trigger">
+                            <SelectTrigger className="font-mono text-[11px] font-medium tracking-[0.02em] h-[26px] px-2 text-fg bg-bg border border-rule-subtle rounded-sm min-w-[72px]">
                                 <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
@@ -99,17 +103,32 @@ export default function Activity() {
                 <Heatmap days={days} />
             </div>
 
-            <div className="heatmap-footer">
+            <div className="flex justify-between items-center mt-2 font-mono text-[10.5px] text-fg-subtle tracking-[0.04em]">
                 <span>
                     {total} {unit} in {year}
                 </span>
-                <span className="legend">
+                <span className="flex items-center gap-1.5">
                     less
-                    <span className="sw" style={{ background: "var(--bg-inset)" }} />
-                    <span className="sw" style={{ background: "oklch(0.72 0.004 250)" }} />
-                    <span className="sw" style={{ background: "oklch(0.54 0.004 250)" }} />
-                    <span className="sw" style={{ background: "oklch(0.34 0.004 250)" }} />
-                    <span className="sw" style={{ background: "oklch(0.18 0.004 250)" }} />
+                    <span
+                        className="w-[9px] h-[9px] rounded-[2px]"
+                        style={{ background: "var(--bg-inset)" }}
+                    />
+                    <span
+                        className="w-[9px] h-[9px] rounded-[2px]"
+                        style={{ background: "oklch(0.72 0.004 250)" }}
+                    />
+                    <span
+                        className="w-[9px] h-[9px] rounded-[2px]"
+                        style={{ background: "oklch(0.54 0.004 250)" }}
+                    />
+                    <span
+                        className="w-[9px] h-[9px] rounded-[2px]"
+                        style={{ background: "oklch(0.34 0.004 250)" }}
+                    />
+                    <span
+                        className="w-[9px] h-[9px] rounded-[2px]"
+                        style={{ background: "oklch(0.18 0.004 250)" }}
+                    />
                     more
                 </span>
             </div>

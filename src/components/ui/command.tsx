@@ -62,7 +62,9 @@ const CommandInput = React.forwardRef<
             placeholder="Search this site…"
             {...props}
         />
-        <span className="kbd">esc</span>
+        <span className="inline-flex items-center justify-center min-w-[18px] h-[19px] px-[5px] font-mono text-[11px] font-medium rounded-[4px] bg-bg-elevated border border-rule-subtle text-fg-muted align-middle">
+            esc
+        </span>
     </div>
 ));
 CommandInput.displayName = CommandPrimitive.Input.displayName;

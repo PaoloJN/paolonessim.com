@@ -22,9 +22,9 @@ export default function Bookmarks() {
     const visible = tag === "all" ? bookmarks : bookmarks.filter((b) => b.tag === tag);
 
     return (
-        <section className="block" id="bm">
+        <section className="py-10" id="bm">
             <EyebrowLine label="08 · Bookmarks" count={`${visible.length}`} />
-            <p className="lede" style={{ margin: "0 0 18px" }}>
+            <p className="text-sm leading-[1.65] text-fg-muted tracking-[-0.005em] m-0 mb-[18px]">
                 Things I revisit. People doing better work than me.
             </p>
 
@@ -42,22 +42,27 @@ export default function Bookmarks() {
                 </TabsList>
             </Tabs>
 
-            <div className="bm-grid">
+            <div className="grid grid-cols-2 max-[580px]:grid-cols-1 gap-px bg-rule-subtle border border-rule-subtle rounded-md overflow-hidden">
                 {visible.map((b) => (
                     <Link
                         key={b.domain}
-                        className="bm-card"
+                        className="group relative flex flex-col gap-1 px-4 py-3.5 bg-bg text-fg transition-colors duration-200 min-w-0 hover:bg-bg-elevated"
                         href={b.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        data-tag={b.tag}
                     >
-                        <div className="head">
-                            <span className="domain">{b.domain}</span>
-                            <span className="arrow">↗</span>
+                        <div className="flex items-center justify-between gap-2.5">
+                            <span className="font-mono text-xs font-medium text-fg whitespace-nowrap overflow-hidden text-ellipsis">
+                                {b.domain}
+                            </span>
+                            <span className="font-mono text-xs text-fg-faint transition-[transform,color] duration-200 group-hover:text-fg group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                                ↗
+                            </span>
                         </div>
-                        <p className="note">{b.note}</p>
-                        <span className="tag-chip">{b.tag}</span>
+                        <p className="text-[12.5px] leading-[1.5] text-fg-muted">{b.note}</p>
+                        <span className="absolute bottom-3 right-3.5 max-[580px]:static max-[580px]:self-start max-[580px]:mt-1 font-mono text-[9.5px] font-medium tracking-[0.08em] uppercase text-fg-subtle bg-bg-inset border border-rule-subtle px-1.5 py-0.5 rounded-[3px]">
+                            {b.tag}
+                        </span>
                     </Link>
                 ))}
             </div>
