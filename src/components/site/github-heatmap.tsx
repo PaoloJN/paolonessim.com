@@ -5,14 +5,24 @@ import type { DayCell } from "@/lib/heatmap";
 
 type EmptyDay = { date: ""; count: 0; level: 0 };
 
-const LEVEL_BG = [
-    "var(--bg-inset)",
-    "oklch(0.86 0.003 250)",
-    "oklch(0.72 0.004 250)",
-    "oklch(0.54 0.004 250)",
-    "oklch(0.34 0.004 250)",
-    "oklch(0.18 0.004 250)",
-];
+export type HeatmapTheme = "ink" | "claude";
+
+export const HEATMAP_THEMES: Record<HeatmapTheme, string[]> = {
+    ink: [
+        "var(--bg-inset)",
+        "oklch(0.78 0.004 250)",
+        "oklch(0.54 0.004 250)",
+        "oklch(0.34 0.004 250)",
+        "oklch(0.18 0.004 250)",
+    ],
+    claude: [
+        "var(--bg-inset)",
+        "oklch(0.88 0.04 35)",
+        "oklch(0.78 0.10 35)",
+        "oklch(0.66 0.14 35)",
+        "oklch(0.56 0.17 35)",
+    ],
+};
 
 function groupByWeek(days: DayCell[]): (DayCell | EmptyDay)[][] {
     if (!days.length) return [];
@@ -33,8 +43,15 @@ function groupByWeek(days: DayCell[]): (DayCell | EmptyDay)[][] {
     return weeks;
 }
 
-export default function Heatmap({ days }: { days: DayCell[] }) {
+export default function Heatmap({
+    days,
+    theme = "ink",
+}: {
+    days: DayCell[];
+    theme?: HeatmapTheme;
+}) {
     const weeks = useMemo(() => groupByWeek(days), [days]);
+    const scale = HEATMAP_THEMES[theme];
 
     return (
         <div className="overflow-x-auto no-scrollbar">
@@ -52,7 +69,7 @@ export default function Heatmap({ days }: { days: DayCell[] }) {
                                 <div
                                     key={j}
                                     className="w-[12px] h-[12px] rounded-[2px] border border-[color:color-mix(in_oklab,var(--fg)_4%,transparent)]"
-                                    style={{ background: LEVEL_BG[day.level] ?? LEVEL_BG[0] }}
+                                    style={{ background: scale[day.level] ?? scale[0] }}
                                     title={`${day.count} on ${day.date}`}
                                 />
                             );
