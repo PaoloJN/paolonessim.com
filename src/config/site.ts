@@ -4,7 +4,7 @@ export const siteConfig = {
     name: "Paolo JN",
     fullName: "Paolo Nessim",
     description:
-        "Paolo Nessim — computer engineer building real-time systems that blend software, data, and hardware. Currently researching computer vision at UMD CPSE.",
+        "Paolo Nessim — computer engineer building real-time systems that blend software, data, and hardware.",
     url: "https://paolonessim.com",
     ogImage: "/api/og",
     location: {

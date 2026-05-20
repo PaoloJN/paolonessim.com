@@ -6,7 +6,7 @@ export default function Experience() {
         <section className="py-10" id="xp">
             <EyebrowLine label="03 · Experience" />
             <p className="text-sm leading-[1.65] text-fg-muted tracking-[-0.005em] m-0 mb-[18px]">
-                A bit of research, a bit of mission engineering, a few years of paid client work.
+                Research, robotics, and the client work that pays for it.
             </p>
 
             <div className="flex flex-col">
