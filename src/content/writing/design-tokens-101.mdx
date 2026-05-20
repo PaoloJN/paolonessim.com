@@ -1,0 +1,31 @@
+---
+title: Design tokens 101
+date: 2025-01-11
+summary: A working definition of design tokens, and the smallest setup that actually pays off.
+draft: true
+---
+
+A design token is a name pointing at a value. That's it. `--bg`, `--rule`,
+`--fg-muted`. The point isn't the token — it's that the *name* survives even
+when the *value* changes.
+
+You earn the abstraction the moment a designer picks a new gray. If you used
+raw hex codes, you grep through a hundred files. If you used tokens, you change
+one line.
+
+The trap is over-tokenizing. You don't need `--spacing-4` if there are five
+places in the codebase that use a 16px gap. Tokens are for things that *vary
+together*. Color modes vary together. Type scales vary together. Random gaps
+don't.
+
+---
+
+The smallest setup that's ever paid off for me:
+
+- **Colors as CSS custom properties** under `:root` and `.dark`
+- **Two or three font families** as `--font-*` vars
+- **A radius scale** (`--radius-sm`, `--radius-md`, `--radius-lg`)
+- **Spacing left to Tailwind** unless I'm shipping a real design system
+
+That's it. Anything more is a system you'll spend a week maintaining before
+you ship anything.

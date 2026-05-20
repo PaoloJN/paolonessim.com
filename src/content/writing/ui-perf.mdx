@@ -1,0 +1,24 @@
+---
+title: "UI performance: the cheap wins first"
+date: 2025-02-16
+summary: Before you reach for virtualization, fix the easy stuff. A short list of high-leverage moves.
+draft: true
+---
+
+The order I actually attack a slow UI, before doing anything clever:
+
+1. **Stop re-rendering the world.** Find the parent that re-renders on every
+   keystroke and pull the input into its own component. This alone fixes
+   80% of "the app feels laggy" complaints.
+2. **Memoize the expensive child, not every child.** `React.memo` everywhere
+   makes things slower, not faster. Profile first.
+3. **Defer images.** `loading="lazy"`, `decoding="async"`, real dimensions
+   on the `<img>` tag. Layout shift kills perceived perf more than load time.
+4. **Don't ship the heavy library on first paint.** Code-split the chart,
+   the editor, the date picker. Render a skeleton.
+5. **Then, and only then**, consider virtualization, web workers, or
+   moving work to the server.
+
+Most of the time you don't get past step 2. Virtualization is for when you
+actually have ten thousand rows — not for when you have a hundred and they
+feel slow because something else is wrong.
