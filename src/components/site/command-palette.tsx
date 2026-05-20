@@ -20,7 +20,6 @@ const NAV: { id: string; label: string }[] = [
     { id: "activity", label: "Activity" },
     { id: "edu", label: "Education" },
     { id: "uses", label: "Stack & uses" },
-    { id: "writing", label: "Writing" },
     { id: "bm", label: "Bookmarks" },
     { id: "off", label: "Off the clock" },
 ];
@@ -116,16 +115,18 @@ export default function CommandPalette() {
                 </CommandGroup>
 
                 <CommandGroup heading="Projects">
-                    {projects.map((p) => (
-                        <CommandItem
-                            key={p.slug}
-                            value={`project ${p.title} ${p.stack} ${p.mark}`}
-                            onSelect={() => openHref(p.href)}
-                        >
-                            <span>{p.title}</span>
-                            <CommandShortcut>{p.stack}</CommandShortcut>
-                        </CommandItem>
-                    ))}
+                    {projects
+                        .filter((p) => p.href.length > 0 && p.href !== "#")
+                        .map((p) => (
+                            <CommandItem
+                                key={p.slug}
+                                value={`project ${p.title} ${p.stack} ${p.mark}`}
+                                onSelect={() => openHref(p.href)}
+                            >
+                                <span>{p.title}</span>
+                                <CommandShortcut>{p.stack}</CommandShortcut>
+                            </CommandItem>
+                        ))}
                 </CommandGroup>
 
                 <CommandGroup heading="Bookmarks">

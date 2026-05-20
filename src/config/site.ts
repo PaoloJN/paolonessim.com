@@ -6,7 +6,7 @@ export const siteConfig = {
     description:
         "Paolo Nessim — computer engineer building real-time systems that blend software, data, and hardware. Currently researching computer vision at UMD CPSE.",
     url: "https://paolonessim.com",
-    ogImage: "https://paolonessim.com/opengraph-image.png",
+    ogImage: "/api/og",
     location: {
         city: "College Park, MD",
         timezone: "America/New_York",
@@ -16,6 +16,6 @@ export const siteConfig = {
         github: "https://github.com/paolojn",
         linkedin: "https://linkedin.com/in/paolonessim",
         twitter: "https://x.com/paolojn",
-        resume: "/resume.pdf",
+        resume: "https://www.linkedin.com/in/paolonessim",
     },
 } as const;

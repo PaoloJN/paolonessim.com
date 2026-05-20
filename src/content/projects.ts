@@ -14,7 +14,7 @@ export const projects: Project[] = [
         year: "2025 →",
         stack: "Python · OpenCV · ROS",
         mark: "PY",
-        href: "#",
+        href: "https://github.com/PaoloJN/Magic-Gambit-2.0",
     },
     {
         slug: "satellite-tracker",
@@ -22,7 +22,7 @@ export const projects: Project[] = [
         year: "Feb '25",
         stack: "Next.js · Three.js · WebGL",
         mark: "3D",
-        href: "#",
+        href: "https://github.com/PaoloJN/satgaze",
     },
     {
         slug: "youtube-ai",
@@ -38,6 +38,6 @@ export const projects: Project[] = [
         year: "Jan '25",
         stack: "Next.js · Canvas · A* / Dijkstra",
         mark: "A*",
-        href: "#",
+        href: "",
     },
 ];

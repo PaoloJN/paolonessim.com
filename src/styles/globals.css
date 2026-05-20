@@ -526,7 +526,10 @@
         display: inline-block;
         line-height: 1;
     }
-    .proj-row:hover .proj-link {
+    .proj-link-static {
+        cursor: default;
+    }
+    .proj-row:hover .proj-link:not(.proj-link-static) {
         padding-left: 10px;
     }
     .proj-row:hover .title,

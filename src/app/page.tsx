@@ -5,7 +5,6 @@ import Experience from "@/components/site/experience";
 import Activity from "@/components/site/activity";
 import Education from "@/components/site/education";
 import Stack from "@/components/site/stack";
-import Writing from "@/components/site/writing";
 import Bookmarks from "@/components/site/bookmarks";
 import OffTheClock from "@/components/site/off-the-clock";
 import SiteFooter from "@/components/site/site-footer";
@@ -26,7 +25,6 @@ export default function Home() {
                 <Experience />
                 <Education />
                 <Stack />
-                <Writing />
                 <Bookmarks />
                 <OffTheClock />
                 <SiteFooter />
