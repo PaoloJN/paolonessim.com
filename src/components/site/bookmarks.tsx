@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { bookmarks, type Bookmark } from "@/content/bookmarks";
 import EyebrowLine from "./eyebrow";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -17,9 +17,17 @@ const TAGS: { label: string; value: Tag }[] = [
     { label: "Weird", value: "weird" },
 ];
 
+const TAG_ORDER: Bookmark["tag"][] = ["design", "engineering", "writing", "weird"];
+
 export default function Bookmarks() {
     const [tag, setTag] = useState<Tag>("all");
-    const visible = tag === "all" ? bookmarks : bookmarks.filter((b) => b.tag === tag);
+
+    const visible = useMemo(() => {
+        const filtered = tag === "all" ? bookmarks : bookmarks.filter((b) => b.tag === tag);
+        return [...filtered].sort(
+            (a, b) => TAG_ORDER.indexOf(a.tag) - TAG_ORDER.indexOf(b.tag),
+        );
+    }, [tag]);
 
     return (
         <section className="py-10" id="bm">
@@ -29,7 +37,7 @@ export default function Bookmarks() {
             </p>
 
             <Tabs value={tag} onValueChange={(v) => setTag(v as Tag)}>
-                <TabsList className={`${editorialTabsList} mb-[18px]`}>
+                <TabsList className={`${editorialTabsList} mb-5`}>
                     {TAGS.map((t) => (
                         <TabsTrigger
                             key={t.value}
@@ -42,30 +50,49 @@ export default function Bookmarks() {
                 </TabsList>
             </Tabs>
 
-            <div className="grid grid-cols-2 max-[580px]:grid-cols-1 gap-px bg-rule-subtle border border-rule-subtle rounded-md overflow-hidden">
+            <ul className="group/list list-none m-0 p-0 border-t border-rule-subtle">
                 {visible.map((b) => (
-                    <Link
-                        key={b.domain}
-                        className="group relative flex flex-col gap-1 px-4 py-3.5 bg-bg text-fg transition-colors duration-200 min-w-0 hover:bg-bg-elevated"
-                        href={b.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <li
+                        key={b.href}
+                        className="group/row relative border-b border-rule-subtle"
                     >
-                        <div className="flex items-center justify-between gap-2.5">
-                            <span className="font-mono text-xs font-medium text-fg whitespace-nowrap overflow-hidden text-ellipsis">
-                                {b.domain}
+                        <Link
+                            href={b.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="grid grid-cols-[110px_1fr_18px] max-[580px]:grid-cols-[1fr_18px] gap-x-5 max-[580px]:gap-x-3 gap-y-1 items-baseline py-4 max-[580px]:py-3.5 px-1 max-[580px]:px-0 transition-[padding] duration-200 ease-editorial hover:pl-2.5"
+                        >
+                            <span className="font-mono text-[9.5px] font-medium uppercase tracking-[0.12em] text-fg-faint pt-1 max-[580px]:hidden transition-colors duration-200 ease-editorial group-hover/list:text-fg-ghost group-hover/row:!text-fg-subtle">
+                                {b.tag}
                             </span>
-                            <span className="font-mono text-xs text-fg-faint transition-[transform,color] duration-200 group-hover:text-fg group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+
+                            <div className="min-w-0 flex flex-col gap-1">
+                                <div className="flex items-center gap-2 min-w-0">
+                                    <span className="font-mono text-[12.5px] font-medium text-fg truncate transition-colors duration-200 ease-editorial group-hover/list:text-fg-faint group-hover/row:!text-accent-ink">
+                                        {b.domain}
+                                    </span>
+                                    <span
+                                        className="hidden max-[580px]:inline-flex items-center h-[14px] px-1 rounded-[3px] bg-bg-elevated border border-rule-subtle text-fg-muted font-mono text-[8.5px] font-medium tracking-[0.1em] uppercase leading-none shrink-0 ml-auto"
+                                        aria-hidden
+                                    >
+                                        {b.tag}
+                                    </span>
+                                </div>
+                                <p className="text-[12.5px] leading-[1.55] text-fg-muted m-0 transition-colors duration-200 ease-editorial group-hover/list:text-fg-faint group-hover/row:!text-fg">
+                                    {b.note}
+                                </p>
+                            </div>
+
+                            <span
+                                className="font-mono text-[13px] text-fg-faint leading-none self-start pt-1.5 transition-[transform,color] duration-200 ease-editorial group-hover/row:text-accent-ink group-hover/row:translate-x-[3px] group-hover/row:-translate-y-[3px]"
+                                aria-hidden
+                            >
                                 ↗
                             </span>
-                        </div>
-                        <p className="text-[12.5px] leading-[1.5] text-fg-muted">{b.note}</p>
-                        <span className="absolute bottom-3 right-3.5 max-[580px]:static max-[580px]:self-start max-[580px]:mt-1 font-mono text-[9.5px] font-medium tracking-[0.08em] uppercase text-fg-subtle bg-bg-inset border border-rule-subtle px-1.5 py-0.5 rounded-[3px]">
-                            {b.tag}
-                        </span>
-                    </Link>
+                        </Link>
+                    </li>
                 ))}
-            </div>
+            </ul>
         </section>
     );
 }

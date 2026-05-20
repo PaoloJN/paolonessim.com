@@ -18,8 +18,8 @@ const NAV: { id: string; label: string }[] = [
     { id: "work", label: "Selected work" },
     { id: "xp", label: "Experience" },
     { id: "activity", label: "Activity" },
-    { id: "edu", label: "Education" },
     { id: "uses", label: "Stack & uses" },
+    { id: "writing", label: "Writing" },
     { id: "bm", label: "Bookmarks" },
     { id: "off", label: "Off the clock" },
 ];

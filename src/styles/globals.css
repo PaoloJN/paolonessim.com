@@ -90,6 +90,7 @@
 @layer base {
     * {
         box-sizing: border-box;
+        border-color: var(--border);
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         font-variant-ligatures: common-ligatures;
@@ -169,6 +170,17 @@
 .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
 }
 
 /* ============ Grain overlay ============ */

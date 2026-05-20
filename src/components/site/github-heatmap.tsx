@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useRef, useState } from "react";
 import type { DayCell } from "@/lib/heatmap";
 
 type EmptyDay = { date: ""; count: 0; level: 0 };
@@ -26,7 +26,14 @@ export const HEATMAP_THEMES: Record<HeatmapTheme, string[]> = {
 };
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-const DAYS = ["Mon", "Wed", "Fri"]; // shown on rows 1, 3, 5
+const DAYS = ["Mon", "Wed", "Fri"];
+
+const FULL_DATE = new Intl.DateTimeFormat("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+});
 
 function groupByWeek(days: DayCell[]): Cell[][] {
     if (!days.length) return [];
@@ -58,7 +65,6 @@ function monthLabels(weeks: Cell[][]): { idx: number; label: string }[] {
         if (!realDay) return;
         const m = new Date(realDay.date).getUTCMonth();
         if (m !== lastMonth) {
-            // skip if this week only has 1-2 days of the new month (label belongs next week)
             const daysInMonth = week.filter(
                 (d) => d.date !== "" && new Date(d.date).getUTCMonth() === m,
             ).length;
@@ -71,25 +77,43 @@ function monthLabels(weeks: Cell[][]): { idx: number; label: string }[] {
     return out;
 }
 
+type Hover = { day: DayCell; left: number; top: number };
+
 export default function Heatmap({
     days,
     theme = "ink",
+    unit = "contribution",
 }: {
     days: DayCell[];
     theme?: HeatmapTheme;
+    unit?: string;
 }) {
     const weeks = useMemo(() => groupByWeek(days), [days]);
     const labels = useMemo(() => monthLabels(weeks), [weeks]);
     const scale = HEATMAP_THEMES[theme];
 
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [hover, setHover] = useState<Hover | null>(null);
+
     const CELL = 12;
     const GAP = 3;
     const STRIDE = CELL + GAP;
 
+    function onEnter(e: React.MouseEvent<HTMLDivElement>, day: DayCell) {
+        const root = containerRef.current;
+        if (!root) return;
+        const cell = e.currentTarget.getBoundingClientRect();
+        const wrap = root.getBoundingClientRect();
+        setHover({
+            day,
+            left: cell.left - wrap.left + cell.width / 2,
+            top: cell.top - wrap.top,
+        });
+    }
+
     return (
-        <div className="overflow-x-auto no-scrollbar">
-            <div className="inline-block min-w-[580px]">
-                {/* month row */}
+        <div ref={containerRef} className="relative overflow-x-auto no-scrollbar">
+            <div className="inline-block min-w-[580px]" onMouseLeave={() => setHover(null)}>
                 <div className="flex pl-[28px] mb-1 h-[12px] relative">
                     {labels.map((l) => (
                         <span
@@ -102,7 +126,6 @@ export default function Heatmap({
                     ))}
                 </div>
                 <div className="flex gap-[3px]">
-                    {/* day-of-week column */}
                     <div
                         className="flex flex-col gap-[3px] mr-1 font-mono text-[9.5px] tracking-[0.04em] text-fg-subtle leading-none w-[20px]"
                         aria-hidden
@@ -132,9 +155,9 @@ export default function Heatmap({
                                 return (
                                     <div
                                         key={j}
-                                        className="w-[12px] h-[12px] rounded-[2px] border border-[color:color-mix(in_oklab,var(--fg)_4%,transparent)]"
+                                        className="w-[12px] h-[12px] rounded-[2px] border border-[color:color-mix(in_oklab,var(--fg)_4%,transparent)] transition-colors duration-150 hover:border-fg"
                                         style={{ background: scale[day.level] ?? scale[0] }}
-                                        title={`${day.count} on ${day.date}`}
+                                        onMouseEnter={(e) => onEnter(e, day)}
                                     />
                                 );
                             })}
@@ -142,6 +165,28 @@ export default function Heatmap({
                     ))}
                 </div>
             </div>
+
+            {hover && (
+                <div
+                    role="tooltip"
+                    className="absolute -translate-x-1/2 -translate-y-full pointer-events-none z-10"
+                    style={{ left: hover.left, top: hover.top - 6 }}
+                >
+                    <div className="px-2 py-1.5 rounded-md bg-fg shadow-[0_4px_12px_rgb(0_0_0/0.18)] font-mono text-[10.5px] text-bg whitespace-nowrap leading-tight">
+                        <span className="font-semibold">
+                            {hover.day.count === 0
+                                ? `No ${unit}s`
+                                : `${hover.day.count} ${unit}${hover.day.count === 1 ? "" : "s"}`}
+                        </span>
+                        <span className="opacity-70"> on </span>
+                        <span>{FULL_DATE.format(new Date(hover.day.date))}</span>
+                    </div>
+                    <span
+                        className="block w-2 h-2 rotate-45 bg-fg mx-auto -mt-1"
+                        aria-hidden
+                    />
+                </div>
+            )}
         </div>
     );
 }

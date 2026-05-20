@@ -7,7 +7,7 @@ export default function StatusBar() {
             <div className="flex items-center gap-3.5 flex-shrink-0">
                 <span>EST. 2023</span>
                 <span className="text-fg-faint">·</span>
-                <span>v2 · May &apos;26</span>
+                <span>v1.0 · May &apos;26</span>
             </div>
             <div className="flex items-center gap-2 text-fg-muted justify-center">
                 <span

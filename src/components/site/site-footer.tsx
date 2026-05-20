@@ -37,8 +37,7 @@ export default function SiteFooter() {
                 <span className="text-fg-faint mx-1.5">·</span> Iterate
             </div>
             <div className="text-center font-mono text-[11px] text-fg-faint pb-6">
-                © {year} — by {siteConfig.fullName} \w ❤️{" "}
-                <span className="text-fg-ghost mx-1.5">·</span>
+                © {year} — by {siteConfig.fullName} <span className="text-fg-ghost mx-1.5">·</span>
                 <span
                     className="inline-block w-1.5 h-2.5 bg-fg align-[-1px] ml-0.5 animate-caret-blink"
                     aria-hidden
