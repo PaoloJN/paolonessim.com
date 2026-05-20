@@ -120,11 +120,11 @@ export default function CommandPalette() {
                         .map((p) => (
                             <CommandItem
                                 key={p.slug}
-                                value={`project ${p.title} ${p.stack} ${p.mark}`}
+                                value={`project ${p.title} ${p.tagline} ${p.stack} ${p.mark}`}
                                 onSelect={() => openHref(p.href)}
                             >
                                 <span>{p.title}</span>
-                                <CommandShortcut>{p.stack}</CommandShortcut>
+                                <CommandShortcut>{p.tagline}</CommandShortcut>
                             </CommandItem>
                         ))}
                 </CommandGroup>
