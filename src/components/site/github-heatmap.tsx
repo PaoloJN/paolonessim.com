@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import type { DayCell } from "@/lib/heatmap";
 
 type EmptyDay = { date: ""; count: 0; level: 0 };
+type Cell = DayCell | EmptyDay;
 
 export type HeatmapTheme = "ink" | "claude";
 
@@ -24,14 +25,17 @@ export const HEATMAP_THEMES: Record<HeatmapTheme, string[]> = {
     ],
 };
 
-function groupByWeek(days: DayCell[]): (DayCell | EmptyDay)[][] {
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const DAYS = ["Mon", "Wed", "Fri"]; // shown on rows 1, 3, 5
+
+function groupByWeek(days: DayCell[]): Cell[][] {
     if (!days.length) return [];
-    const weeks: (DayCell | EmptyDay)[][] = [];
+    const weeks: Cell[][] = [];
     const first = new Date(days[0].date);
-    const startPad = first.getDay();
+    const startPad = first.getUTCDay();
     const empty: EmptyDay = { date: "", count: 0, level: 0 };
 
-    let week: (DayCell | EmptyDay)[] = startPad > 0 ? Array(startPad).fill(empty) : [];
+    let week: Cell[] = startPad > 0 ? Array(startPad).fill(empty) : [];
     for (const d of days) {
         week.push(d);
         if (week.length === 7) {
@@ -39,8 +43,32 @@ function groupByWeek(days: DayCell[]): (DayCell | EmptyDay)[][] {
             week = [];
         }
     }
-    if (week.length) weeks.push(week);
+    if (week.length) {
+        while (week.length < 7) week.push(empty);
+        weeks.push(week);
+    }
     return weeks;
+}
+
+function monthLabels(weeks: Cell[][]): { idx: number; label: string }[] {
+    const out: { idx: number; label: string }[] = [];
+    let lastMonth = -1;
+    weeks.forEach((week, i) => {
+        const realDay = week.find((d) => d.date !== "") as DayCell | undefined;
+        if (!realDay) return;
+        const m = new Date(realDay.date).getUTCMonth();
+        if (m !== lastMonth) {
+            // skip if this week only has 1-2 days of the new month (label belongs next week)
+            const daysInMonth = week.filter(
+                (d) => d.date !== "" && new Date(d.date).getUTCMonth() === m,
+            ).length;
+            if (daysInMonth >= 3 || lastMonth === -1) {
+                out.push({ idx: i, label: MONTHS[m] });
+                lastMonth = m;
+            }
+        }
+    });
+    return out;
 }
 
 export default function Heatmap({
@@ -51,31 +79,68 @@ export default function Heatmap({
     theme?: HeatmapTheme;
 }) {
     const weeks = useMemo(() => groupByWeek(days), [days]);
+    const labels = useMemo(() => monthLabels(weeks), [weeks]);
     const scale = HEATMAP_THEMES[theme];
+
+    const CELL = 12;
+    const GAP = 3;
+    const STRIDE = CELL + GAP;
 
     return (
         <div className="overflow-x-auto no-scrollbar">
-            <div className="flex gap-[3px] min-w-[580px]">
-                {weeks.map((week, i) => (
-                    <div key={i} className="flex flex-col gap-[3px]">
-                        {Array.from({ length: 7 }).map((_, j) => {
-                            const day = week[j];
-                            if (!day || day.date === "") {
-                                return (
-                                    <div key={j} className="w-[12px] h-[12px] bg-transparent" />
-                                );
-                            }
+            <div className="inline-block min-w-[580px]">
+                {/* month row */}
+                <div className="flex pl-[28px] mb-1 h-[12px] relative">
+                    {labels.map((l) => (
+                        <span
+                            key={l.idx}
+                            className="absolute font-mono text-[9.5px] tracking-[0.04em] text-fg-subtle leading-none"
+                            style={{ left: 28 + l.idx * STRIDE }}
+                        >
+                            {l.label}
+                        </span>
+                    ))}
+                </div>
+                <div className="flex gap-[3px]">
+                    {/* day-of-week column */}
+                    <div
+                        className="flex flex-col gap-[3px] mr-1 font-mono text-[9.5px] tracking-[0.04em] text-fg-subtle leading-none w-[20px]"
+                        aria-hidden
+                    >
+                        {Array.from({ length: 7 }).map((_, i) => {
+                            const idx = [1, 3, 5].indexOf(i);
                             return (
-                                <div
-                                    key={j}
-                                    className="w-[12px] h-[12px] rounded-[2px] border border-[color:color-mix(in_oklab,var(--fg)_4%,transparent)]"
-                                    style={{ background: scale[day.level] ?? scale[0] }}
-                                    title={`${day.count} on ${day.date}`}
-                                />
+                                <span
+                                    key={i}
+                                    className="h-[12px] flex items-center"
+                                    style={{ visibility: idx === -1 ? "hidden" : "visible" }}
+                                >
+                                    {idx >= 0 ? DAYS[idx] : ""}
+                                </span>
                             );
                         })}
                     </div>
-                ))}
+                    {weeks.map((week, i) => (
+                        <div key={i} className="flex flex-col gap-[3px]">
+                            {Array.from({ length: 7 }).map((_, j) => {
+                                const day = week[j];
+                                if (!day || day.date === "") {
+                                    return (
+                                        <div key={j} className="w-[12px] h-[12px] bg-transparent" />
+                                    );
+                                }
+                                return (
+                                    <div
+                                        key={j}
+                                        className="w-[12px] h-[12px] rounded-[2px] border border-[color:color-mix(in_oklab,var(--fg)_4%,transparent)]"
+                                        style={{ background: scale[day.level] ?? scale[0] }}
+                                        title={`${day.count} on ${day.date}`}
+                                    />
+                                );
+                            })}
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );
