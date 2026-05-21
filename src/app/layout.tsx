@@ -14,7 +14,10 @@ const serif = Instrument_Serif({
     style: ["normal", "italic"],
     subsets: ["latin"],
     variable: "--font-serif",
-    display: "swap",
+    display: "block",
+    preload: true,
+    adjustFontFallback: true,
+    fallback: ["Georgia", "Times New Roman", "serif"],
 });
 
 export const metadata: Metadata = {
