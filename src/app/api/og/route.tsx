@@ -1,7 +1,5 @@
 import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
-
 type Parameters = {
     title?: string;
 };
@@ -12,14 +10,9 @@ export async function GET(request: Request) {
         const parameters: Parameters = Object.fromEntries(searchParams);
         const { title } = parameters;
 
-        const [interRegular, interMedium] = await Promise.all([
-            fetch(new URL("/public/fonts/inter/regular.ttf", import.meta.url)).then((res) =>
-                res.arrayBuffer(),
-            ),
-            fetch(new URL("/public/fonts/inter/medium.ttf", import.meta.url)).then((res) =>
-                res.arrayBuffer(),
-            ),
-        ]);
+        const interRegular = await fetch(
+            new URL("/public/fonts/inter/regular.ttf", import.meta.url),
+        ).then((res) => res.arrayBuffer());
 
         return new ImageResponse(
             (
@@ -125,10 +118,7 @@ export async function GET(request: Request) {
             {
                 width: 1200,
                 height: 600,
-                fonts: [
-                    { name: "Inter", data: interRegular, weight: 400 },
-                    { name: "Inter", data: interMedium, weight: 500 },
-                ],
+                fonts: [{ name: "Inter", data: interRegular, weight: 400 }],
             },
         );
     } catch {
