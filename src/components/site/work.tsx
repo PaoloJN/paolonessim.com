@@ -28,12 +28,12 @@ function Mark({ p }: { p: Project }) {
         return (
             <span className={markClass} aria-hidden>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                {/* <img
+                <img
                     src={p.logo}
                     alt=""
                     className="w-[14px] h-[14px] object-contain"
                     onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = "none")}
-                /> */}
+                />
             </span>
         );
     }

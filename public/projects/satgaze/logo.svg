@@ -1,4 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="currentColor" aria-label="satgaze">
-  <path d="M80 40 L195 40 L130 130 L80 130 A45 45 0 0 1 80 40 Z"></path>
-  <path d="M160 200 L45 200 L110 110 L160 110 A45 45 0 0 1 160 200 Z"></path>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" aria-label="Satgaze">
+  <rect width="240" height="240" rx="32" ry="32" fill="#0a0a0a"/>
+  <g transform="translate(36 36) scale(0.7)" fill="#ffffff">
+    <path d="M80 40 L195 40 L130 130 L80 130 A45 45 0 0 1 80 40 Z"/>
+    <path d="M160 200 L45 200 L110 110 L160 110 A45 45 0 0 1 160 200 Z"/>
+  </g>
 </svg>

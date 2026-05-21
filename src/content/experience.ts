@@ -25,12 +25,12 @@ export const experience: Role[] = [
         title: "HW/SW Engineer",
         org: "UMD CPSE",
         orgSuffix: " Summer Program",
-        body: "Built \"ICantSee,\" a proof-of-concept assistive system using computer vision + haptic feedback for visually impaired users. Got invited back as a research intern.",
+        body: 'Built "ICantSee," a proof-of-concept assistive system using computer vision + haptic feedback for visually impaired users. Got invited back as a research intern.',
     },
     {
         when: "Jan 2023 — now",
-        title: "Founder, Full-Stack Dev",
+        title: "Full-Stack Dev",
         org: "Nessimworks",
-        body: "Production websites and web apps for small-business and nonprofit clients. Requirements, design, build, ship, support. React / Next.js / Tailwind.",
+        body: "Production websites and web apps for small-business and nonprofit clients. Requirements, design, build, ship, support. React / Next.js / WordPress.",
     },
 ];

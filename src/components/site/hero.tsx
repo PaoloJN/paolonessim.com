@@ -23,7 +23,7 @@ export default function Hero() {
                 className="m-0 mb-4 max-w-[56ch] text-base leading-[1.6] text-fg
   tracking-[-0.005em]"
             >
-                Hi, I&apos;m Paolo. I vibe code to ship things — apps, Chrome extensions, trading
+                Hi, I&apos;m Paolo. I vibe code to ship things — apps, chrome extensions, trading
                 engines, and the occasional robot.
             </p>
 
