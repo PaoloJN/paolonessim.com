@@ -4,10 +4,13 @@
 
 @layer base {
     :root {
-        /* Font CSS variables (--font-sans / --font-mono / --font-serif) are
-           owned by next/font via className on <html>. Do not redeclare here —
-           overriding them bypasses the metric-adjusted fallback and breaks
-           the no-flash guarantee. */
+        /* Font stacks are aliases of next/font variables — never literal
+           names. Hardcoding "Geist" / "Instrument Serif" bypasses next/font's
+           metric-adjusted fallback and causes a visible swap on first paint.
+           Geist exposes --font-geist-sans / --font-geist-mono; Instrument
+           Serif sets --font-serif directly via its `variable` option. */
+        --font-sans: var(--font-geist-sans);
+        --font-mono: var(--font-geist-mono);
 
         --bg: oklch(0.992 0.002 250);
         --bg-elevated: oklch(0.975 0.002 250);

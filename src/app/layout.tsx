@@ -14,7 +14,11 @@ const serif = Instrument_Serif({
     style: ["normal", "italic"],
     subsets: ["latin"],
     variable: "--font-serif",
-    display: "swap",
+    // optional: if the woff2 isn't in cache when the browser is about to
+    // paint (~100ms), use the metric-matched fallback and never swap. On
+    // Vercel CDN the font lands well under that on warm cache; first-time
+    // visitors see Georgia briefly, no visible flash.
+    display: "optional",
     preload: true,
     adjustFontFallback: true,
     fallback: ["Georgia", "Times New Roman", "serif"],
