@@ -4,11 +4,10 @@
 
 @layer base {
     :root {
-        /* ============ Editorial tokens (single source of truth) ============ */
-        --font-sans: "Geist", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-        --font-mono:
-            "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-        --font-serif: "Instrument Serif", "Times New Roman", Georgia, serif;
+        /* Font CSS variables (--font-sans / --font-mono / --font-serif) are
+           owned by next/font via className on <html>. Do not redeclare here —
+           overriding them bypasses the metric-adjusted fallback and breaks
+           the no-flash guarantee. */
 
         --bg: oklch(0.992 0.002 250);
         --bg-elevated: oklch(0.975 0.002 250);

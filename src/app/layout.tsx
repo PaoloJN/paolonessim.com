@@ -14,7 +14,7 @@ const serif = Instrument_Serif({
     style: ["normal", "italic"],
     subsets: ["latin"],
     variable: "--font-serif",
-    display: "block",
+    display: "swap",
     preload: true,
     adjustFontFallback: true,
     fallback: ["Georgia", "Times New Roman", "serif"],
